@@ -1,6 +1,7 @@
 const Maid = require("./../models/maidModel");
 const jwt = require("jsonwebtoken");
 const catchAsync = require("./../utils/catchAsync");
+const AppError = require("./../utils/appError");
 
 const signToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
@@ -30,7 +31,7 @@ exports.signup = catchAsync(async (req, res, next) => {
     name: req.body.name,
     email: req.body.email,
     password: req.body.password,
-    confirmPassword: req.body.confirmPassword,
+    passwordConfirm: req.body.passwordConfirm,
     photo: req.body.photo,
     mobileNumber: req.body.mobileNumber,
     aadhaarNumber: req.body.aadhaarNumber,
@@ -42,3 +43,28 @@ exports.signup = catchAsync(async (req, res, next) => {
   });
   createSendToken(newMaid, 201, res);
 });
+
+exports.login = catchAsync(async (req, res, next) => {
+  const { email, password } = req.body;
+  if (!email || !password) {
+    next(new AppError("Please fill complete form! "));
+    return;
+  }
+
+  const maid = await Maid.findOne({ email }).select("+password");
+
+  if (!maid || !(await maid.correctPassword(password, maid.password)))
+    return next(new AppError("Incorrect email or password! "));
+
+  createSendToken(maid, 200, res);
+});
+
+exports.logout = (req, res, next) => {
+  //just send a corrupted cookie
+
+  res.cookie("jwt", "loggedout", {
+    expires: new Date(Date.now() + 10 * 1000),
+    httpOnly: true, //no need for https
+  });
+  res.status(200).json({ status: "success" });
+};

@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const validator = require("validator");
+const bcrypt = require("bcryptjs");
 
 const maidSchema = new mongoose.Schema({
   name: {
@@ -41,10 +42,10 @@ const maidSchema = new mongoose.Schema({
   passwordResetExpires: Date,
 
   mobileNumber: {
-    type: Number,
+    type: String,
     required: [true, "Please provide your mobile number! "],
     // validate: [
-    //   validator.isMobilePhone("en-IN"),
+    //   validator.isMobilePhone(),
     //   "Please eneter a valid mobile number! ",
     // ],
   },
@@ -57,6 +58,8 @@ const maidSchema = new mongoose.Schema({
   dob: {
     type: Date,
     required: [true, "please provide you date of birth! "],
+    min: ["1960-01-01", "invalid date of birth"],
+    max: ["2015-01-01", "invalid date of birth"],
   },
   gender: {
     type: String,
@@ -78,6 +81,7 @@ const maidSchema = new mongoose.Schema({
     type: Number,
     min: 2000,
     max: 50000,
+    default: 2000,
   },
 
   availability: {
@@ -94,6 +98,29 @@ const maidSchema = new mongoose.Schema({
     select: false,
   },
 });
+
+//middlewares works only when creating and saving
+
+//1. record time of password changing
+maidSchema.pre("save", function (next) {
+  if (!this.isModified("password") || this.isNew) return next();
+  this.passwordChangedAt = Date.now() - 1000; //because token get send before saving password
+  next();
+});
+
+//2.encrypting password
+maidSchema.pre("save", async function (next) {
+  if (!this.isModified("password")) return next();
+  this.password = await bcrypt.hash(this.password, 12);
+  this.passwordConfirm = undefined;
+  next();
+});
+
+//methods on this schema
+//checking password
+maidSchema.methods.correctPassword = async function (password, truePassword) {
+  return await bcrypt.compare(password, truePassword);
+};
 
 const Maid = mongoose.model("Maid", maidSchema);
 module.exports = Maid;

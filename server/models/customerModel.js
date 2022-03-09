@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const validator = require("validator");
+const bcrypt = require("bcryptjs");
 
 const customerSchema = new mongoose.Schema({
   name: {
@@ -25,7 +26,7 @@ const customerSchema = new mongoose.Schema({
     maxlength: [20, "Password length must be less than 21"],
     select: false,
   },
-  confirmPassword: {
+  passwordConfirm: {
     type: String,
     required: [true, "Please confirm your password"],
     validate: {
@@ -58,6 +59,32 @@ const customerSchema = new mongoose.Schema({
     select: false,
   },
 });
+
+//middlewares works only when creating and saving
+
+//1. record time of password changing
+customerSchema.pre("save", function (next) {
+  if (!this.isModified("password") || this.isNew) return next();
+  this.passwordChangedAt = Date.now() - 1000; //because token get send before saving password
+  next();
+});
+
+//2.encrypting password
+customerSchema.pre("save", async function (next) {
+  if (!this.isModified("password")) return next();
+  this.password = await bcrypt.hash(this.password, 12);
+  this.passwordConfirm = undefined;
+  next();
+});
+
+//methods on this schema
+//checking password
+customerSchema.methods.correctPassword = async function (
+  password,
+  truePassword
+) {
+  return await bcrypt.compare(password, truePassword);
+};
 
 const Customer = mongoose.model("Customer", customerSchema);
 module.exports = Customer;
