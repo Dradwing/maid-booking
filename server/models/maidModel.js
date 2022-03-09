@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
+const crypto = require("crypto");
 const validator = require("validator");
 const bcrypt = require("bcryptjs");
+const { reset } = require("nodemon");
 
 const maidSchema = new mongoose.Schema({
   name: {
@@ -120,6 +122,19 @@ maidSchema.pre("save", async function (next) {
 //checking password
 maidSchema.methods.correctPassword = async function (password, truePassword) {
   return await bcrypt.compare(password, truePassword);
+};
+
+//creating password reset token
+maidSchema.methods.createPasswordResetToken = function () {
+  //create a random token in hexadecimal string
+  const resetToken = crypto.randomBytes(32).toString("hex");
+  //encrypt it
+  this.passwordResetToken = crypto
+    .createHash("sha256")
+    .update(resetToken)
+    .digest("hex");
+  this.passwordResetExpires = Date.now() + 10 * 60 * 1000; //but not saved yet
+  return resetToken;
 };
 
 const Maid = mongoose.model("Maid", maidSchema);

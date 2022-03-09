@@ -8,6 +8,9 @@ const customerController = require("./../controllers/CustomerController");
 customerRoutes.post("/signup", customerAuthController.signup);
 customerRoutes.post("/login", customerAuthController.login);
 customerRoutes.get("/logout", customerAuthController.logout);
+customerRoutes.post("/forgotPassword", customerAuthController.forgotPassword);
+customerRoutes.post("/resetPassword", customerAuthController.resetPassword);
+customerRoutes.post("/updatePassword", customerAuthController.updatePassword);
 
 customerRoutes.get("/allcustomers", customerController.getallcustomers);
 
