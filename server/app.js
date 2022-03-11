@@ -7,6 +7,18 @@ const AppError = require("./utils/appError");
 const globalErrorHandler = require("./controllers/errorController");
 
 ////security measures
+const rateLimit = require("express-rate-limit");
+const cookieParser = require("cookie-parser");
+
+const limiter = rateLimit({
+  max: 200,
+  windowMs: 60 * 60 * 1000,
+  message: "Too many requests from this IP. Please try after one hour",
+});
+
+app.use("api/v1/maids", limiter);
+app.use("api/v1/customers", limiter);
+app.use(cookieParser());
 
 //to get data of requests body and limiting it to maximum 10kb
 app.use(express.json({ limit: "10kb" }));

@@ -9,9 +9,18 @@ customerRoutes.post("/signup", customerAuthController.signup);
 customerRoutes.post("/login", customerAuthController.login);
 customerRoutes.get("/logout", customerAuthController.logout);
 customerRoutes.post("/forgotPassword", customerAuthController.forgotPassword);
-customerRoutes.post("/resetPassword", customerAuthController.resetPassword);
-customerRoutes.post("/updatePassword", customerAuthController.updatePassword);
-
-customerRoutes.get("/allcustomers", customerController.getallcustomers);
+customerRoutes.patch(
+  "/resetPassword/:token",
+  customerAuthController.resetPassword
+);
+customerRoutes.use(customerAuthController.protect);
+customerRoutes.patch("/updatePassword", customerAuthController.updatePassword);
+customerRoutes.get(
+  "/me",
+  customerController.getMe,
+  customerController.getCustomer
+);
+customerRoutes.patch("/updateMe", customerController.updateMe);
+customerRoutes.delete("/deleteMe", customerController.deleteMe);
 
 module.exports = customerRoutes;

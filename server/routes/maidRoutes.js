@@ -9,7 +9,15 @@ maidRoutes.post("/signup", maidAuthController.signup);
 maidRoutes.post("/login", maidAuthController.login);
 maidRoutes.get("/logout", maidAuthController.logout);
 maidRoutes.post("/forgotPassword", maidAuthController.forgotPassword);
-maidRoutes.post("/resetPassword", maidAuthController.resetPassword);
-maidRoutes.post("/updatePassword", maidAuthController.updatePassword);
+maidRoutes.patch("/resetPassword/:token", maidAuthController.resetPassword);
+
+// Protect all routes after this middleware
+maidRoutes.use(maidAuthController.protect);
+
+maidRoutes.patch("/updatePassword", maidAuthController.updatePassword);
+maidRoutes.get("/me", maidController.getMe, maidController.getMaid);
+maidRoutes.patch("/updateMe", maidController.updateMe);
+maidRoutes.delete("/deleteMe", maidController.deleteMe);
+//
 
 module.exports = maidRoutes;

@@ -2,7 +2,11 @@ const Maid = require("./../models/maidModel");
 const jwt = require("jsonwebtoken");
 const catchAsync = require("./../utils/catchAsync");
 const AppError = require("./../utils/appError");
+const sendEmail = require("./../utils/email");
+const Email = require("./../utils/email");
 const crypto = require("crypto");
+
+const { promisify } = require("util");
 
 const signToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
@@ -21,6 +25,7 @@ const createSendToken = (maid, statusCode, res) => {
   if (process.env.NODE_ENV == "production") cookieOptions.secure = true;
 
   res.cookie("jwt", token, cookieOptions);
+  maid.password = undefined; //not saving though
   res.status(statusCode).json({
     status: "success",
     data: { Maid: maid },
@@ -42,6 +47,10 @@ exports.signup = catchAsync(async (req, res, next) => {
     gender: req.body.gender,
     dob: req.body.dob,
   });
+
+  const url = `${req.protocol}://${req.get("host")}/maids/me`;
+  await new Email(newMaid, url).sendWelcome();
+
   createSendToken(newMaid, 201, res);
 });
 
@@ -104,11 +113,11 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
   }
 });
 
-exports.resetPassword = catchAsync((req, res, next) => {
+exports.resetPassword = catchAsync(async (req, res, next) => {
   //1. get user based on token
   const hashedToken = crypto
     .createHash("sha256")
-    .update(req.body.params.token)
+    .update(req.params.token)
     .digest("hex");
   const maid = await Maid.findOne({
     passwordResetToken: hashedToken,
@@ -125,7 +134,7 @@ exports.resetPassword = catchAsync((req, res, next) => {
   createSendToken(maid, 200, res);
 });
 
-exports.updatePassword = catchAsync((req, res, next) => {
+exports.updatePassword = catchAsync(async (req, res, next) => {
   //get user
   const maid = await Maid.findById(req.maid.id).select("+password");
 
@@ -139,4 +148,35 @@ exports.updatePassword = catchAsync((req, res, next) => {
   await maid.save();
 
   createSendToken(maid, 200, res);
+});
+
+exports.protect = catchAsync(async (req, res, next) => {
+  let token;
+  if (req.cookies.jwt) token = req.cookies.jwt;
+
+  if (!token) {
+    return next(
+      new AppError(
+        "Access Denied! You do not have the permission to the requested page. \nPlease login again!",
+        403
+      )
+    );
+  }
+  let decodedToken;
+  decodedToken = await promisify(jwt.verify)(token, process.env.JWT_SECRET); //promisify just make the jwt.verify return promise othrwise callback;
+  const currentMaid = await Maid.findById(decodedToken.id);
+  if (!currentMaid)
+    return next(
+      new AppError(
+        "The user belonging to this token does no longer exist! ",
+        401
+      )
+    );
+
+  if (currentMaid.changedPasswordAfter(decodedToken.iat))
+    return next(
+      new AppError("User changed password recently. Please login again! ", 401)
+    );
+  req.Maid = currentMaid;
+  next();
 });

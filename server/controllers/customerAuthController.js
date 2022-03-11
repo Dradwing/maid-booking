@@ -2,6 +2,8 @@ const Customer = require("./../models/customerModel");
 const jwt = require("jsonwebtoken");
 const catchAsync = require("./../utils/catchAsync");
 const AppError = require("../utils/appError");
+const Email = require("./../utils/email");
+const { promisify } = require("util");
 const crypto = require("crypto");
 
 const signToken = (id) => {
@@ -22,7 +24,7 @@ const createSendToken = (customer, statusCode, res) => {
 
   //sending as cookie so that even browser can't read/change it
   res.cookie("jwt", token, cookieOptions);
-
+  customer.password = undefined; //not saving
   res.status(statusCode).json({
     status: "success",
     data: { Customer: customer },
@@ -39,6 +41,8 @@ exports.signup = catchAsync(async (req, res, next) => {
     mobileNumber: req.body.mobileNumber,
     address: req.body.address,
   });
+  const url = `${req.protocol}://${req.get("host")}/customers/me`;
+  await new Email(newCustomer, url).sendWelcome();
   createSendToken(newCustomer, 201, res);
 });
 
@@ -53,7 +57,7 @@ exports.login = catchAsync(async (req, res, next) => {
     !customer ||
     !(await customer.correctPassword(password, customer.password))
   )
-    return next(new appError("Incorrect email or password! ", 404));
+    return next(new AppError("Incorrect email or password! ", 404));
 
   createSendToken(customer, 200, res);
 });
@@ -91,7 +95,7 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
   } catch (err) {
     customer.passwordResetToken = undefined;
     customer.passwordResetExpires = undefined;
-    await user.save({ validateBeforeSave: false });
+    await customer.save({ validateBeforeSave: false });
 
     return next(
       new AppError(
@@ -102,11 +106,11 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
   }
 });
 
-exports.resetPassword = catchAsync((req, res, next) => {
+exports.resetPassword = catchAsync(async (req, res, next) => {
   //1. get user based on token
   const hashedToken = crypto
     .createHash("sha256")
-    .update(req.body.params.token)
+    .update(req.params.token)
     .digest("hex");
   const customer = await Customer.findOne({
     passwordResetToken: hashedToken,
@@ -124,7 +128,7 @@ exports.resetPassword = catchAsync((req, res, next) => {
   createSendToken(customer, 200, res);
 });
 
-exports.updatePassword = catchAsync((req, res, next) => {
+exports.updatePassword = catchAsync(async (req, res, next) => {
   //get user
   const customer = await Customer.findById(req.customer.id).select("+password");
 
@@ -138,4 +142,38 @@ exports.updatePassword = catchAsync((req, res, next) => {
   await customer.save();
 
   createSendToken(customer, 200, res);
+});
+
+exports.protect = catchAsync(async (req, res, next) => {
+  let token;
+
+  if (req.cookies.jwt) {
+    token = req.cookies.jwt;
+  }
+
+  if (!token) {
+    return next(
+      new AppError(
+        "Access Denied! You do not have the permission to the requested page. \nPlease login again!",
+        403
+      )
+    );
+  }
+  let decodedToken;
+  decodedToken = await promisify(jwt.verify)(token, process.env.JWT_SECRET); //promisify just make the jwt.verify return promise othrwise callback;
+  const currentCustomer = await Customer.findById(decodedToken.id);
+  if (!currentCustomer)
+    return next(
+      new AppError(
+        "The user belonging to this token does no longer exist! ",
+        401
+      )
+    );
+
+  if (currentCustomer.changedPasswordAfter(decodedToken.iat))
+    return next(
+      new AppError("User changed password recently. Please login again! ", 401)
+    );
+  req.Customer = currentCustomer;
+  next();
 });

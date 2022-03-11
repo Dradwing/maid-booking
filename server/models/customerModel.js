@@ -78,6 +78,13 @@ customerSchema.pre("save", async function (next) {
   next();
 });
 
+//3. Not considering deleted maids
+customerSchema.pre(/^find/, function (next) {
+  //for all queries starting with find
+  //as it is a query middleware, this refers to current query
+  this.find({ active: { $ne: false } }); //as default true value will not work
+  next();
+});
 //methods on this schema
 //checking password
 customerSchema.methods.correctPassword = async function (
@@ -100,5 +107,16 @@ customerSchema.methods.createPasswordResetToken = function () {
   return resetToken;
 };
 
+//to check if password was changed
+customerSchema.methods.changedPasswordAfter = function (JWTTimeStamp) {
+  if (this.passwordChangedAt) {
+    const changedTimeStamp = parseInt(
+      this.passwordChangedAt.getTime() / 1000,
+      10
+    );
+    return JWTTimeStamp < changedTimeStamp;
+  }
+  return false;
+};
 const Customer = mongoose.model("Customer", customerSchema);
 module.exports = Customer;

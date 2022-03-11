@@ -118,6 +118,14 @@ maidSchema.pre("save", async function (next) {
   next();
 });
 
+//3. Not considering deleted maids
+maidSchema.pre(/^find/, function (next) {
+  //for all queries starting with find
+  //as it is a query middleware, this refers to current query
+  this.find({ active: { $ne: false } });
+  next();
+});
+
 //methods on this schema
 //checking password
 maidSchema.methods.correctPassword = async function (password, truePassword) {
@@ -135,6 +143,18 @@ maidSchema.methods.createPasswordResetToken = function () {
     .digest("hex");
   this.passwordResetExpires = Date.now() + 10 * 60 * 1000; //but not saved yet
   return resetToken;
+};
+
+//to check if password was changed
+maidSchema.methods.changedPasswordAfter = function (JWTTimeStamp) {
+  if (this.passwordChangedAt) {
+    const changedTimeStamp = parseInt(
+      this.passwordChangedAt.getTime() / 1000,
+      10
+    );
+    return JWTTimeStamp < changedTimeStamp;
+  }
+  return false;
 };
 
 const Maid = mongoose.model("Maid", maidSchema);
