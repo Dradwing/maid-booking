@@ -2,17 +2,24 @@ const Maid = require("./../models/maidModel");
 const catchAsync = require("./../utils/catchAsync");
 const AppError = require("./../utils/appError");
 
-exports.getMe = (req, res, next) => {
-  req.params.id = req.Maid.id;
-  next();
-};
+exports.getAllMaids = catchAsync(async (req, res, next) => {
+  const maids = await Maid.find();
+  res.status(200).json({
+    status: "success",
+    Maids: maids,
+  });
+});
 exports.getMaid = catchAsync(async (req, res, next) => {
-  const maid = await Maid.findById(req.params.id);
+  const maid = await Maid.findById(req.params.id).populate("reviews");
   res.status(200).json({
     status: "success",
     Maid: maid,
   });
 });
+exports.getMe = (req, res, next) => {
+  req.params.id = req.Maid.id;
+  next();
+};
 
 exports.updateMe = catchAsync(async (req, res, next) => {
   // 1) Create error if user POSTs password data

@@ -3,8 +3,12 @@ const maidRoutes = express.Router();
 
 const maidAuthController = require("./../controllers/maidAuthController");
 const maidController = require("./../controllers/maidController");
+const reviewRouter = require("./reviewRoutes");
 
+maidRoutes.use("/:maidId/reviews", reviewRouter);
 //maid authentication
+maidRoutes.get("/", maidController.getAllMaids);
+maidRoutes.get("/:id", maidController.getMaid);
 maidRoutes.post("/signup", maidAuthController.signup);
 maidRoutes.post("/login", maidAuthController.login);
 maidRoutes.get("/logout", maidAuthController.logout);
