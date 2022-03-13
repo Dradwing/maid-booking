@@ -10,6 +10,12 @@ const globalErrorHandler = require("./controllers/errorController");
 ////security measures
 const rateLimit = require("express-rate-limit");
 const cookieParser = require("cookie-parser");
+const helmet = require("helmet");
+const mongoSanitize = require("express-mongo-sanitize");
+const xss = require("xss-clean");
+const hpp = require("hpp");
+const cors = require("cors");
+const compression = require("compression");
 
 const limiter = rateLimit({
   max: 200,
@@ -18,10 +24,18 @@ const limiter = rateLimit({
 });
 
 app.use("api/v1", limiter);
-app.use(cookieParser());
+app.use(helmet());
 
 //to get data of requests body and limiting it to maximum 10kb
 app.use(express.json({ limit: "10kb" }));
+app.use(mongoSanitize());
+app.use(xss());
+app.use(hpp());
+app.use(cors());
+
+app.use(cookieParser());
+app.use(express.urlencoded({ extended: true, limit: "10kb" }));
+app.use(compression());
 
 ////Routes middlewares
 app.use("/api/v1/maids", maidRouter);
