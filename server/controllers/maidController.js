@@ -1,9 +1,21 @@
 const Maid = require("./../models/maidModel");
 const catchAsync = require("./../utils/catchAsync");
 const AppError = require("./../utils/appError");
+const APIFeatures = require("./../utils/apiFeatures");
+
+exports.aliasTopMaids = catchAsync(async (req, res, next) => {
+  req.query.limit = "30";
+  req.query.sortby = "rating,price";
+  next();
+});
 
 exports.getAllMaids = catchAsync(async (req, res, next) => {
-  const maids = await Maid.find();
+  const features = new APIFeatures(Maid.find(), req.query)
+    .filter()
+    .sort()
+    .limiting()
+    .paginating();
+  const maids = await features.query;
   res.status(200).json({
     status: "success",
     Maids: maids,

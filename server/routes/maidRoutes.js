@@ -6,6 +6,9 @@ const maidController = require("./../controllers/maidController");
 const reviewRouter = require("./reviewRoutes");
 
 maidRoutes.use("/:maidId/reviews", reviewRouter);
+maidRoutes
+  .route("/top-30-rated")
+  .get(maidController.aliasTopMaids, maidController.getAllMaids);
 //maid authentication
 maidRoutes.get("/", maidController.getAllMaids);
 maidRoutes.get("/:id", maidController.getMaid);
