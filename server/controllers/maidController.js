@@ -1,7 +1,35 @@
 const Maid = require("./../models/maidModel");
+const Booking = require("./../models/bookingModel");
 const catchAsync = require("./../utils/catchAsync");
 const AppError = require("./../utils/appError");
 const APIFeatures = require("./../utils/apiFeatures");
+const multer = require("multer");
+const sharp = require("sharp");
+const customerRoutes = require("../routes/customerRoutes");
+
+const multerFilter = (req, file, cb) => {
+  if (file.mimetype.startsWith("image")) {
+    cb(null, true);
+  } else {
+    cb(new AppError("Not a image! Please upload only image. ", 400));
+  }
+};
+const multerStorage = multer.memoryStorage();
+
+const upload = multer({ storage: multerStorage, fileFilter: multerFilter });
+
+exports.uploadMaidPhoto = upload.single("photo");
+exports.resizeMaidPhoto = (req, res, next) => {
+  if (!req.file) return next();
+  req.file.filename = `maid-${req.Maid._id}-${Date.now()}.jpeg`;
+
+  sharp(req.file.buffer)
+    .resize(500, 500)
+    .toFormat("jpeg")
+    .jpeg({ quality: 90 })
+    .toFile(`Images/maids/${req.file.filename}`);
+  next();
+};
 
 exports.aliasTopMaids = catchAsync(async (req, res, next) => {
   req.query.limit = "30";
@@ -12,13 +40,13 @@ exports.aliasTopMaids = catchAsync(async (req, res, next) => {
 exports.getAllMaids = catchAsync(async (req, res, next) => {
   const features = new APIFeatures(Maid.find(), req.query)
     .filter()
-    .sort()
+    .sorting()
     .limiting()
     .paginating();
   const maids = await features.query;
   res.status(200).json({
     status: "success",
-    Maids: maids,
+    data: { Maids: maids },
   });
 });
 exports.getMaid = catchAsync(async (req, res, next) => {
@@ -29,10 +57,34 @@ exports.getMaid = catchAsync(async (req, res, next) => {
   });
 });
 exports.getMe = (req, res, next) => {
-  req.params.id = req.Maid.id;
+  req.params.id = req.Maid._id;
   next();
 };
 
+exports.getMyWorks = catchAsync(async (req, res, next) => {
+  const currentWork = await Booking.findOne({
+    maid: req.Maid._id,
+    startingDate: { $gte: Date.now() - 30 * 24 * 60 * 60 * 1000 },
+  }).populate({
+    path: "customer",
+    select: "name photo email address mobileNumber",
+  });
+  const pastWorks = await Booking.find({
+    maid: req.Maid._id,
+    startingDate: { $lt: Date.now() - 30 * 24 * 60 * 60 * 1000 },
+  }).populate({
+    path: "customer",
+    select: "name photo email address mobileNumber",
+  });
+
+  res.status(200).json({
+    status: "success",
+    data: {
+      CurrentWork: currentWork,
+      PastWorks: pastWorks,
+    },
+  });
+});
 exports.updateMe = catchAsync(async (req, res, next) => {
   // 1) Create error if user POSTs password data
   if (req.body.password || req.body.passwordConfirm) {
@@ -58,6 +110,7 @@ exports.updateMe = catchAsync(async (req, res, next) => {
     "services",
     "dob"
   );
+  if (req.file) filteredBody.photo = req.file.filename;
   const updatedMaid = await Maid.findByIdAndUpdate(req.Maid.id, filteredBody, {
     new: true, //returns new object
     runValidators: true,

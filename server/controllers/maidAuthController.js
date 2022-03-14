@@ -136,7 +136,7 @@ exports.resetPassword = catchAsync(async (req, res, next) => {
 
 exports.updatePassword = catchAsync(async (req, res, next) => {
   //get user
-  const maid = await Maid.findById(req.maid.id).select("+password");
+  const maid = await Maid.findById(req.Maid._id).select("+password");
 
   //checking password
   if (!(await maid.correctPassword(req.body.password, maid.password)))

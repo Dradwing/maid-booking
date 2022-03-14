@@ -1,4 +1,5 @@
 const Review = require("./../models/reviewModel");
+const Booking = require("./../models/bookingModel");
 const catchAsync = require("./../utils/catchAsync");
 const AppError = require("./../utils/appError");
 
@@ -14,6 +15,12 @@ exports.getAllReviews = catchAsync(async (req, res, next) => {
 });
 
 exports.createReview = catchAsync(async (req, res, next) => {
+  const booking = await Booking.findOne({
+    maid: req.params.maidId,
+    customer: req.Customer._id,
+  });
+  if (!booking)
+    return next(new AppError("You can't create this review! ", 403));
   req.body.maid = req.params.maidId;
   req.body.customer = req.Customer._id;
 

@@ -11,7 +11,7 @@ maidRoutes
   .get(maidController.aliasTopMaids, maidController.getAllMaids);
 //maid authentication
 maidRoutes.get("/", maidController.getAllMaids);
-maidRoutes.get("/:id", maidController.getMaid);
+maidRoutes.get("/maid/:id", maidController.getMaid); //careful for /me and /myWorks
 maidRoutes.post("/signup", maidAuthController.signup);
 maidRoutes.post("/login", maidAuthController.login);
 maidRoutes.get("/logout", maidAuthController.logout);
@@ -23,8 +23,13 @@ maidRoutes.use(maidAuthController.protect);
 
 maidRoutes.patch("/updatePassword", maidAuthController.updatePassword);
 maidRoutes.get("/me", maidController.getMe, maidController.getMaid);
-maidRoutes.patch("/updateMe", maidController.updateMe);
+maidRoutes.get("/myWorks", maidController.getMyWorks);
+maidRoutes.patch(
+  "/updateMe",
+  maidController.uploadMaidPhoto,
+  maidController.resizeMaidPhoto,
+  maidController.updateMe
+);
 maidRoutes.delete("/deleteMe", maidController.deleteMe);
-//
 
 module.exports = maidRoutes;

@@ -20,7 +20,13 @@ customerRoutes.get(
   customerController.getMe,
   customerController.getCustomer
 );
-customerRoutes.patch("/updateMe", customerController.updateMe);
+customerRoutes.get("/myBookings", customerController.getMyBookings);
+customerRoutes.patch(
+  "/updateMe",
+  customerController.uploadCustomerPhoto,
+  customerController.resizeCustomerPhoto,
+  customerController.updateMe
+);
 customerRoutes.delete("/deleteMe", customerController.deleteMe);
 
 module.exports = customerRoutes;

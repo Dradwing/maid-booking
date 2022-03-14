@@ -1,11 +1,11 @@
 class APIFeatures {
-  constructor(query, querySting) {
+  constructor(query, queryString) {
     this.query = query;
-    this.querySting = querySting;
+    this.queryString = queryString;
   }
   filter() {
     //1)Simple filtering
-    const queryObj = { ...this.querySting };
+    const queryObj = { ...this.queryString };
     const excludedFields = ["sortby", "fields", "services"];
     excludedFields.forEach((el) => {
       delete queryObj[el];
@@ -20,15 +20,16 @@ class APIFeatures {
   }
   sorting() {
     //3) Sorting
+    // console.log(this.queryString);
     if (this.queryString.sortby) {
-      this.queryString = this.queryString.sortby.split(",").join(" ");
+      const sortBy = this.queryString.sortby.split(",").join(" ");
       this.query = this.query.sort(sortBy);
     }
     return this;
   }
   limiting() {
     //4) Limiting
-    if (this.querySting.fields) {
+    if (this.queryString.fields) {
       const fields = this.querySring.fields.split(",").join(" ");
       this.query = this.query.select(fields);
     } else {
@@ -41,7 +42,7 @@ class APIFeatures {
   paginating() {
     //5) Pagination
     const page = (this.queryString.page * 1) | 1;
-    const limit = (this.querySting.limit * 1) | 30;
+    const limit = (this.queryString.limit * 1) | 30;
     const skip = (page - 1) * limit;
     this.query = this.query.skip(skip).limit(limit);
     return this;

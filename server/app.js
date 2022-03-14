@@ -4,6 +4,7 @@ const app = express();
 const maidRouter = require("./routes/maidRoutes");
 const customerRouter = require("./routes/customerRoutes");
 const reviewRouter = require("./routes/reviewRoutes");
+const bookingRouter = require("./routes/bookingRoutes");
 const AppError = require("./utils/appError");
 const globalErrorHandler = require("./controllers/errorController");
 
@@ -41,6 +42,7 @@ app.use(compression());
 app.use("/api/v1/maids", maidRouter);
 app.use("/api/v1/customers", customerRouter);
 app.use("/api/v1/reviews", reviewRouter);
+app.use("/api/v1/bookings", bookingRouter);
 
 // to handle unhandled routes
 app.all("*", (req, res, next) => {
