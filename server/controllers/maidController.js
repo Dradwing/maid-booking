@@ -3,6 +3,7 @@ const Booking = require("./../models/bookingModel");
 const catchAsync = require("./../utils/catchAsync");
 const AppError = require("./../utils/appError");
 const APIFeatures = require("./../utils/apiFeatures");
+const path = require("path");
 const multer = require("multer");
 const sharp = require("sharp");
 const customerRoutes = require("../routes/customerRoutes");
@@ -16,7 +17,11 @@ const multerFilter = (req, file, cb) => {
 };
 const multerStorage = multer.memoryStorage();
 
-const upload = multer({ storage: multerStorage, fileFilter: multerFilter });
+const upload = multer({
+  storage: multerStorage,
+  fileFilter: multerFilter,
+  limits: { fileSize: 10000000 },
+});
 
 exports.uploadMaidPhoto = upload.single("photo");
 exports.resizeMaidPhoto = (req, res, next) => {
@@ -37,7 +42,14 @@ exports.aliasTopMaids = catchAsync(async (req, res, next) => {
   next();
 });
 
+exports.sendImage = catchAsync(async (req, res, next) => {
+  res.sendFile(
+    path.resolve(`${__dirname}/../Images/maids/${req.params.fileName}`)
+  );
+});
+
 exports.getAllMaids = catchAsync(async (req, res, next) => {
+  console.log(req.query);
   const features = new APIFeatures(Maid.find(), req.query)
     .filter()
     .sorting()
@@ -46,6 +58,7 @@ exports.getAllMaids = catchAsync(async (req, res, next) => {
   const maids = await features.query;
   res.status(200).json({
     status: "success",
+    results: maids.length,
     data: { Maids: maids },
   });
 });
@@ -62,7 +75,7 @@ exports.getMe = (req, res, next) => {
 };
 
 exports.getMyWorks = catchAsync(async (req, res, next) => {
-  const currentWork = await Booking.findOne({
+  const currentWork = await Booking.find({
     maid: req.Maid._id,
     startingDate: { $gte: Date.now() - 30 * 24 * 60 * 60 * 1000 },
   }).populate({
@@ -110,7 +123,10 @@ exports.updateMe = catchAsync(async (req, res, next) => {
     "services",
     "dob"
   );
-  if (req.file) filteredBody.photo = req.file.filename;
+  if (req.file)
+    filteredBody.photo = `${req.protocol}://${req.get(
+      "host"
+    )}/api/v1/maids/images/${req.file.filename}`;
   const updatedMaid = await Maid.findByIdAndUpdate(req.Maid.id, filteredBody, {
     new: true, //returns new object
     runValidators: true,

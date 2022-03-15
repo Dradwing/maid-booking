@@ -6,11 +6,12 @@ const maidController = require("./../controllers/maidController");
 const reviewRouter = require("./reviewRoutes");
 
 maidRoutes.use("/:maidId/reviews", reviewRouter);
+maidRoutes.get("/images/:fileName", maidController.sendImage);
+maidRoutes.get("/", maidController.getAllMaids);
 maidRoutes
   .route("/top-30-rated")
   .get(maidController.aliasTopMaids, maidController.getAllMaids);
 //maid authentication
-maidRoutes.get("/", maidController.getAllMaids);
 maidRoutes.get("/maid/:id", maidController.getMaid); //careful for /me and /myWorks
 maidRoutes.post("/signup", maidAuthController.signup);
 maidRoutes.post("/login", maidAuthController.login);

@@ -35,13 +35,12 @@ exports.signup = catchAsync(async (req, res, next) => {
   const newCustomer = await Customer.create({
     name: req.body.name,
     email: req.body.email,
-    photo: req.body.photo,
     password: req.body.password,
     passwordConfirm: req.body.passwordConfirm,
     mobileNumber: req.body.mobileNumber,
     address: req.body.address,
   });
-  const url = `${req.protocol}://${req.get("host")}/customers/me`;
+  const url = `${req.protocol}://${req.get("host")}/customers/login`;
   await new Email(newCustomer, url).sendWelcome();
   createSendToken(newCustomer, 201, res);
 });

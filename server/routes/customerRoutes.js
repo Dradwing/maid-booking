@@ -4,6 +4,7 @@ const customerRoutes = express.Router();
 const customerAuthController = require("./../controllers/customerAuthController");
 const customerController = require("./../controllers/CustomerController");
 
+customerRoutes.get("/images/:fileName", customerController.sendImage);
 //customer authentication
 customerRoutes.post("/signup", customerAuthController.signup);
 customerRoutes.post("/login", customerAuthController.login);

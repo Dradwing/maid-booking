@@ -1,0 +1,90 @@
+[
+    {
+    "name":"Tony Stark",
+    "email":"tonystark@gmail.com",
+    "password":"tonystarkpass",
+    "passwordConfirm":"tonystarkpass",
+    "mobileNumber":"9042231313",
+    "address":["New York, USA","Karnal, India"]
+    },
+    {
+        "name":"Optimus Prime",
+        "email":"optimusprime@gmail.com",
+        "password":"optimasprimepass",
+        "passwordConfirm":"optimasprimepass",
+        "mobileNumber":"9042231313",
+        "address":["New York, USA","Karnal, India"]
+        },
+        {
+            "name":"Randy Orton",
+            "email":"randyorton@gmail.com",
+            "password":"randyortonpass",
+            "passwordConfirm":"randyortonpass",
+            "mobileNumber":"9042231313",
+            "address":["New York, USA","Karnal, India"]
+            },
+            {
+                "name":"Mhatma Gandhi",
+                "email":"mhatmagandhi@gmail.com",
+                "password":"mhatmagandhipass",
+                "passwordConfirm":"mhatmagandhipass",
+                "mobileNumber":"9042231313",
+                "address":["New York, USA","Karnal, India"]
+                },
+                {
+                    "name":"Rana Sanga",
+                    "email":"ranasanga@gmail.com",
+                    "password":"ranasangapass",
+                    "passwordConfirm":"ranasangapass",
+                    "mobileNumber":"9042231313",
+                    "address":["New York, USA","Karnal, India"]
+                    },
+                    {
+                        "name":"However",
+                        "email":"however@gmail.com",
+                        "password":"howeverpass",
+                        "passwordConfirm":"howeverpass",
+                        "mobileNumber":"9042231313",
+                        "address":["New York, USA","Karnal, India"]
+                        },
+                        {
+                            "name":"All Spark",
+                            "email":"allspark@gmail.com",
+                            "password":"allsparkpass",
+                            "passwordConfirm":"allsparkpass",
+                            "mobileNumber":"9042231313",
+                            "address":["New York, USA","Karnal, India"]
+                            },
+                            {
+                                "name":"Marrix",
+                                "email":"matrix@gmail.com",
+                                "password":"matrixpass",
+                                "passwordConfirm":"matrixpass",
+                                "mobileNumber":"9042231313",
+                                "address":["New York, USA","Karnal, India"]
+                                },
+                                {
+                                    "name":"Kishan Bima",
+                                    "email":"kishambima@gmail.com",
+                                    "password":"kishanbimapass",
+                                    "passwordConfirm":"kishanbimapass",
+                                    "mobileNumber":"9042231313",
+                                    "address":["New York, USA","Karnal, India"]
+                                    },
+                                    {
+                                        "name":"Dump sorab",
+                                        "email":"dumpsorab@gmail.com",
+                                        "password":"dumpsorabpass",
+                                        "passwordConfirm":"dumpsorabpass",
+                                        "mobileNumber":"9042231313",
+                                        "address":["New York, USA","Karnal, India"]
+                                        },
+                                        {
+                                            "name":"Real Name",
+                                            "email":"realname@gmail.com",
+                                            "password":"realnamepass",
+                                            "passwordConfirm":"realnamepass",
+                                            "mobileNumber":"9042231313",
+                                            "address":["New York, USA","Karnal, India"]
+                                            }
+]

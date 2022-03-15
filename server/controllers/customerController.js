@@ -4,6 +4,7 @@ const AppError = require("./../utils/appError");
 const multer = require("multer");
 const sharp = require("sharp");
 const Booking = require("../models/bookingModel");
+const path = require("path");
 
 const multerFilter = (req, file, cb) => {
   if (file.mimetype.startsWith("image")) {
@@ -14,7 +15,11 @@ const multerFilter = (req, file, cb) => {
 };
 const multerStorage = multer.memoryStorage();
 
-const upload = multer({ storage: multerStorage, fileFilter: multerFilter });
+const upload = multer({
+  storage: multerStorage,
+  fileFilter: multerFilter,
+  limits: { fileSize: 10000000 },
+});
 
 exports.uploadCustomerPhoto = upload.single("photo");
 exports.resizeCustomerPhoto = (req, res, next) => {
@@ -40,7 +45,11 @@ exports.getCustomer = catchAsync(async (req, res, next) => {
     Customer: customer,
   });
 });
-
+exports.sendImage = (req, res) => {
+  res.sendFile(
+    path.resolve(`${__dirname}/../Images/customers/${req.params.fileName}`)
+  );
+};
 exports.getMyBookings = catchAsync(async (req, res, next) => {
   const currentBookings = await Booking.find({
     customer: req.Customer._id,
@@ -79,7 +88,10 @@ exports.updateMe = catchAsync(async (req, res, next) => {
     "mobileNumber",
     "address"
   );
-  if (req.file) filteredBody.photo = req.file.filename;
+  if (req.file)
+    filteredBody.photo = `${req.protocol}://${req.get(
+      "host"
+    )}/api/v1/customers/images/${req.file.filename}`;
   const updatedCustomer = await Customer.findByIdAndUpdate(
     req.Customer.id,
     filteredBody,

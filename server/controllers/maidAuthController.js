@@ -38,7 +38,6 @@ exports.signup = catchAsync(async (req, res, next) => {
     email: req.body.email,
     password: req.body.password,
     passwordConfirm: req.body.passwordConfirm,
-    photo: req.body.photo,
     mobileNumber: req.body.mobileNumber,
     aadhaarNumber: req.body.aadhaarNumber,
     address: req.body.address,
@@ -48,7 +47,7 @@ exports.signup = catchAsync(async (req, res, next) => {
     dob: req.body.dob,
   });
 
-  const url = `${req.protocol}://${req.get("host")}/maids/me`;
+  const url = `${req.protocol}://${req.get("host")}/maids/login`;
   await new Email(newMaid, url).sendWelcome();
 
   createSendToken(newMaid, 201, res);

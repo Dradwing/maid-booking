@@ -3,7 +3,7 @@ const reviewRouter = express.Router({ mergeParams: true });
 const reviewController = require("./../controllers/reviewController");
 const customerAuthController = require("./../controllers/customerAuthController");
 
-reviewRouter.use(customerAuthController.protect);
+//reviewRouter.use(customerAuthController.protect);
 reviewRouter
   .route("/")
   .get(reviewController.getAllReviews)
