@@ -3,12 +3,9 @@ const reviewRouter = express.Router({ mergeParams: true });
 const reviewController = require("./../controllers/reviewController");
 const customerAuthController = require("./../controllers/customerAuthController");
 
-//reviewRouter.use(customerAuthController.protect);
-reviewRouter
-  .route("/")
-  .get(reviewController.getAllReviews)
-  .post(reviewController.createReview);
-
+reviewRouter.route("/").get(reviewController.getAllReviews);
+reviewRouter.use(customerAuthController.protect);
+reviewRouter.route("/createReview").post(reviewController.createReview);
 reviewRouter
   .route("/:id")
   .get(reviewController.getReview)

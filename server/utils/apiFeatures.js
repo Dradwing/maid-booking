@@ -6,20 +6,22 @@ class APIFeatures {
   filter() {
     //1)Simple filtering
     const queryObj = { ...this.queryString };
-    const excludedFields = ["sortby", "fields"];
+    const excludedFields = ["sortby", "fields", "services"];
     excludedFields.forEach((el) => {
       delete queryObj[el];
     });
 
     //2) Advanced filtering
     let queryStr = JSON.stringify(queryObj);
-    queryStr = queryStr.replace(
-      /\b(lte|lt|gt|gte|in)\b/g,
-      (match) => `$${match}`
-    );
-    console.log(JSON.parse(queryStr));
+    queryStr = queryStr.replace(/\b(lte|lt|gt|gte)\b/g, (match) => `$${match}`);
 
-    this.query = this.query.find(JSON.parse(queryStr));
+    queryStr = JSON.parse(queryStr);
+    if (this.queryString.services)
+      queryStr.services = { $all: this.queryString.services.split(",") };
+    if (this.queryString.gender)
+      queryStr.gender = { $all: this.queryString.gender.split(",") };
+    this.query = this.query.find(queryStr);
+
     return this;
   }
   sorting() {

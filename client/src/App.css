@@ -1,38 +1,120 @@
-.App {
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,200&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  font-family: sans-serif;
+}
+
+/*Home page CSS*/
+
+/*login CSS*/
+.Login {
+  font-family: "Nunito", sans-serif;
+}
+.login form {
+  max-width: 450px;
+  margin: 10px auto;
+  padding: 10px 20px;
+  border: solid #e8eeef;
+  border-radius: 8px;
+  background-color: white;
+}
+.login h2 {
   text-align: center;
 }
+.login input[type="text"],
+.login input[type="password"],
+.login input[type="email"],
+.login input[type="tel"],
+.login input[type="date"],
+.login input[type="number"] {
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  font-size: 16px;
+  height: auto;
+  margin: 0;
+  outline: 0;
+  padding: 7px 15px;
+  width: 100%;
+  background-color: #e8eeef;
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03) inset;
+  margin-bottom: 20px;
+}
+.login button {
+  padding: 5px 39px 5px 39px;
+  color: #fff;
+  background-color: #4bc970;
+  font-size: 18px;
+  text-align: center;
+  font-style: normal;
+  border-radius: 2px;
+  width: 100%;
+  border: 1px solid #3ac162;
+  border-width: 1px 1px 3px;
+  box-shadow: 0 -1px 0 rgba(255, 255, 255, 0.1) inset;
+  margin-bottom: 10px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.login fieldset {
+  border: none;
+}
+.login label {
+  display: block;
+  margin-bottom: 2px;
+  font-weight: 550;
+}
+.radioGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  margin-bottom: 10px;
+}
+.login label.light {
+  font-weight: 300;
+  display: inline;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+/*End of Login*/
+
+/*carousel-start*/
+.content {
+  background-color: rgb(162, 218, 236);
+}
+.carousel {
+  height: 75vh;
+  width: 100vw;
+  background-color: lightblue;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  place-items: center;
+  overflow: hidden;
+}
+.carouselContent {
+  color: rgb(109, 46, 46);
+  width: 75%;
+  height: 60%;
+  text-align: center;
+}
+.mainButton {
+  margin-top: 20px;
+  font-weight: bolder;
+  font-size: x-large;
   color: white;
+  background-color: rgb(109, 46, 46);
+  padding: 10px 16px;
+  border-radius: 30px;
+  position: relative;
+  filter: drop-shadow(0 0 10px rgb(109, 46, 46));
 }
 
-.App-link {
-  color: #61dafb;
+.mainButton:hover {
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.7);
+  transform: translateY(-4px);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.mainButton:active {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 8px rgba(0, 0, 0, 0.7);
 }

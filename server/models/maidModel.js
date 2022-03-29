@@ -60,8 +60,14 @@ const maidSchema = new mongoose.Schema(
     dob: {
       type: Date,
       required: [true, "please provide you date of birth! "],
-      min: ["1960-01-01", "invalid date of birth"],
-      max: ["2015-01-01", "invalid date of birth"],
+      min: [
+        new Date(Date.now() - 60 * 365 * 24 * 60 * 60 * 1000).toISOString(),
+        "invalid date of birth",
+      ],
+      max: [
+        new Date(Date.now() - 18 * 365 * 24 * 60 * 60 * 1000).toISOString(),
+        "invalid date of birth",
+      ],
     },
     gender: {
       type: String,
@@ -88,7 +94,7 @@ const maidSchema = new mongoose.Schema(
     price: {
       type: Number,
       min: 2000,
-      max: 50000,
+      max: 5000,
       default: 2000,
     },
 

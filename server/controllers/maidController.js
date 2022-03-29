@@ -7,6 +7,7 @@ const path = require("path");
 const multer = require("multer");
 const sharp = require("sharp");
 const customerRoutes = require("../routes/customerRoutes");
+const Review = require("../models/reviewModel");
 
 const multerFilter = (req, file, cb) => {
   if (file.mimetype.startsWith("image")) {
@@ -49,7 +50,6 @@ exports.sendImage = catchAsync(async (req, res, next) => {
 });
 
 exports.getAllMaids = catchAsync(async (req, res, next) => {
-  console.log(req.query);
   const features = new APIFeatures(Maid.find(), req.query)
     .filter()
     .sorting()
@@ -69,13 +69,16 @@ exports.getMaid = catchAsync(async (req, res, next) => {
     Maid: maid,
   });
 });
-exports.getMe = (req, res, next) => {
-  req.params.id = req.Maid._id;
-  next();
-};
+exports.getMe = catchAsync(async (req, res, next) => {
+  const maid = await Maid.findById(req.Maid._id).populate("reviews");
+  res.status(200).json({
+    status: "success",
+    Maid: maid,
+  });
+});
 
 exports.getMyWorks = catchAsync(async (req, res, next) => {
-  const currentWork = await Booking.find({
+  const currentWorks = await Booking.find({
     maid: req.Maid._id,
     startingDate: { $gte: Date.now() - 30 * 24 * 60 * 60 * 1000 },
   }).populate({
@@ -93,7 +96,7 @@ exports.getMyWorks = catchAsync(async (req, res, next) => {
   res.status(200).json({
     status: "success",
     data: {
-      CurrentWork: currentWork,
+      CurrentWork: currentWorks,
       PastWorks: pastWorks,
     },
   });

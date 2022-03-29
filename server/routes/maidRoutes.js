@@ -5,12 +5,14 @@ const maidAuthController = require("./../controllers/maidAuthController");
 const maidController = require("./../controllers/maidController");
 const reviewRouter = require("./reviewRoutes");
 
-maidRoutes.use("/:maidId/reviews", reviewRouter);
 maidRoutes.get("/images/:fileName", maidController.sendImage);
 maidRoutes.get("/", maidController.getAllMaids);
-maidRoutes
-  .route("/top-30-rated")
-  .get(maidController.aliasTopMaids, maidController.getAllMaids);
+maidRoutes.get(
+  "/top-30-rated",
+  maidController.aliasTopMaids,
+  maidController.getAllMaids
+);
+maidRoutes.use("/:maidId/reviews", reviewRouter);
 //maid authentication
 maidRoutes.get("/maid/:id", maidController.getMaid); //careful for /me and /myWorks
 maidRoutes.post("/signup", maidAuthController.signup);
@@ -21,10 +23,9 @@ maidRoutes.patch("/resetPassword/:token", maidAuthController.resetPassword);
 
 // Protect all routes after this middleware
 maidRoutes.use(maidAuthController.protect);
-
 maidRoutes.patch("/updatePassword", maidAuthController.updatePassword);
-maidRoutes.get("/me", maidController.getMe, maidController.getMaid);
 maidRoutes.get("/myWorks", maidController.getMyWorks);
+maidRoutes.get("/me", maidController.getMe);
 maidRoutes.patch(
   "/updateMe",
   maidController.uploadMaidPhoto,

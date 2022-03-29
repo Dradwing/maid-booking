@@ -4,6 +4,7 @@ const AppError = require("./../utils/appError");
 const multer = require("multer");
 const sharp = require("sharp");
 const Booking = require("../models/bookingModel");
+const Review = require("../models/reviewModel");
 const path = require("path");
 
 const multerFilter = (req, file, cb) => {
@@ -54,17 +55,28 @@ exports.getMyBookings = catchAsync(async (req, res, next) => {
   const currentBookings = await Booking.find({
     customer: req.Customer._id,
     startingDate: { $gte: Date.now() - 30 },
-  }).populate("maid");
+  }).populate({ path: "maid", select: "name photo _id" });
   const pastBookings = await Booking.find({
     customer: req.Customer._id,
     startingDate: { $lt: Date.now() - 30 },
-  }).populate("maids");
+  }).populate({ path: "maid", select: "name photo _id" });
 
   res.status(200).json({
     status: "success",
     date: {
       CurrentBookings: currentBookings,
       PastBookings: pastBookings,
+    },
+  });
+});
+exports.getMyReviews = catchAsync(async (req, res, next) => {
+  const reviews = await Review.find({
+    customer: req.Customer._id,
+  }).populate({ path: "maid", select: "name photo _id" });
+  res.status(200).json({
+    status: "success",
+    date: {
+      reviews: reviews,
     },
   });
 });

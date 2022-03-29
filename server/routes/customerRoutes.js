@@ -3,6 +3,7 @@ const customerRoutes = express.Router();
 
 const customerAuthController = require("./../controllers/customerAuthController");
 const customerController = require("./../controllers/CustomerController");
+const reviewRouter = require("./reviewRoutes");
 
 customerRoutes.get("/images/:fileName", customerController.sendImage);
 //customer authentication
@@ -15,13 +16,11 @@ customerRoutes.patch(
   customerAuthController.resetPassword
 );
 customerRoutes.use(customerAuthController.protect);
+reviewRouter.use("/reviews", reviewRouter);
 customerRoutes.patch("/updatePassword", customerAuthController.updatePassword);
-customerRoutes.get(
-  "/me",
-  customerController.getMe,
-  customerController.getCustomer
-);
+
 customerRoutes.get("/myBookings", customerController.getMyBookings);
+customerRoutes.get("/me", customerController.getMe);
 customerRoutes.patch(
   "/updateMe",
   customerController.uploadCustomerPhoto,
