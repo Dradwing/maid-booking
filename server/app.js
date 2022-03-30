@@ -7,6 +7,7 @@ const reviewRouter = require("./routes/reviewRoutes");
 const bookingRouter = require("./routes/bookingRoutes");
 const AppError = require("./utils/appError");
 const globalErrorHandler = require("./controllers/errorController");
+const bookingController = require("./controllers/bookingController");
 
 ////security measures
 const rateLimit = require("express-rate-limit");
@@ -27,6 +28,11 @@ const limiter = rateLimit({
 app.use("api/v1", limiter);
 app.use(helmet());
 
+app.post(
+  "/webhook-checkout",
+  express.raw({ type: "application/json" }),
+  bookingController.webhookCheckout
+);
 //to get data of requests body and limiting it to maximum 10kb
 app.use(express.json({ limit: "10kb" }));
 app.use(mongoSanitize());

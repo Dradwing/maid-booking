@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import * as Loader from "react-spinners";
 import { css } from "@emotion/react";
 
@@ -12,7 +12,7 @@ function MaidDetail() {
   `;
   const [loading, setloading] = React.useState(true);
   const [maidDetail, setmaidDetail] = React.useState({});
-  const url = `http://localhost:3000/maids/maid/${useParams().maidId}`;
+  const url = `http://localhost:3000/api/v1/maids/maid/${useParams().maidId}`;
 
   React.useEffect(() => {
     axios({
@@ -24,7 +24,7 @@ function MaidDetail() {
         setmaidDetail(res.data.Maid);
       })
       .catch((err) => {
-        setloading(false);
+        //setloading(false);
         //error page;
         console.log(err);
       });
@@ -39,6 +39,14 @@ function MaidDetail() {
         size={80}
       />
       <h5>
+        <Link
+          to="/checkout"
+          state={{ maid: maidDetail }}
+          style={{ textDecoration: "inherit", color: "inherit" }}
+        >
+          {" "}
+          <button>Book now</button>
+        </Link>
         complete details of maid here including reviews with a book now button
       </h5>
     </>

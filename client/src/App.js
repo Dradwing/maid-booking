@@ -1,7 +1,7 @@
 import { React, useState } from "react";
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
-import Navbar from "./components/homepage/header";
+import Navbar from "./components/homePage/header";
 import MaidSignup from "./components/authentication/maidAuth/maidSignup";
 import CustomerSignup from "./components/authentication/customerAuth/customerSignup";
 import CustomerLogin from "./components/authentication/customerAuth/customerLogin";
@@ -21,9 +21,9 @@ import MaidReviews from "./components/maid/myReviews";
 import Home from "./pages/homepage";
 import FindMaids from "./pages/findMaidsPage";
 import MaidDetail from "./pages/maidDetail";
+import Checkout from "./pages/checkoutPage";
 
 function App() {
-  const [isLoggedIn, setisLoggedIn] = useState(false);
   const [customer, setcustomer] = useState({});
   const [maid, setmaid] = useState({});
   return (
@@ -99,7 +99,11 @@ function App() {
             //Customer Booking routes
           }
           <Route path="/findMaids" element={<FindMaids />} />
-          <Route path="/maidDetails/:maidId" element={<MaidDetail />} />
+          <Route
+            path="/maidDetails/:maidId"
+            element={<MaidDetail customer={customer} />}
+          />
+          <Route path="/checkout" element={<Checkout />} />
         </Routes>
       </div>
     </>

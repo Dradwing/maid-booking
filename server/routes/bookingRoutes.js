@@ -3,7 +3,7 @@ const bookingRouter = express.Router();
 const bookingController = require("./../controllers/bookingController");
 const customerAuthController = require("./../controllers/customerAuthController");
 
-bookingRouter.get(
+bookingRouter.post(
   "/checkout-session/:maidId",
   customerAuthController.protect,
   bookingController.getCheckoutSession

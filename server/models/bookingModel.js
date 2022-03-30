@@ -5,10 +5,6 @@ const bookingSchema = new mongoose.Schema({
     type: Number,
     required: [true, "Booking must have a price! "],
   },
-  paidByCustomer: {
-    type: Boolean,
-    default: true,
-  },
   paidToMaid: {
     type: Boolean,
     default: false,
@@ -31,6 +27,13 @@ const bookingSchema = new mongoose.Schema({
     ref: "Maid",
     required: [true, "Booking must belong to a maid! "],
   },
+  services: [
+    {
+      type: String,
+      enum: ["Cooking", "Cleaning", "Laundry", "Baby Sitting", "Elderly Care"],
+      required: [true, "Booking must have chosen services"],
+    },
+  ],
   customer: {
     type: mongoose.Schema.ObjectId,
     ref: "Customer",
