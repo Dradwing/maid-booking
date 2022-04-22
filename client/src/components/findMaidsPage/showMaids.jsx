@@ -2,6 +2,7 @@ import { React, useState, useEffect } from "react";
 import axios from "axios";
 import * as Loader from "react-spinners";
 import { css } from "@emotion/react";
+import MaidCard from "../Cards/maidCard";
 function ShowMaids(props) {
   const [loading, setloading] = useState(true);
   const [maids, setmaids] = useState([]);
@@ -22,13 +23,15 @@ function ShowMaids(props) {
       .then((res) => {
         setmaids(res.data.data.Maids);
         setloading(false);
+        console.log(props.filters);
+        console.log(maids);
       })
       .catch((err) => {
         setloading(false);
         //show error component
         console.log(err);
       });
-  }, []); // eslint-disable-line
+  }, [props.filters]); // eslint-disable-line
 
   return (
     <>
@@ -38,7 +41,16 @@ function ShowMaids(props) {
         css={override}
         size={80}
       />
-      <h6>show cards of maids</h6>
+      {/*show cards of maids*/}
+      <div className="maidsList">{maids.map((maid) => createCard(maid))}</div>
+    </>
+  );
+}
+
+function createCard(maid) {
+  return (
+    <>
+      <MaidCard maid={maid} />
     </>
   );
 }

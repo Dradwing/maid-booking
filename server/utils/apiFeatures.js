@@ -19,7 +19,7 @@ class APIFeatures {
     if (this.queryString.services)
       queryStr.services = { $all: this.queryString.services.split(",") };
     if (this.queryString.gender)
-      queryStr.gender = { $all: this.queryString.gender.split(",") };
+      queryStr.gender = { $in: this.queryString.gender.split(",") };
     this.query = this.query.find(queryStr);
 
     return this;
