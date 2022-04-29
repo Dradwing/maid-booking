@@ -8,7 +8,7 @@ const reviewRouter = require("./reviewRoutes");
 maidRoutes.get("/images/:fileName", maidController.sendImage);
 maidRoutes.get("/", maidController.getAllMaids);
 maidRoutes.get(
-  "/top-30-rated",
+  "/top-6-rated",
   maidController.aliasTopMaids,
   maidController.getAllMaids
 );

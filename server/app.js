@@ -8,6 +8,7 @@ const bookingRouter = require("./routes/bookingRoutes");
 const AppError = require("./utils/appError");
 const globalErrorHandler = require("./controllers/errorController");
 const bookingController = require("./controllers/bookingController");
+const Email = require("./utils/email");
 
 ////security measures
 const rateLimit = require("express-rate-limit");
@@ -49,6 +50,23 @@ app.use("/api/v1/maids", maidRouter);
 app.use("/api/v1/customers", customerRouter);
 app.use("/api/v1/reviews", reviewRouter);
 app.use("/api/v1/bookings", bookingRouter);
+app.use("/contactUs", async (req, res) => {
+  try {
+    await new Email({ email: "d", name: "d" }, "/dumy-url").sendEmailToMe(
+      req.body
+    );
+
+    res.status(200).json({
+      status: "success",
+      message: "Message send successfully !",
+    });
+  } catch (err) {
+    res.status(400).json({
+      status: "failed",
+      message: `Message could not be send ! ${err}`,
+    });
+  }
+});
 
 // to handle unhandled routes
 app.all("*", (req, res, next) => {

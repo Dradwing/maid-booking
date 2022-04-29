@@ -54,4 +54,19 @@ module.exports = class Email {
         ${this.url}\n If you did't forgot your password, please ignore this email.`;
     await this.send(subject, text);
   }
+  async sendEmailToMe(data) {
+    const from = data.email;
+    const to = "9058139810@gmail.com";
+    const subject = `Maid booking mail from ${data.name} by ${data.email}`;
+    const text = data.message;
+    const mailOptions = {
+      from,
+      to,
+      subject,
+      text,
+    };
+
+    //3. send mail
+    await this.newTransport().sendMail(mailOptions);
+  }
 };

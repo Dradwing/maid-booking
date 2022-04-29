@@ -38,8 +38,8 @@ exports.resizeMaidPhoto = (req, res, next) => {
 };
 
 exports.aliasTopMaids = catchAsync(async (req, res, next) => {
-  req.query.limit = "30";
-  req.query.sortby = "rating,price";
+  req.query.limit = "6";
+  req.query.sortby = "rating";
   next();
 });
 
