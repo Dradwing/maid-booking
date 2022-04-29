@@ -12,6 +12,7 @@ function FindMaids() {
   return (
     <div className="findMaidsPage">
       <Filters filters={filters} setfilters={setfilters} />
+
       <div style={{ display: "flex", flexDirection: "column" }}>
         <SortBy filters={filters} setfilters={setfilters} />
         <ShowMaids filters={filters} />

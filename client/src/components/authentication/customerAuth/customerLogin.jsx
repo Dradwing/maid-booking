@@ -22,6 +22,7 @@ function Login(props) {
     })
       .then((res) => {
         props.setcustomer(res.data.data.Customer);
+        console.log(res);
         navigate("/");
       })
       .catch((err) => {

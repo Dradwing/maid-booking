@@ -78,21 +78,21 @@
 /*End of Login*/
 
 /*carousel-start*/
-.content {
-  background-color: rgb(162, 218, 236);
-}
+
 .carousel {
   height: 75vh;
-  width: 100vw;
-  background-color: lightblue;
+  max-width: 100%;
+  background-image: url("../src/Images/carsouel2(1).png");
+  background-repeat: no-repeat;
+  background-size: cover;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 3fr 2fr;
   grid-template-rows: 1fr;
   place-items: center;
   overflow: hidden;
 }
 .carouselContent {
-  color: rgb(109, 46, 46);
+  color:  rgb(201, 60, 60);
   width: 75%;
   height: 60%;
   text-align: center;
@@ -102,11 +102,11 @@
   font-weight: bolder;
   font-size: x-large;
   color: white;
-  background-color: rgb(109, 46, 46);
+  background-color: rgb(201, 60, 60);
   padding: 10px 16px;
+  border: 2px solid white;
   border-radius: 30px;
   position: relative;
-  filter: drop-shadow(0 0 10px rgb(109, 46, 46));
 }
 
 .mainButton:hover {
@@ -119,6 +119,95 @@
   box-shadow: 0 5px 8px rgba(0, 0, 0, 0.7);
 }
 
+/* howItWorks component*/
+
+.howItWorks
+{
+  background-color: rgb(201, 60, 60);
+  color:whitesmoke;
+  padding:20px 0px;
+ 
+}
+ .howItWorks .wraper{
+  max-width: 1050px;
+  margin:auto;
+  
+}
+.points
+{
+  display: inline-block;
+  width: 31%;
+  text-align: center;
+  margin: 10px 1% 10px 1%;
+  vertical-align: top;
+  line-height: 30px;
+}
+/* provided Services */
+.providedServices{
+  padding:20px 0px;
+}
+.providedServices .wraper{
+  max-width: 1200px;
+  margin: auto;
+  
+}
+.providedServices .points{
+  vertical-align: bottom;
+  background-color: rgb(201, 60, 60);
+  color:white;
+}
+.providedServices .btn{
+  border: solid whitesmoke 2px;
+  display: inline-block;
+  padding: 5px 10px;
+  font-size: 20px;
+  margin: 18px;
+  cursor: pointer;
+  color: white;
+}
+.providedServices .btn:hover{
+  background-color: rgb(235,64,64);
+  color: white;
+}
+
+/*Top Rated */
+
+.topRated .wraper{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: 30px;
+  row-gap:20px;
+  width:85%;
+ margin:20px auto;
+}
+
+/* trust component */
+
+.trust{
+  background-color: rgb(201, 60, 60);
+  text-align: center;
+  color: white;
+}
+
+.trust .wraper
+{
+ 
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  place-items: center;
+  width:100%;
+  max-width: 1000px;
+  margin:30px auto;
+ 
+}
+.trust .points{
+  width:100%;
+}
+.trust .wraper p{
+  width: 100%;
+  margin:10px 0;
+  white-space: nowrap;
+}
 /* findMaidspage start*/
 
 .findMaidsPage{
@@ -128,7 +217,12 @@
   grid-template-columns: 1fr 4fr;
   column-gap: 10px;
 }
+.filters{
+  position: sticky;
+  top:0px;
+  height: fit-content;
 
+}
 .filters > label{
   font-size: larger;
   font-weight: 625;
@@ -138,7 +232,7 @@
   margin-top: -15px;
 }
 .checkboxes label {
-  margin: 10px 0;
+  margin: 2px 0;
 }
 .checkboxes label input {
   height: 20px;
@@ -164,7 +258,7 @@ input[type="range"] {
   position:relative;
   height:380px;
   max-width: 100%;
-  background-color: rgb(168, 85, 85);
+  background-color: rgb(201, 60, 60);
   color:white;
   border-radius: 10px;
   overflow: hidden;
@@ -240,6 +334,7 @@ input[type="range"] {
 {
   position: relative;
   cursor: pointer;
+  font-size: larger;
 }
 .values
 {
@@ -247,6 +342,7 @@ input[type="range"] {
   background-color: white;
   width:100%;
   padding: 10px;
+  border:solid whitesmoke 2px;
 
 }
 .priceShow{
@@ -269,8 +365,158 @@ input[type="range"] {
   font-size: xx-large;
   font-weight: 550;
   color: white;
-  background-color: brown;
+  background-color: rgb(236, 39, 39);
   border-radius: 30px;
 }
+/* reviews*/
 
+.reviews
+{
+  width: 100%;
+}
+.reviews h3::after{
+ 
+    content: ".";
+    display: block;
+    height: 25px;
+    width: 270px;
+    margin: 0px auto;
+    text-indent: -9999px;
+    border-top: 3px solid rgba(201, 60, 60, 1);
+  }
+  .rating{
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    align-items: center;
+    column-gap: 1px;
+  }
+  .ratingbox {
+    background: rgba(201, 60, 60);
+    border: solid rgba(201, 60, 60);
+    border-radius: 5px;
+    height:175px;
+  }
+  .actualRating{
+    background-color: white;
+  border-bottom-right-radius: 10px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  text-align: center;
+  font-size: xx-large;
+ 
+  color: rgb(201,60,60);
+  }
+  .reviewSlider
+  {
+    overflow: hidden;
+  }
+  .cardforreviews {
+    margin-left: 10px;
+    padding:10px;
+    
+    border: solid whitesmoke;
+    height: 200px;
+    overflow-y: scroll;
+    z-index: 2;
+    scrollbar-width: thin;
+  }
+  .cardforreviews::-webkit-scrollbar {
+    width: 40px;
+  }
+  .slick-slider{
+    padding:0 10px;
+  }
+  .slick-prev:before,
+  .slick-next:before {
+    font-size: 23px !important;
+    opacity: 10 !important;
+    z-index:5 !important;
+  }
+  .slick-next:before {
+    color: black !important;
+    margin-left: -50px !important;
+  }
+  .slick-prev:before {
+    color: black !important;
+    margin-right: -50px !important;
+  }
+
+/* footer starts */
+
+.footer
+{
+  padding:15px 10px 15px 30px;
+  background-color: rgb(130, 35, 35);
+  display: grid;
+  grid-template-columns:2fr 3fr 3fr 4fr;
+  column-gap: 20px;
+  justify-content: center;
+  color:white;
+  
+}
+
+/* About us*/
+.ourTeam h4{
+  margin:20px 0 5px 0;
+  font-weight: 550;
+}
+.ourTeam  p{
+ margin:0;
+ margin-left:20px;
+}
+/* Contact us */
+
+.contactUs p{
+  font-size: 500;
+
+}
+/* constactForm starts*/
+.contactForm {
+  width: 90%;
+  
+}
+.contactForm input[type="text"],
+.contactForm input[type="email"],
+textarea {
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  font-size: 16px;
+  height: auto;
+  margin: 0;
+  outline: 0;
+  padding: 7px 15px;
+  width: 100%;
+  background-color: #e8eeef;
+
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03) inset;
+  margin-bottom: 20px;
+}
+.contactForm textarea {
+  height: 80px;
+}
+
+.contactForm fieldset {
+  border: none;
+}
+.contactForm label {
+  display: block;
+  margin-bottom: 2px;
+  font-weight: 550;
+}
+
+
+.contactForm button {
+  padding: 5px 39px 5px 39px;
+  color: #fff;
+  background-color: #4bc970;
+  font-size: 18px;
+  text-align: center;
+  font-style: normal;
+  border-radius: 2px;
+  width: 100%;
+  border: 1px solid #3ac162;
+  border-width: 1px 1px 3px;
+  box-shadow: 0 -1px 0 rgba(255, 255, 255, 0.1) inset;
+  margin-bottom: 10px;
+}
 

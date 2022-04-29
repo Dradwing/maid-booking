@@ -33,6 +33,10 @@ function BookingForm(props) {
   const url = `http://localhost:3000/api/v1/bookings/checkout-session/${props.maid._id}`;
 
   const handleClick = async () => {
+    if (startingDate === undefined || servicesNumber === 0) {
+      alert("Please choose staring work date and services needed! ");
+      return;
+    }
     try {
       const session = await axios({
         method: "POST",
@@ -160,11 +164,7 @@ function BookingForm(props) {
             </p>
           </div>
         </div>
-        <button
-          className="book"
-          disabled={servicesNumber > 0 && startingDate}
-          onClick={handleClick}
-        >
+        <button className="book" onClick={handleClick}>
           Book
         </button>
       </div>

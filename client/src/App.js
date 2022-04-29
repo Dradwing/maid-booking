@@ -22,6 +22,7 @@ import Home from "./pages/homepage";
 import FindMaids from "./pages/findMaidsPage";
 import MaidDetail from "./pages/maidDetail";
 import Checkout from "./pages/checkoutPage";
+import Footer from "./components/homePage/footer";
 
 function App() {
   const [customer, setcustomer] = useState({});
@@ -105,6 +106,7 @@ function App() {
           />
           <Route path="/checkout" element={<Checkout />} />
         </Routes>
+        <Footer></Footer>
       </div>
     </>
   );

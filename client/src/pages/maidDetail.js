@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import * as Loader from "react-spinners";
 import { css } from "@emotion/react";
 import BookingForm from "../components/maidDetailPage/bookingForm";
+import Reviews from "../components/maidDetailPage/reviews";
 
 function MaidDetail() {
   const override = css`
@@ -23,19 +24,20 @@ function MaidDetail() {
     })
       .then((res) => {
         setloading(false);
-        setmaidDetail(res.data.Maid);
-        let dob = maidDetail.dob.split("T")[0];
-        var diff_ms = Date.now() - new Date(dob).getTime();
-        var age_date = new Date(diff_ms);
+        setmaidDetail(res.data.Maid, () => {
+          let dob = maidDetail.dob.split("T")[0];
+          var diff_ms = Date.now() - new Date(dob).getTime();
+          var age_date = new Date(diff_ms);
 
-        setage(Math.abs(age_date.getUTCFullYear() - 1970));
+          setage(Math.abs(age_date.getUTCFullYear() - 1970));
+        });
       })
       .catch((err) => {
         //setloading(false);
         //error page;
         console.log(err);
       });
-  });
+  }, []); // eslint-disable-line
 
   return (
     <>
@@ -74,6 +76,7 @@ function MaidDetail() {
             <p>Experience: {maidDetail.experience} years</p>
           </div>
         </div>
+        <Reviews maid={maidDetail} />
       </div>
     </>
   );
