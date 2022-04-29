@@ -8,8 +8,7 @@ function EditMaidProfile(props) {
   const [passError, setpassError] = React.useState("");
 
   const urlToUpdateData = "http://localhost:3000/api/v1/maids/updateMe/";
-  const urlToUpdatePassword =
-    "http://localhost:3000/api/v1/maids/updatePassword";
+  const urlToUpdatePassword = "http://localhost:3000/api/v1/maids/updatePassword";
 
   let dataToSend = {};
   let passwordData = {};
