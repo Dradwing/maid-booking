@@ -1,4 +1,10 @@
 import React from "react";
+import CookingMaid from "./../../Images/CookingMaid.jpg";
+import cleaning from "./../../Images/cleaning.jpg";
+import laundry from "./../../Images/Laundry.jpg";
+import BabySitting from "./../../Images/BabySitting.jpg";
+import ElderlyCare from "./../../Images/elderlyCare.jpg";
+import { Link } from "react-router-dom";
 
 function ProvidedServices() {
   return (
@@ -9,7 +15,7 @@ function ProvidedServices() {
             What we offer?
           </h2>
           <div className="points">
-            <img src="" alt="Not available"></img>
+            <img src={CookingMaid} alt="Not available"></img>
             <p
               style={{
                 fontSize: "30px",
@@ -24,10 +30,15 @@ function ProvidedServices() {
               Homecooks who cook delightful meals which gives the warmth and
               comfort of home.
             </p>
-            <p className="btn">Book Now</p>
+            <Link
+              to={`/findMaids/`}
+              style={{ textDecoration: "inherit", color: "inherit" }}
+            >
+              <p className="btn">Book Now</p>
+            </Link>
           </div>
           <div className="points">
-            <img src="" alt="Not available"></img>
+            <img src={cleaning} alt="Not available"></img>
             <p
               style={{
                 fontSize: "30px",
@@ -42,10 +53,15 @@ function ProvidedServices() {
               We strictly believe that cleanliness is next to godliness and we
               mean it.
             </p>
-            <p className="btn">Book Now</p>
+            <Link
+              to={`/findMaids/`}
+              style={{ textDecoration: "inherit", color: "inherit" }}
+            >
+              <p className="btn">Book Now</p>
+            </Link>
           </div>
           <div className="points">
-            <img src="" alt="Not available"></img>
+            <img src={laundry} alt="Not available"></img>
             <p
               style={{
                 fontSize: "30px",
@@ -60,14 +76,19 @@ function ProvidedServices() {
               Launders, who are ultimate in professional care, will keep your
               cloths new forever.
             </p>
-            <p className="btn">Book Now</p>
+            <Link
+              to={`/findMaids/`}
+              style={{ textDecoration: "inherit", color: "inherit" }}
+            >
+              <p className="btn">Book Now</p>
+            </Link>
           </div>
           <div className="wraper" style={{ maxWidth: "800px" }}>
             <div
               className="points"
               style={{ width: "46%", margin: "10px 2% 10px 2%" }}
             >
-              <img src="" alt="Not available"></img>
+              <img src={BabySitting} alt="Not available"></img>
               <p
                 style={{
                   fontSize: "30px",
@@ -83,10 +104,15 @@ function ProvidedServices() {
                 Super speedy, super simple, super sensible maids! Sweet Dreams
                 for You and Your Child.
               </p>
-              <p className="btn">Book Now</p>
+              <Link
+                to={`/findMaids/`}
+                style={{ textDecoration: "inherit", color: "inherit" }}
+              >
+                <p className="btn">Book Now</p>
+              </Link>
             </div>
             <div className="points" style={{ width: "46%" }}>
-              <img src="" alt="Not available"></img>
+              <img src={ElderlyCare} alt="Not available"></img>
               <p
                 style={{
                   fontSize: "30px",
@@ -101,7 +127,12 @@ function ProvidedServices() {
                 Our approach is the good life for seniors citizens and we are
                 dedicate to it.
               </p>
-              <p className="btn">Book Now</p>
+              <Link
+                to={`/findMaids/`}
+                style={{ textDecoration: "inherit", color: "inherit" }}
+              >
+                <p className="btn">Book Now</p>
+              </Link>
             </div>
           </div>
         </div>

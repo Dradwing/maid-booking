@@ -6,7 +6,7 @@ import Logo from "./../../Images/Brown Logo.png";
 function Footer() {
   return (
     <>
-      <div className="footer">
+      <div className="footer" id="footer">
         <img
           src={Logo}
           alt="Not available"

@@ -9,7 +9,9 @@ function HowItWorks() {
             How does it Work?
           </h2>
           <div className="points">
-            <span class="material-icons">person_search</span>
+            <span class="material-icons" style={{ fontSize: "500%" }}>
+              person_search
+            </span>
             <p
               style={{ fontSize: "22px", margin: "15px 0", fontWeight: "600" }}
             >
@@ -21,7 +23,9 @@ function HowItWorks() {
             </p>
           </div>
           <div className="points">
-            <img src="../../src/Images/search-b-icon.png" alt="Not Available" />
+            <span class="material-icons" style={{ fontSize: "500%" }}>
+              fact_check
+            </span>
             <p
               style={{ fontSize: "22px", margin: "15px 0", fontWeight: "600" }}
             >
@@ -33,7 +37,9 @@ function HowItWorks() {
             </p>
           </div>
           <div className="points">
-            <img src="../../src/Images/search-b-icon.png" alt="Not Available" />
+            <span class="material-icons" style={{ fontSize: "500%" }}>
+              check_circle
+            </span>
             <p
               style={{ fontSize: "22px", margin: "15px 0", fontWeight: "600" }}
             >
