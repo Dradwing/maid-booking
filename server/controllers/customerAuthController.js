@@ -24,7 +24,7 @@ const createSendToken = (customer, statusCode, res) => {
 
   //sending as cookie so that even browser can't read/change it
   res.cookie("jwt", token, cookieOptions);
-  customer.password = undefined; //not saving
+  customer.password = undefined; //not saving though
   res.status(statusCode).json({
     status: "success",
     data: { Customer: customer },

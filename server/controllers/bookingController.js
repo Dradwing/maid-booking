@@ -20,7 +20,7 @@ exports.getCheckoutSession = catchAsync(async (req, res, next) => {
     client_reference_id: req.params.maidId,
     metadata: {
       startingDate: req.body.startingDate,
-      services: services,
+      services: services.toString(),
     },
     line_items: [
       {
@@ -47,7 +47,7 @@ const createBookingCheckout = async (session) => {
     .id;
   const price = session.display_items[0].amount;
   const startingDate = session.metadata.startingDate;
-  const services = session.metadata.services;
+  const services = session.metadata.services.split(",");
   await Booking.create({ maid, customer, price, startingDate, services });
 };
 exports.webhookCheckout = (req, res, next) => {
