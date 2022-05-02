@@ -80,7 +80,7 @@
 /*carousel-start*/
 
 .carousel {
-  height: 75vh;
+  height: 80vh;
   max-width: 100%;
   background-image: url("../src/Images/carsouel2(1).png");
   background-repeat: no-repeat;
@@ -351,6 +351,7 @@ input[type="range"] {
   width:100%;
   padding: 10px;
   border:solid whitesmoke 2px;
+  z-index: 1;
 
 }
 .priceShow{

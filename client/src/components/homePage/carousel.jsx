@@ -1,14 +1,22 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Zoom from "react-reveal/Zoom";
 function Carousel() {
   return (
     <>
       <div className="carousel">
         <div className="carouselContent">
-          <h2>Book a Maid</h2>
+          <h2 style={{ fontWeight: "590" }}>
+            {" "}
+            <Zoom right cascade>
+              Book a Maid
+            </Zoom>
+          </h2>
           <p style={{ fontFamily: "Poppins, san-serif", fontWeight: "bold" }}>
-            Here we provide monthly subscription for booking maids at reasonable
-            prices.
+            <Zoom right cascade>
+              Here we provide monthly subscription for booking maids at
+              reasonable prices.
+            </Zoom>
           </p>
           <Link
             to={`/findMaids/`}

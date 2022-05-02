@@ -10,7 +10,7 @@ function ContactUs() {
         <h3 style={{ fontWeight: "bolder" }}>Contact Us</h3>
         <p style={{ marginTop: "18px" }}>
           <ImLocation2 />
-          &nbsp;&nbsp; Room No. 512, 5th Floor, IITD Delhi Techno Park,
+          &nbsp;&nbsp; Room No. 512, 5th Floor, IIT Delhi Techno Park,
           Sector-130, Sonepat, Haryana - 247778
         </p>
         <p>

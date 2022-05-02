@@ -3,6 +3,7 @@ import { RiArrowDropDownFill } from "react-icons/ri";
 import { BiRupee } from "react-icons/bi";
 import { loadStripe } from "@stripe/stripe-js";
 import axios from "axios";
+
 function BookingForm(props) {
   const [display, setdisplay] = React.useState("none");
   const [services, setservices] = React.useState("");

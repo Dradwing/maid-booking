@@ -5,6 +5,7 @@ import * as Loader from "react-spinners";
 import { css } from "@emotion/react";
 import BookingForm from "../components/maidDetailPage/bookingForm";
 import Reviews from "../components/maidDetailPage/reviews";
+import Fade from "react-reveal/Fade";
 
 function MaidDetail() {
   const override = css`
@@ -62,20 +63,25 @@ function MaidDetail() {
         </h1>
         <BookingForm maid={maidDetail} />
         <div className="maidBioData">
-          <img
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7AgT0E9ApcLRITddl1Vxtk_zFkg0WrUC7Wg&usqp=CAU"
-            alt="Not available"
-          />
-          <div className="maidData">
-            <p>Email: {maidDetail.email}</p>
-            <p>Mobile Number: {maidDetail.mobileNumber}</p>
-            <p>Address: {maidDetail.address.toString()}</p>
-            <p>Age: {age} years</p>
-            <p>Gender: {maidDetail.gender}</p>
-            <p>Aadhaar Number: {maidDetail.aadhaarNumber}</p>
-            <p>Experience: {maidDetail.experience} years</p>
-          </div>
+          <Fade left>
+            <img
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7AgT0E9ApcLRITddl1Vxtk_zFkg0WrUC7Wg&usqp=CAU"
+              alt="Not available"
+            />
+          </Fade>
+          <Fade right>
+            <div className="maidData">
+              <p>Email: {maidDetail.email}</p>
+              <p>Mobile Number: {maidDetail.mobileNumber}</p>
+              <p>Address: {maidDetail.address.toString()}</p>
+              <p>Age: {age} years</p>
+              <p>Gender: {maidDetail.gender}</p>
+              <p>Aadhaar Number: {maidDetail.aadhaarNumber}</p>
+              <p>Experience: {maidDetail.experience} years</p>
+            </div>
+          </Fade>
         </div>
+
         <Reviews maid={maidDetail} />
       </div>
     </>

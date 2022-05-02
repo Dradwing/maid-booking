@@ -1,0 +1,6 @@
+This favicon was generated using the following font:
+
+- Font Title: Manuale
+- Font Author: Copyright 2016 The Manuale Project Authors (https://github.com/Omnibus-Type/Manuale)
+- Font Source: http://fonts.gstatic.com/s/manuale/v22/f0Xp0eas_8Z-TFZdHv3mMxFaSqASeeHWe7wD1TB_JHHY.ttf
+- Font License: SIL Open Font License, 1.1 (http://scripts.sil.org/OFL))
