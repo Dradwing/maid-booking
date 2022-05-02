@@ -47,6 +47,11 @@ body {
   align-items: center;
 }
 
+.date img{
+  width: 80%;
+  height: 80%;
+}
+
 .date:before,
 .date:after
 {
@@ -73,4 +78,13 @@ body {
   flex-direction: column;
   width: 75%;
   padding: 15px 25px;
+}
+
+.card-cont button{
+  margin-left: 10px;
+  background-color: blue;
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 10px;
 }

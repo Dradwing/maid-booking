@@ -6,13 +6,13 @@ const BookingCard = (props) => {
     <>
       <div className="book-card">
         <section className="date">
-            <span>23</span>
-            <span>feb</span>
+            <img src="https://pps.whatsapp.net/v/t61.24694-24/255572396_936575797019649_6959774590794396536_n.jpg?ccb=11-4&oh=e30d1035b3293210adc7ea8c2923d15b&oe=627D4EA3" alt="" />
         </section>
         <section className="card-cont">
-          <span>Price: 50</span>
+          <span>Maid Name: YSS</span>
+          <span>Booking Date: 23 Apr 2022</span>
           <span>Services: Cleaning</span>
-          <span>Hope you enjoyed service!!!</span>
+          <span>Hope you enjoyed service!!! <button>Give Feedback</button> </span>
         </section>
       </div>
     </>
