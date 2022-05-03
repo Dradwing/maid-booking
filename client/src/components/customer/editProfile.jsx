@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import CustomerReviews from "./myReviews";
 
 //image upload is not done yet
 
@@ -57,10 +58,15 @@ function EditCustomerProfile(props) {
   };
   return (
     <>
-      <h3>
-        Show customer data and allow to edit and ask newpassword,
-        confirmPassword to change password.
-      </h3>
+      <div className="profile" style={{minHeight: "500px"}}>
+        <span style={{marginBottom: "30px"}}> <img src="https://pps.whatsapp.net/v/t61.24694-24/255572396_936575797019649_6959774590794396536_n.jpg?ccb=11-4&oh=e30d1035b3293210adc7ea8c2923d15b&oe=627D4EA3" alt="" /> </span>
+        <span style={{marginBottom: "10px"}}>Choose Profile Photo: <input type="file" onChange={() => {}}/></span>
+        <span style={{marginBottom: "10px"}}>Name: <input type="text" value="Yss Lode" onChange={() => {}}/></span>
+        <span style={{marginBottom: "10px"}}>Email: <input type="email" value="yssgandu@gmail.com" onChange={() => {}}/></span>
+        <span style={{marginBottom: "10px"}}>Phone Number: <input type="phone" value="8686868688" onChange={() => {}}/></span>
+        <span style={{marginBottom: "10px"}}>Address: <input type="" value="Randi Khana, MG Road Delhi 110001" onChange={() => {}}/></span>
+        <button id="update-button">Update Profile</button>
+      </div>
     </>
   );
 }
