@@ -88,3 +88,9 @@ body {
   border: none;
   border-radius: 10px;
 }
+
+.review-card{
+  background-color: rgb(130 35 35);
+  color: white;
+  font-weight: 600;
+}
