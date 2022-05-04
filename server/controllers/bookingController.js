@@ -26,9 +26,7 @@ exports.getCheckoutSession = catchAsync(async (req, res, next) => {
       {
         name: `${maid.name}`,
         description: "Book maid now to ease your life.",
-        images: [
-          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-lkZGtpft_xkUlHPTRFv6hcmuvyw4IWNEZQ&usqp=CAU",
-        ],
+        images: [maid.photo],
         amount: price,
         currency: "INR",
         quantity: 1,

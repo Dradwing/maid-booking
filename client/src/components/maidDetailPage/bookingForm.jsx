@@ -35,7 +35,7 @@ function BookingForm(props) {
 
   const handleClick = async () => {
     if (startingDate === undefined || servicesNumber === 0) {
-      alert("Please choose staring work date and services needed! ");
+      alert("Please choose starting work date and services needed! ");
       return;
     }
     try {
@@ -44,7 +44,8 @@ function BookingForm(props) {
         url: url,
         data: { startingDate, services },
       });
-      await stripe.redirectToCheckout({ sessionId: session.id });
+      console.log(session);
+      await stripe.redirectToCheckout({ sessionId: session.data.session.id });
     } catch (err) {
       console.log(err.response);
       alert("Could not complete the payment! Please try again later");
