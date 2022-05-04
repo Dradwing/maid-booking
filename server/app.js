@@ -33,7 +33,7 @@ app.use("/api/v1", limiter);
 app.use(
   helmet({
     contentSecurityPolicy: false,
-    crossOriginResourcePolicy: false,
+    crossOriginResourcePolicy: { policy: "cross-origin" },
   })
 );
 //to get data of requests body and limiting it to maximum 10kb
