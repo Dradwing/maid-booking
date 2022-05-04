@@ -8,7 +8,7 @@ exports.getAllReviews = catchAsync(async (req, res, next) => {
   if (req.params.maidId)
     reviews = await Review.find({ maid: req.params.maidId });
   else if (req.Customer)
-    reviews = await Review.findById({ customer: req.Customer._id });
+    reviews = await Review.find({ customer: req.Customer._id });
   else reviews = await Review.find();
   res.status(200).json({
     status: "success",

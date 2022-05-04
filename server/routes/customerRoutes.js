@@ -16,7 +16,7 @@ customerRoutes.patch(
   customerAuthController.resetPassword
 );
 customerRoutes.use(customerAuthController.protect);
-reviewRouter.use("/reviews", reviewRouter);
+customerRoutes.use("/reviews", reviewRouter);
 customerRoutes.patch("/updatePassword", customerAuthController.updatePassword);
 
 customerRoutes.get("/myBookings", customerController.getMyBookings);

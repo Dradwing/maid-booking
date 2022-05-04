@@ -19,7 +19,7 @@ const customerSchema = new mongoose.Schema({
   photo: {
     type: String,
     default:
-      "http://localhost:3000/api/v1/customers/images/defaultCustomer.jpg",
+      "https://maid-booking.herokuapp.com/api/v1/customers/images/defaultCustomer.jpg",
   },
   password: {
     type: String,

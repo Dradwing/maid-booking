@@ -20,7 +20,7 @@ const maidSchema = new mongoose.Schema(
     },
     photo: {
       type: String,
-      default: `http://localhost:3000/api/v1/maids/images/defaultMaid.jpg`,
+      default: `https://maid-booking.herokuapp.com/api/v1/maids/images/defaultMaid.jpg`,
     },
     password: {
       type: String,

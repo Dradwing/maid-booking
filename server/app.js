@@ -25,6 +25,8 @@ const limiter = rateLimit({
   windowMs: 60 * 60 * 1000,
   message: "Too many requests from this IP. Please try after one hour",
 });
+const path = require("path");
+app.use(express.static("../client"));
 
 app.use("api/v1", limiter);
 app.use(helmet());

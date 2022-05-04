@@ -11,7 +11,7 @@
   "services":["Cleaning","Laundry"],
   "dob":"2000-02-03",
   "address":["anakapalli","andhrapradesh"],
-  "photo":"http://localhost:3000/api/v1/maids/images/defaultMaid.jpg"
+  "photo":"https://maid-booking.herokuapp.com/api/v1/maids/images/defaultMaid.jpg"
   },
   {
   "name":"kaanchanamaala",
@@ -25,7 +25,7 @@
   "services":["Cleaning"],
   "dob":"2000-02-03",
   "address":["chanikelapatnam","andhrapradesh"],
-  "photo":"http://localhost:3000/api/v1/maids/images/defaultMaid.jpg"
+  "photo":"https://maid-booking.herokuapp.com/api/v1/maids/images/defaultMaid.jpg"
   },
 {
   "name":"suvarna",
@@ -39,7 +39,7 @@
   "services":["Cleaning","Laundry"],
   "dob":"2000-02-04",
   "address":["vadramali","andhrapradesh"],
-  "photo":"http://localhost:3000/api/v1/maids/images/defaultMaid.jpg"
+  "photo":"https://maid-booking.herokuapp.com/api/v1/maids/images/defaultMaid.jpg"
 },
 {
   "name":"vijaya",
@@ -53,7 +53,7 @@
   "services":["Cleaning","Laundry"],
   "dob":"1999-01-04",
   "address":["rajamahendravaram","andhrapradesh"],
-  "photo":"http://localhost:3000/api/v1/maids/images/defaultMaid.jpg"
+  "photo":"https://maid-booking.herokuapp.com/api/v1/maids/images/defaultMaid.jpg"
 },
 {
   "name":"vijayalakshmi",
@@ -67,7 +67,7 @@
   "services":["Cleaning","Laundry","Baby Sitting"],
   "dob":"1999-02-04",
   "address":["rajamahendravaram","andhrapradesh"],
-  "photo":"http://localhost:3000/api/v1/maids/images/defaultMaid.jpg"
+  "photo":"https://maid-booking.herokuapp.com/api/v1/maids/images/defaultMaid.jpg"
 },
 {
   "name":"lakshmi",
@@ -81,7 +81,7 @@
   "services":["Cleaning","Laundry","Baby Sitting"],
   "dob":"1999-03-04",
   "address":["srikakulam","andhrapradesh"],
-  "photo":"http://localhost:3000/api/v1/maids/images/defaultMaid.jpg"
+  "photo":"https://maid-booking.herokuapp.com/api/v1/maids/images/defaultMaid.jpg"
 },
 {
   "name":"lakshmi mittal",
@@ -95,7 +95,7 @@
   "services":["Cleaning","Laundry","Baby Sitting"],
   "dob":"1999-03-04",
   "address":["srikakulam","andhrapradesh"],
-  "photo":"http://localhost:3000/api/v1/maids/images/defaultMaid.jpg"
+  "photo":"https://maid-booking.herokuapp.com/api/v1/maids/images/defaultMaid.jpg"
 },
 {
   "name":"lakshmiprasanna",
@@ -109,7 +109,7 @@
   "services":["Cleaning","Laundry","Baby Sitting"],
   "dob":"2002-03-04",
   "address":["vijayanagaram","andhrapradesh"],
-  "photo":"http://localhost:3000/api/v1/maids/images/defaultMaid.jpg"
+  "photo":"https://maid-booking.herokuapp.com/api/v1/maids/images/defaultMaid.jpg"
 },
 {
   "name":"sunitha",
@@ -123,7 +123,7 @@
   "services":["Cleaning","Laundry","Baby Sitting"],
   "dob":"2002-05-04",
   "address":["vijayanagaram","andhrapradesh"],
-  "photo":"http://localhost:3000/api/v1/maids/images/defaultMaid.jpg"
+  "photo":"https://maid-booking.herokuapp.com/api/v1/maids/images/defaultMaid.jpg"
 },
 {
   "name":"sunithasharma",
@@ -137,7 +137,7 @@
   "services":["Baby Sitting"],
   "dob":"1997-05-04",
   "address":["vizag","andhrapradesh"],
-  "photo":"http://localhost:3000/api/v1/maids/images/defaultMaid.jpg"
+  "photo":"https://maid-booking.herokuapp.com/api/v1/maids/images/defaultMaid.jpg"
 },
 {
   "name":"sunitasharma",
@@ -151,7 +151,7 @@
   "services":["Baby Sitting"],
   "dob":"1997-05-04",
   "address":["vizag","andhrapradesh"],
-  "photo":"http://localhost:3000/api/v1/maids/images/defaultMaid.jpg"
+  "photo":"https://maid-booking.herokuapp.com/api/v1/maids/images/defaultMaid.jpg"
 },
 {
   "name":"sunita",
@@ -165,7 +165,7 @@
   "services":["Baby Sitting","Laundry"],
   "dob":"1996-05-04",
   "address":["vizag","andhrapradesh"],
-  "photo":"http://localhost:3000/api/v1/maids/images/defaultMaid.jpg"
+  "photo":"https://maid-booking.herokuapp.com/api/v1/maids/images/defaultMaid.jpg"
 },
 {
   "name":"sudha",
@@ -179,7 +179,7 @@
   "services":["Baby Sitting","Laundry","Cooking"],
   "dob":"1996-05-04",
   "address":["chinthalguda","telangana"],
-  "photo":"http://localhost:3000/api/v1/maids/images/defaultMaid.jpg"
+  "photo":"https://maid-booking.herokuapp.com/api/v1/maids/images/defaultMaid.jpg"
 },
 {
   "name":"kavyasudha",
@@ -193,7 +193,7 @@
   "services":["Baby Sitting","Laundry","Cooking","Cleaning"],
   "dob":"1998-05-04",
   "address":["madhapur","telangana"],
-  "photo":"http://localhost:3000/api/v1/maids/images/defaultMaid.jpg"
+  "photo":"https://maid-booking.herokuapp.com/api/v1/maids/images/defaultMaid.jpg"
 },
 {
   "name":"kavya",
@@ -207,7 +207,7 @@
   "services":["Baby Sitting","Laundry","Cooking"],
   "dob":"1999-06-04",
   "address":["madhapur","telangana"],
-  "photo":"http://localhost:3000/api/v1/maids/images/defaultMaid.jpg"
+  "photo":"https://maid-booking.herokuapp.com/api/v1/maids/images/defaultMaid.jpg"
 },
 {
   "name":"shravya",
@@ -221,7 +221,7 @@
   "services":["Baby Sitting","Elderly Care"],
   "dob":"1988-05-04",
   "address":["madhapur","telangana"],
-  "photo":"http://localhost:3000/api/v1/maids/images/defaultMaid.jpg"
+  "photo":"https://maid-booking.herokuapp.com/api/v1/maids/images/defaultMaid.jpg"
 },
 {
   "name":"srinidhi",
@@ -235,7 +235,7 @@
   "services":["Baby Sitting","Laundry","Cooking","Cleaning"],
   "dob":"1997-05-02",
   "address":["madhapur","telangana"],
-  "photo":"http://localhost:3000/api/v1/maids/images/defaultMaid.jpg"
+  "photo":"https://maid-booking.herokuapp.com/api/v1/maids/images/defaultMaid.jpg"
 },
 {
   "name":"ramya",
@@ -249,7 +249,7 @@
   "services":["Baby Sitting","Laundry","Cooking"],
   "dob":"1978-05-04",
   "address":["secunderabad","telangana"],
-  "photo":"http://localhost:3000/api/v1/maids/images/defaultMaid.jpg"
+  "photo":"https://maid-booking.herokuapp.com/api/v1/maids/images/defaultMaid.jpg"
 },
 {
   "name":"srivalli",
@@ -263,7 +263,7 @@
   "services":["Baby Sitting","Laundry","Cooking"],
   "dob":"2000-05-04",
   "address":["madhapur","telangana"],
-  "photo":"http://localhost:3000/api/v1/maids/images/defaultMaid.jpg"
+  "photo":"https://maid-booking.herokuapp.com/api/v1/maids/images/defaultMaid.jpg"
 },
 {
   "name":"gayatri",
@@ -277,7 +277,7 @@
   "services":["Laundry","Cooking","Cleaning"],
   "dob":"1998-01-04",
   "address":["madhapur","telangana"],
-  "photo":"http://localhost:3000/api/v1/maids/images/defaultMaid.jpg"
+  "photo":"https://maid-booking.herokuapp.com/api/v1/maids/images/defaultMaid.jpg"
 },
 {
   "name":"gayatrisri",
@@ -291,7 +291,7 @@
   "services":["Cooking","Cleaning"],
   "dob":"1998-07-04",
   "address":["madhapur","telangana"],
-  "photo":"http://localhost:3000/api/v1/maids/images/defaultMaid.jpg"
+  "photo":"https://maid-booking.herokuapp.com/api/v1/maids/images/defaultMaid.jpg"
 },
 {
   "name":"shyamali",
@@ -305,7 +305,7 @@
   "services":["Laundry","Cleaning","Baby Sitting"],
   "dob":"1999-06-04",
   "address":["madhapur","telangana"],
-  "photo":"http://localhost:3000/api/v1/maids/images/defaultMaid.jpg"
+  "photo":"https://maid-booking.herokuapp.com/api/v1/maids/images/defaultMaid.jpg"
 },
 {
   "name":"srimukhi",
@@ -319,7 +319,7 @@
   "services":["Elderly Care","Cooking","Cleaning"],
   "dob":"1998-08-04",
   "address":["malkajgiri","telangana"],
-  "photo":"http://localhost:3000/api/v1/maids/images/defaultMaid.jpg"
+  "photo":"https://maid-booking.herokuapp.com/api/v1/maids/images/defaultMaid.jpg"
 },
 {
   "name":"suryasindhu",
@@ -333,7 +333,7 @@
   "services":["Laundry","Cooking","Cleaning"],
   "dob":"1998-01-04",
   "address":["malkajgiri","telangana"],
-  "photo":"http://localhost:3000/api/v1/maids/images/defaultMaid.jpg"
+  "photo":"https://maid-booking.herokuapp.com/api/v1/maids/images/defaultMaid.jpg"
 },
 {
   "name":"rashmika",
@@ -347,7 +347,7 @@
   "services":["Cooking","Cleaning"],
   "dob":"1988-01-04",
   "address":["malkajgiri","telangana"],
-  "photo":"http://localhost:3000/api/v1/maids/images/defaultMaid.jpg"
+  "photo":"https://maid-booking.herokuapp.com/api/v1/maids/images/defaultMaid.jpg"
 },
 {
   "name":"sandhya",
@@ -361,7 +361,7 @@
   "services":["Laundry","Cooking","Cleaning","Elderly Care","Baby Sitting"],
   "dob":"1989-01-04",
   "address":["malkajgiri","telangana"],
-  "photo":"http://localhost:3000/api/v1/maids/images/defaultMaid.jpg"
+  "photo":"https://maid-booking.herokuapp.com/api/v1/maids/images/defaultMaid.jpg"
 },
 {
   "name":"sandhyalakshmi",
@@ -375,7 +375,7 @@
   "services":["Laundry","Cooking","Elderly Care","Baby Sitting"],
   "dob":"1989-01-09",
   "address":["malkajgiri","telangana"],
-  "photo":"http://localhost:3000/api/v1/maids/images/defaultMaid.jpg"
+  "photo":"https://maid-booking.herokuapp.com/api/v1/maids/images/defaultMaid.jpg"
 },
 {
   "name":"sandhyasudha",
@@ -389,7 +389,7 @@
   "services":["Cooking","Elderly Care","Baby Sitting"],
   "dob":"1989-09-04",
   "address":["malkajgiri","telangana"],
-  "photo":"http://localhost:3000/api/v1/maids/images/defaultMaid.jpg"
+  "photo":"https://maid-booking.herokuapp.com/api/v1/maids/images/defaultMaid.jpg"
 },
 {
   "name":"padma",
@@ -403,7 +403,7 @@
   "services":["Laundry","Cooking","Cleaning","Baby Sitting"],
   "dob":"1999-01-04",
   "address":["malkajgiri","telangana"],
-  "photo":"http://localhost:3000/api/v1/maids/images/defaultMaid.jpg"
+  "photo":"https://maid-booking.herokuapp.com/api/v1/maids/images/defaultMaid.jpg"
 },
 {
   "name":"savitri",
@@ -417,7 +417,7 @@
   "services":["Laundry","Cooking","Cleaning","Elderly Care","Baby Sitting"],
   "dob":"2000-01-04",
   "address":["warangal","telangana"],
-  "photo":"http://localhost:3000/api/v1/maids/images/defaultMaid.jpg"
+  "photo":"https://maid-booking.herokuapp.com/api/v1/maids/images/defaultMaid.jpg"
 },
 {
   "name":"chandhini",
@@ -431,7 +431,7 @@
   "services":["Laundry","Cooking","Cleaning","Elderly Care","Baby Sitting"],
   "dob":"1989-01-07",
   "address":["malkajgiri","telangana"],
-  "photo":"http://localhost:3000/api/v1/maids/images/defaultMaid.jpg"
+  "photo":"https://maid-booking.herokuapp.com/api/v1/maids/images/defaultMaid.jpg"
 },
 {
   "name":"radha",
@@ -445,7 +445,7 @@
   "services":["Elderly Care","Baby Sitting"],
   "dob":"1980-01-04",
   "address":["malkajgiri","telangana"],
-  "photo":"http://localhost:3000/api/v1/maids/images/defaultMaid.jpg"
+  "photo":"https://maid-booking.herokuapp.com/api/v1/maids/images/defaultMaid.jpg"
 },
 {
   "name":"vishali",
@@ -459,7 +459,7 @@
   "services":["Laundry","Cooking","Cleaning","Elderly Care","Baby Sitting"],
   "dob":"1978-01-04",
   "address":["malkajgiri","telangana"],
-  "photo":"http://localhost:3000/api/v1/maids/images/defaultMaid.jpg"
+  "photo":"https://maid-booking.herokuapp.com/api/v1/maids/images/defaultMaid.jpg"
 },
 {
   "name":"sharadha",
@@ -473,7 +473,7 @@
   "services":["Laundry","Cooking","Cleaning"],
   "dob":"1989-01-04",
   "address":["malkajgiri","telangana"],
-  "photo":"http://localhost:3000/api/v1/maids/images/defaultMaid.jpg"
+  "photo":"https://maid-booking.herokuapp.com/api/v1/maids/images/defaultMaid.jpg"
 },
 {
   "name":"taruni",
@@ -487,7 +487,7 @@
   "services":["Laundry","Cooking","Cleaning","Elderly Care","Baby Sitting"],
   "dob":"1989-01-09",
   "address":["malkajgiri","telangana"],
-  "photo":"http://localhost:3000/api/v1/maids/images/defaultMaid.jpg"
+  "photo":"https://maid-booking.herokuapp.com/api/v1/maids/images/defaultMaid.jpg"
 },
 {
   "name":"rachael",
@@ -501,7 +501,7 @@
   "services":["Cleaning","Elderly Care","Baby Sitting"],
   "dob":"2001-01-04",
   "address":["malkajgiri","telangana"],
-  "photo":"http://localhost:3000/api/v1/maids/images/defaultMaid.jpg"
+  "photo":"https://maid-booking.herokuapp.com/api/v1/maids/images/defaultMaid.jpg"
 },
 {
   "name":"chinmayi",
@@ -515,7 +515,7 @@
   "services":["Laundry","Cooking","Cleaning","Elderly Care","Baby Sitting"],
   "dob":"2000-01-04",
   "address":["malkajgiri","telangana"],
-  "photo":"http://localhost:3000/api/v1/maids/images/defaultMaid.jpg"
+  "photo":"https://maid-booking.herokuapp.com/api/v1/maids/images/defaultMaid.jpg"
 },
 {
   "name":"radhika",
@@ -529,7 +529,7 @@
   "services":["Laundry","Cooking"],
   "dob":"2000-05-04",
   "address":["chilkalguda","telangana"],
-  "photo":"http://localhost:3000/api/v1/maids/images/defaultMaid.jpg"
+  "photo":"https://maid-booking.herokuapp.com/api/v1/maids/images/defaultMaid.jpg"
 },
 {
   "name":"hassan",
@@ -543,7 +543,7 @@
   "services":["Cleaning","Elderly Care","Baby Sitting"],
   "dob":"2000-09-04",
   "address":["malkajgiri","telangana"],
-  "photo":"http://localhost:3000/api/v1/maids/images/defaultMaid.jpg"
+  "photo":"https://maid-booking.herokuapp.com/api/v1/maids/images/defaultMaid.jpg"
 },
 {
   "name":"rakul",
@@ -557,7 +557,7 @@
   "services":["Laundry","Cooking","Cleaning","Elderly Care","Baby Sitting"],
   "dob":"1989-01-04",
   "address":["malkajgiri","telangana"],
-  "photo":"http://localhost:3000/api/v1/maids/images/defaultMaid.jpg"
+  "photo":"https://maid-booking.herokuapp.com/api/v1/maids/images/defaultMaid.jpg"
 },
 {
   "name":"rakulpreet",
@@ -571,7 +571,7 @@
   "services":["Laundry","Cooking","Cleaning","Elderly Care","Baby Sitting"],
   "dob":"1989-01-04",
   "address":["kharkhana","telangana"],
-  "photo":"http://localhost:3000/api/v1/maids/images/defaultMaid.jpg"
+  "photo":"https://maid-booking.herokuapp.com/api/v1/maids/images/defaultMaid.jpg"
 },
 {
   "name":"samantha",
@@ -585,7 +585,7 @@
   "services":["Cooking","Cleaning","Elderly Care","Baby Sitting"],
   "dob":"1989-01-04",
   "address":["kukatpally","telangana"],
-  "photo":"http://localhost:3000/api/v1/maids/images/defaultMaid.jpg"
+  "photo":"https://maid-booking.herokuapp.com/api/v1/maids/images/defaultMaid.jpg"
 },
 {
   "name":"samantharuthprabhu",
@@ -599,7 +599,7 @@
   "services":["Cooking","Cleaning","Elderly Care","Baby Sitting"],
   "dob":"1989-01-07",
   "address":["malkajgiri","telangana"],
-  "photo":"http://localhost:3000/api/v1/maids/images/defaultMaid.jpg"
+  "photo":"https://maid-booking.herokuapp.com/api/v1/maids/images/defaultMaid.jpg"
 },
 {
   "name":"richa",
@@ -613,7 +613,7 @@
   "services":["Laundry","Cleaning","Elderly Care","Baby Sitting"],
   "dob":"1989-01-04",
   "address":["malkajgiri","telangana"],
-  "photo":"http://localhost:3000/api/v1/maids/images/defaultMaid.jpg"
+  "photo":"https://maid-booking.herokuapp.com/api/v1/maids/images/defaultMaid.jpg"
 },
 {
   "name":"soundarya",
@@ -627,7 +627,7 @@
   "services":["Cooking","Cleaning","Elderly Care","Baby Sitting"],
   "dob":"1989-01-04",
   "address":["malkajgiri","telangana"],
-  "photo":"http://localhost:3000/api/v1/maids/images/defaultMaid.jpg"
+  "photo":"https://maid-booking.herokuapp.com/api/v1/maids/images/defaultMaid.jpg"
 },
 {
   "name":"shalini",
@@ -641,7 +641,7 @@
   "services":["Laundry","Cooking","Cleaning","Elderly Care","Baby Sitting"],
   "dob":"1995-01-04",
   "address":["malkajgiri","telangana"],
-  "photo":"http://localhost:3000/api/v1/maids/images/defaultMaid.jpg"
+  "photo":"https://maid-booking.herokuapp.com/api/v1/maids/images/defaultMaid.jpg"
 },
 {
   "name":"aishwarya",
@@ -655,6 +655,6 @@
   "services":["Laundry","Cooking","Cleaning","Baby Sitting"],
   "dob":"1989-01-04",
   "address":["ameerpet","telangana"],
-  "photo":"http://localhost:3000/api/v1/maids/images/defaultMaid.jpg"
+  "photo":"https://maid-booking.herokuapp.com/api/v1/maids/images/defaultMaid.jpg"
 }
 ]
