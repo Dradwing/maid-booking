@@ -4,7 +4,7 @@ import MaidCard from "../Cards/maidCard";
 
 function TopRated() {
   const [maids, setmaids] = React.useState([]);
-  const url = "http://localhost:3000/api/v1/maids/top-6-rated/";
+  const url = "/api/v1/maids/top-6-rated/";
 
   React.useEffect(() => {
     axios({ method: "GET", url: url })

@@ -5,9 +5,6 @@ import ShowMaids from "../components/findMaidsPage/showMaids";
 
 function FindMaids() {
   const [filters, setfilters] = useState({ sortby: "-ratingAverage" });
-  useEffect(() => {
-    console.log(filters);
-  }, [filters]);
 
   return (
     <div className="findMaidsPage">

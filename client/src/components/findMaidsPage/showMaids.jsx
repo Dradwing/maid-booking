@@ -12,7 +12,7 @@ function ShowMaids(props) {
     left: 30%;
     top: 45%;
   `;
-  const url = "http://localhost:3000/api/v1/maids/";
+  const url = "/api/v1/maids/";
 
   useEffect(() => {
     axios({
@@ -23,8 +23,6 @@ function ShowMaids(props) {
       .then((res) => {
         setmaids(res.data.data.Maids);
         setloading(false);
-        console.log(props.filters);
-        console.log(maids);
       })
       .catch((err) => {
         setloading(false);

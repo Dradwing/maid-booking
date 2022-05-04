@@ -3,7 +3,7 @@ import axios from "axios";
 
 function ContactForm() {
   const [error, seterror] = React.useState("");
-  const url = "http://localhost:3000/contactUs";
+  const url = "/contactUs";
   const [data, setdata] = React.useState({});
 
   const handleChange = (e) => {
@@ -40,7 +40,6 @@ function ContactForm() {
               onChange={(e) => handleChange(e)}
               value={data.email}
               type="email"
-              id="email"
               name="email"
               placeholder="enter your email id..."
             />

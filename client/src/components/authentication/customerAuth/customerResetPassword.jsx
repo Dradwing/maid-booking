@@ -5,9 +5,7 @@ import axios from "axios";
 function CustomerResetPassword(props) {
   const [error, seterror] = React.useState("");
   const navigate = useNavigate();
-  const url = `http://localhost:3000/api/v1/customers/resetPassword/${
-    useParams().token
-  }`;
+  const url = `/api/v1/customers/resetPassword/${useParams().token}`;
 
   let dataToSend = {};
 

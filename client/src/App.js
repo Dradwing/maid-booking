@@ -30,7 +30,12 @@ function App() {
   return (
     <>
       <div className="App">
-        <Navbar maid={maid} customer={customer}></Navbar>
+        <Navbar
+          maid={maid}
+          customer={customer}
+          setcustomer={setcustomer}
+          setmaid={setmaid}
+        ></Navbar>
         <Routes>
           <Route path="/" element={<Home />} />
           {

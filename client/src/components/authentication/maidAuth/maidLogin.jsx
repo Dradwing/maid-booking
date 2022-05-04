@@ -6,7 +6,7 @@ import axios from "axios";
 function Login(props) {
   const [error, seterror] = React.useState("");
   const navigate = useNavigate();
-  const url = "http://localhost:3000/api/v1/maids/login/";
+  const url = "/api/v1/maids/login/";
   let dataToSend = {};
 
   const handleChange = (e) => {

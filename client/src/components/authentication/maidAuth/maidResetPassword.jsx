@@ -5,9 +5,7 @@ import axios from "axios";
 function MaidResetPassword(props) {
   const [error, seterror] = React.useState("");
   const navigate = useNavigate();
-  const url = `http://localhost:3000/api/v1/maids/resetPassword/${
-    useParams().token
-  }`;
+  const url = `/api/v1/maids/resetPassword/${useParams().token}`;
 
   let dataToSend = {};
 

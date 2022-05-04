@@ -4,7 +4,7 @@ import axios from "axios";
 
 function MaidForgotPassword() {
   const [error, seterror] = React.useState("");
-  const url = "http://localhost:3000/api/v1/maids/forgotPassword/";
+  const url = "/api/v1/maids/forgotPassword/";
 
   let dataToSend = {};
 

@@ -18,10 +18,7 @@ function MaidCard(props) {
           style={{ textDecoration: "inherit", color: "inherit" }}
         >
           <div className="maidCard">
-            <img
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7AgT0E9ApcLRITddl1Vxtk_zFkg0WrUC7Wg&usqp=CAU"
-              alt="Not Available"
-            />
+            <img src={props.maid.photo} alt="Not Available" />
             <div className="maidInfo">
               <p
                 style={{

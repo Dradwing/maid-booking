@@ -22,9 +22,8 @@ function Filters(props) {
     const prevObj = { ...props.filters };
     if (newString.length === 0) delete prevObj[e.target.name];
     else prevObj[e.target.name] = newString;
-    console.log(prevObj);
+
     props.setfilters(prevObj);
-    console.log(props.filters);
   };
 
   //for price input and rating Average
@@ -32,7 +31,6 @@ function Filters(props) {
     const prevObj = { ...props.filters };
     prevObj[e.target.name] = e.target.value;
     props.setfilters(prevObj);
-    console.log(props.filters);
   };
 
   return (

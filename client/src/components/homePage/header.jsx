@@ -1,9 +1,20 @@
 import React from "react";
 import { Navbar, Nav, Container, NavDropdown } from "react-bootstrap";
-import { Link } from "react-router-dom";
-import Logo from "./../../Images/Brown Logo.png";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function NNavbar(props) {
+  const navigate = useNavigate();
+  const logoutMaid = () => {
+    axios.get("/api/v1/maids/logout");
+    props.setmaid({});
+    navigate("/");
+  };
+  const logoutCustomer = () => {
+    axios.get("/api/v1/customers/logout");
+    props.setcustomer({});
+    navigate("/");
+  };
   return (
     <>
       <Navbar
@@ -36,31 +47,25 @@ function NNavbar(props) {
                   id="collasible-nav-dropdown"
                 >
                   <Link
-                    to=""
+                    to="maid/profile"
                     style={{ textDecoration: "none", color: "inherit" }}
                   >
-                    <NavDropdown.Item href="#action/3.1">
-                      My Profile
-                    </NavDropdown.Item>
+                    <NavDropdown.Item href="#dumy">My Profile</NavDropdown.Item>
                   </Link>
                   <Link
-                    to=""
+                    to="maid/bookings"
                     style={{ textDecoration: "none", color: "inherit" }}
                   >
-                    <NavDropdown.Item href="#action/3.2">
-                      My Works
-                    </NavDropdown.Item>
+                    <NavDropdown.Item href="#dumy">My Works</NavDropdown.Item>
                   </Link>
                   <Link
-                    to=""
+                    to="maid/reviews"
                     style={{ textDecoration: "none", color: "inherit" }}
                   >
-                    <NavDropdown.Item href="#action/3.1">
-                      My Reviews
-                    </NavDropdown.Item>
+                    <NavDropdown.Item href="#dumy">My Reviews</NavDropdown.Item>
                   </Link>
                   <NavDropdown.Divider />
-                  <NavDropdown.Item href="#action/3.4">
+                  <NavDropdown.Item href="#dumy" onClick={logoutMaid}>
                     Log-Out
                   </NavDropdown.Item>
                 </NavDropdown>
@@ -72,31 +77,27 @@ function NNavbar(props) {
                   id="collasible-nav-dropdown"
                 >
                   <Link
-                    to="/"
+                    to="/customer/profile"
                     style={{ textDecoration: "none", color: "inherit" }}
                   >
-                    <NavDropdown.Item href="#action/3.1">
-                      My Profile
-                    </NavDropdown.Item>
+                    <NavDropdown.Item href="#dumy">My Profile</NavDropdown.Item>
                   </Link>
                   <Link
-                    to="/"
+                    to="/customer/bookings"
                     style={{ textDecoration: "none", color: "inherit" }}
                   >
-                    <NavDropdown.Item href="#action/3.2">
+                    <NavDropdown.Item href="#dumy">
                       My Bookings
                     </NavDropdown.Item>
                   </Link>
                   <Link
-                    to="/"
+                    to="/customer/reviews"
                     style={{ textDecoration: "none", color: "inherit" }}
                   >
-                    <NavDropdown.Item href="#action/3.2">
-                      My Reviews
-                    </NavDropdown.Item>
+                    <NavDropdown.Item href="#dumy">My Reviews</NavDropdown.Item>
                   </Link>
                   <NavDropdown.Divider />
-                  <NavDropdown.Item href="#action/3.4">
+                  <NavDropdown.Item href="#dumy" onClick={logoutCustomer}>
                     Log-Out
                   </NavDropdown.Item>
                 </NavDropdown>
@@ -108,7 +109,7 @@ function NNavbar(props) {
                     to="/customerSignup"
                     style={{ textDecoration: "none", color: "inherit" }}
                   >
-                    <NavDropdown.Item href="#action/3.1">
+                    <NavDropdown.Item href="#dumy">
                       As Customer
                     </NavDropdown.Item>
                   </Link>
@@ -116,9 +117,7 @@ function NNavbar(props) {
                     to="/maidSignup"
                     style={{ textDecoration: "none", color: "inherit" }}
                   >
-                    <NavDropdown.Item href="#action/3.2">
-                      As Maid
-                    </NavDropdown.Item>
+                    <NavDropdown.Item href="#dumy">As Maid</NavDropdown.Item>
                   </Link>
                 </NavDropdown>
                 <NavDropdown title="LogIn" id="collasible-nav-dropdown">
@@ -126,7 +125,7 @@ function NNavbar(props) {
                     to="/customerLogin"
                     style={{ textDecoration: "none", color: "inherit" }}
                   >
-                    <NavDropdown.Item href="#action/3.1">
+                    <NavDropdown.Item href="#dumy">
                       As Customer
                     </NavDropdown.Item>
                   </Link>
@@ -134,9 +133,7 @@ function NNavbar(props) {
                     to="/maidLogin"
                     style={{ textDecoration: "none", color: "inherit" }}
                   >
-                    <NavDropdown.Item href="#action/3.2">
-                      As Maid
-                    </NavDropdown.Item>
+                    <NavDropdown.Item href="#dumy">As Maid</NavDropdown.Item>
                   </Link>
                 </NavDropdown>
               </Nav>

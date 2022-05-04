@@ -5,14 +5,14 @@ import { useLocation } from "react-router-dom";
 
 function Checkout(props) {
   let maid = useLocation().state.maid;
-  console.log(useLocation());
+
   let services = [];
   let startingDate;
 
   const stripe = loadStripe(
     "pk_test_51KcucRSDevBPU9EzckceCZBrURlXRK2A0GuoFtlkj8FFIvK8t4KqjfahiCnGo5XoSLAEeKYdcUcJHzciWd9LI4Dx005zmvHH6u"
   );
-  const url = `http://localhost:3000/api/v1/bookings/checkout-session/${maid._id}`;
+  const url = `/api/v1/bookings/checkout-session/${maid._id}`;
 
   const handleClick = async () => {
     try {

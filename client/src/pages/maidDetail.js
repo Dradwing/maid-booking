@@ -16,7 +16,7 @@ function MaidDetail() {
   const [loading, setloading] = React.useState(true);
   const [maidDetail, setmaidDetail] = React.useState({ address: "loading..." });
   const [age, setage] = React.useState(18);
-  const url = `http://localhost:3000/api/v1/maids/maid/${useParams().maidId}`;
+  const url = `/api/v1/maids/maid/${useParams().maidId}`;
 
   React.useEffect(() => {
     axios({
@@ -34,7 +34,7 @@ function MaidDetail() {
         });
       })
       .catch((err) => {
-        //setloading(false);
+        setloading(false);
         //error page;
         console.log(err);
       });
@@ -64,10 +64,7 @@ function MaidDetail() {
         <BookingForm maid={maidDetail} />
         <div className="maidBioData">
           <Fade left>
-            <img
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7AgT0E9ApcLRITddl1Vxtk_zFkg0WrUC7Wg&usqp=CAU"
-              alt="Not available"
-            />
+            <img src={maidDetail.photo} alt="Not available" />
           </Fade>
           <Fade right>
             <div className="maidData">

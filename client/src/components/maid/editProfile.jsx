@@ -1,23 +1,23 @@
 import React from "react";
 import axios from "axios";
 
-// image upload is not done yet
-
 function EditMaidProfile(props) {
   const [error, seterror] = React.useState("");
   const [passError, setpassError] = React.useState("");
+  const [photo, setphoto] = React.useState(undefined);
 
-  const urlToUpdateData = "http://localhost:3000/api/v1/maids/updateMe/";
-  const urlToUpdatePassword = "http://localhost:3000/api/v1/maids/updatePassword";
+  const urlToUpdateData = "/api/v1/maids/updateMe/";
+  const urlToUpdatePassword = "/api/v1/maids/updatePassword";
 
   let dataToSend = {};
   let passwordData = {};
 
-  const handleData = (e) => {
+  const changePhoto = (e) => {
+    setphoto(e.target.files[0]);
+  };
+  const handleDataChange = (e) => {
     dataToSend[e.target.name] = e.target.value;
   };
-
-  //for checkboxes for services;
   const handleClick = (e) => {
     dataToSend.services = [];
     const arrayOfBoxes = Array.from(
@@ -32,6 +32,29 @@ function EditMaidProfile(props) {
   const handlePassword = (e) => {
     passwordData[e.target.name] = e.target.value;
   };
+
+  const uploadPhoto = () => {
+    const formData = new FormData();
+
+    formData.append("photo", photo);
+    axios({
+      method: "PATCH",
+      url: urlToUpdateData,
+      data: formData,
+      headers: { "Content-Type": "multipart/form-data" },
+    })
+      .then((res) => {
+        props.setmaid(res.data.Maid);
+
+        seterror("Image updated successfully! ");
+      })
+      .catch((err) => {
+        if (err.response) {
+          let errormessage = err.response.data.message;
+          seterror("*" + errormessage);
+        } else alert("Could not update image! Please try again later.");
+      });
+  };
   const updateData = (e) => {
     e.preventDefault();
     axios({
@@ -40,8 +63,8 @@ function EditMaidProfile(props) {
       data: dataToSend,
     })
       .then((res) => {
-        props.setmaid(res.data.data.Customer);
-        seterror("Data updated successfully! "); //show in green
+        props.setmaid(res.data.Maid);
+        seterror("Data updated successfully! ");
       })
       .catch((err) => {
         if (err.response) {
@@ -69,10 +92,185 @@ function EditMaidProfile(props) {
   };
   return (
     <>
-      <h3>
-        Show customer data and allow to edit and ask newpassword,
-        confirmPassword to change password.
-      </h3>
+      <div className="editProfile">
+        <div
+          style={{
+            overflow: "hidden",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignContent: "center",
+          }}
+        >
+          <img src={props.maid.photo} alt="Not available"></img>
+          <label
+            for="uploadPhoto"
+            style={{ display: "block", textAlign: "center" }}
+          >
+            Change Photo
+          </label>
+          <input type="file" id="photo" name="photo" onChange={changePhoto} />
+          {photo !== undefined ? (
+            <p
+              style={{ textAlign: "center", cursor: "pointer" }}
+              onClick={uploadPhoto}
+            >
+              Upload
+            </p>
+          ) : (
+            ""
+          )}
+        </div>
+        <form onSubmit={updateData}>
+          <fieldset>
+            <p style={{ color: "white" }}>{error}</p>
+            <label for="name">Name</label>
+            <input
+              onChange={(e) => handleDataChange(e)}
+              type="text"
+              id="name"
+              name="name"
+              placeholder={props.maid.name}
+            />
+
+            <label for="email">Email</label>
+            <input
+              onChange={(e) => handleDataChange(e)}
+              type="email"
+              id="email"
+              name="email"
+              placeholder={props.maid.email}
+            />
+
+            <label for="mobileNumber">Contact Number</label>
+            <input
+              onChange={(e) => handleDataChange(e)}
+              type="tel"
+              maxLength={10}
+              id="mobileNumber"
+              name="mobileNumber"
+              placeholder={props.maid.mobileNumber}
+            />
+            <label for="address">Address</label>
+            <input
+              onChange={(e) => handleDataChange(e)}
+              type="text"
+              id="address"
+              name="address"
+              placeholder={props.maid.address[0].toString()}
+            />
+            <label for="aadharNumber">Aadhaar Number</label>
+            <input
+              onChange={handleDataChange}
+              type="text"
+              id="aadhaarNumber"
+              name="aadhaarNumber"
+              maxLength={12}
+              placeholder={props.maid.aadhaarNumber}
+            />
+            <label>Services: </label>
+            <div className="radioGrid">
+              <label className="light">
+                <input
+                  type="checkbox"
+                  name="services"
+                  value="Cleaning"
+                  onClick={handleClick}
+                  defaultChecked={
+                    props.maid.services.includes("Cleaning") ? true : false
+                  }
+                />{" "}
+                Cleaning
+              </label>
+              <label className="light">
+                <input
+                  type="checkbox"
+                  name="services"
+                  value="Cooking"
+                  onClick={handleClick}
+                  defaultChecked={
+                    props.maid.services.includes("Cooking") ? true : false
+                  }
+                />{" "}
+                Cooking
+              </label>
+              <label className="light">
+                <input
+                  type="checkbox"
+                  name="services"
+                  value="Laundry"
+                  onClick={handleClick}
+                  defaultChecked={
+                    props.maid.services.includes("Laundry") ? true : false
+                  }
+                />{" "}
+                Laundry
+              </label>
+              <label className="light">
+                <input
+                  type="checkbox"
+                  name="services"
+                  value="Elderly Care"
+                  onClick={handleClick}
+                  defaultChecked={
+                    props.maid.services.includes("Elderly Care") ? true : false
+                  }
+                />{" "}
+                Elderly Care
+              </label>
+              <label className="light">
+                <input
+                  type="checkbox"
+                  name="services"
+                  value="Baby Sitting"
+                  onClick={handleClick}
+                  defaultChecked={
+                    props.maid.services.includes("Baby Sitting") ? true : false
+                  }
+                />{" "}
+                Baby Sitting
+              </label>
+            </div>
+            <label for="price">Price per service(in rupees)</label>
+            <input
+              type="number"
+              name="price"
+              onChange={handleDataChange}
+              min={2000}
+              max={5000}
+              placeholder={props.maid.price}
+            />
+          </fieldset>
+          <button type="submit">Save Changes</button>
+        </form>
+        <form onSubmit={updatePassword}>
+          <fieldset>
+            <p style={{ color: "white" }}>{passError}</p>
+            <label for="password">Password</label>
+            <input
+              onChange={(e) => handlePassword(e)}
+              type="password"
+              id="password"
+              name="password"
+            />
+            <label for="password">New Password</label>
+            <input
+              onChange={(e) => handlePassword(e)}
+              type="password"
+              id="newPassword"
+              name="newPassword"
+            />
+            <label for="passwordConfirm">Confirm New Password</label>
+            <input
+              onChange={(e) => handlePassword(e)}
+              type="password"
+              id="newPasswordConfirm"
+              name="newPasswordConfirm"
+            />
+          </fieldset>
+          <button type="submit">Update Password</button>
+        </form>
+      </div>
     </>
   );
 }

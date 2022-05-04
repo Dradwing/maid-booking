@@ -1,12 +1,14 @@
 import React from "react";
 import axios from "axios";
-import * as loaders from "react-spinners";
-import { css } from "@emotion/react";
-import "./card.css"
-import ReviewCard from "./Rewiew Card";
 
+import * as Loader from "react-spinners";
+import { css } from "@emotion/react";
+
+import ReviewCard from "./Review Card";
+
+axios.defaults.withCredentials = true;
 function CustomerReviews(props) {
-  const [reviews, setreviews] = React.useState([{name: "Yss Lodu"}, {name: "Yss Lodu"}, {name: "Yss Lodu"}, {name: "Yss Lodu"}]);
+  const [reviews, setreviews] = React.useState([]);
   const [loading, setloading] = React.useState(true);
   const override = css`
     position: fixed;
@@ -14,32 +16,37 @@ function CustomerReviews(props) {
     top: 45%;
   `;
 
-  // const url = "http://localhost:3000/api/v1/customers/reviews/";
+  const url = "/api/v1/customers/reviews/";
 
-  // React.useEffect(() => {
-  //   axios({
-  //     method: "GET",
-  //     url: url,
-  //   })
-  //     .then((res) => {
-  //       setreviews(res.data.data.reviews);
-  //       setloading(false);
-  //     })
-  //     .catch((err) => {
-  //       setloading(false);
-  //       //show error page
-  //       console.log(err);
-  //     });
-  // }, []);
+  React.useEffect(() => {
+    axios({
+      method: "GET",
+      url: url,
+    })
+      .then((res) => {
+        setloading(false);
+        setreviews(res.data.data.Reviews);
+      })
+      .catch((err) => {
+        setloading(false);
+        //show error page
+        console.log(err);
+      });
+  }, []); // eslint-disable-line
 
   return (
     <>
+      <Loader.BarLoader
+        color="gray"
+        loading={loading}
+        css={override}
+        size={80}
+      />
       <h1 className="Booking-Heading">My Reviews</h1>
       <section className="cont">
-          {console.log(reviews)}
-          {reviews.map((data) => {
-            return <ReviewCard data={data} />;
-          })}
+        {reviews.map((review) => {
+          return <ReviewCard review={review} />;
+        })}
       </section>
     </>
   );

@@ -6,7 +6,7 @@ function Signup(props) {
   const [error, seterror] = React.useState("");
 
   const navigate = useNavigate();
-  const url = "http://localhost:3000/api/v1/maids/signup/";
+  const url = "/api/v1/maids/signup/";
 
   let dataToSend = {};
 
