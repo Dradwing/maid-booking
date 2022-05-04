@@ -39,15 +39,15 @@ function BookingForm(props) {
       return;
     }
     try {
-      const session = await axios({
+      const Session = await axios({
         method: "POST",
         url: url,
         data: { startingDate, services },
       });
-      console.log(session);
-      await stripe.redirectToCheckout({ sessionId: session.data.session.id });
+      console.log(Session);
+      await stripe.redirectToCheckout({ sessionId: Session.data.session.id });
     } catch (err) {
-      console.log(err.response);
+      console.log(err);
       alert("Could not complete the payment! Please try again later");
     }
   };

@@ -63,7 +63,7 @@ exports.getMyBookings = catchAsync(async (req, res, next) => {
 
   res.status(200).json({
     status: "success",
-    date: {
+    data: {
       CurrentBookings: currentBookings,
       PastBookings: pastBookings,
     },
@@ -75,7 +75,7 @@ exports.getMyReviews = catchAsync(async (req, res, next) => {
   }).populate({ path: "maid", select: "name photo _id" });
   res.status(200).json({
     status: "success",
-    date: {
+    data: {
       reviews: reviews,
     },
   });
