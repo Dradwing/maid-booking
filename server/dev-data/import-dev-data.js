@@ -54,7 +54,7 @@ const deleteData = async () => {
   try {
     //await Maid.deleteMany();
     //await Customer.deleteMany();
-    await Review.deleteMany();
+    //await Review.deleteMany();
     console.log("Data successfully deleted!");
   } catch (err) {
     console.log(err);
@@ -62,8 +62,34 @@ const deleteData = async () => {
   process.exit();
 };
 
+const updateData = async () => {
+  try {
+    await Maid.updateMany(
+      { active: true },
+      {
+        photo:
+          "https://maid-booking.herokuapp.com/api/v1/maids/images/defaultMaid.jpg",
+      }
+    );
+    await Customer.updateMany(
+      { active: true },
+      {
+        photo:
+          "https://maid-booking.herokuapp.com/api/v1/customers/images/defaultCustomer.jpg",
+      }
+    );
+    console.log("Data updated successfully");
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 if (process.argv[2] === "--import") {
   importData();
 } else if (process.argv[2] === "--delete") {
   deleteData();
+} else if (process.argv[2] === "--update") {
+  updateData();
 }
+
+// use command " node dev-data/import-dev-data.js --update" for update;

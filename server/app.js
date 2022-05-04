@@ -25,17 +25,12 @@ const limiter = rateLimit({
   windowMs: 60 * 60 * 1000,
   message: "Too many requests from this IP. Please try after one hour",
 });
+app.use(compression());
 const path = require("path");
-app.use(express.static("../client"));
+app.use(express.static("../client/build"));
 
 app.use("api/v1", limiter);
 app.use(helmet());
-
-app.post(
-  "/webhook-checkout",
-  express.raw({ type: "application/json" }),
-  bookingController.webhookCheckout
-);
 //to get data of requests body and limiting it to maximum 10kb
 app.use(express.json({ limit: "10kb" }));
 app.use(mongoSanitize());
@@ -45,7 +40,12 @@ app.use(cors());
 
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true, limit: "10kb" }));
-app.use(compression());
+
+app.post(
+  "/webhook-checkout",
+  express.raw({ type: "application/json" }),
+  bookingController.webhookCheckout
+);
 
 ////Routes middlewares
 app.use("/api/v1/maids", maidRouter);
