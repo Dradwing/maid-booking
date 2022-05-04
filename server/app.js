@@ -30,7 +30,11 @@ const path = require("path");
 __dirname = path.resolve();
 
 app.use("/api/v1", limiter);
-app.use(helmet());
+app.use(
+  helmet({
+    contentSecurityPolicy: false,
+  })
+);
 //to get data of requests body and limiting it to maximum 10kb
 app.use(express.json({ limit: "10kb" }));
 app.use(mongoSanitize());
