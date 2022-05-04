@@ -2,7 +2,7 @@ const express = require("express");
 const customerRoutes = express.Router();
 
 const customerAuthController = require("./../controllers/customerAuthController");
-const customerController = require("./../controllers/CustomerController");
+const customerController = require("./../controllers/customerController");
 const reviewRouter = require("./reviewRoutes");
 
 customerRoutes.get("/images/:fileName", customerController.sendImage);
