@@ -51,7 +51,7 @@ function EditMaidProfile(props) {
       .catch((err) => {
         if (err.response) {
           let errormessage = err.response.data.message;
-          seterror("*" + errormessage);
+          seterror("* File is not image or image size is too large! ");
         } else alert("Could not update image! Please try again later.");
       });
   };
@@ -69,7 +69,7 @@ function EditMaidProfile(props) {
       .catch((err) => {
         if (err.response) {
           let errormessage = err.response.data.message;
-          seterror("*" + errormessage);
+          seterror("* Please provide correct data! ");
         } else alert("Could not update data! Please try again later.");
       });
   };
@@ -86,7 +86,7 @@ function EditMaidProfile(props) {
       .catch((err) => {
         if (err.response) {
           let errormessage = err.response.data.message;
-          setpassError("*" + errormessage);
+          setpassError("* Please fill the form correctly! ");
         } else alert("Could not update password! Please try again later.");
       });
   };

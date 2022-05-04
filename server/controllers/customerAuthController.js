@@ -72,6 +72,13 @@ exports.logout = (req, res, next) => {
 };
 
 exports.forgotPassword = catchAsync(async (req, res, next) => {
+  if (!req.body.email) {
+    res.status(200).json({
+      status: "failed",
+      message: "Please fill the complete form",
+    });
+    return;
+  }
   const customer = await Customer.findOne({ email: req.body.email });
   if (!customer)
     return next(new AppError("There is no user with this email. ", 404));

@@ -20,7 +20,7 @@ function MaidResetPassword(props) {
       .catch((err) => {
         if (err.response) {
           let errormessage = err.response.data.message;
-          seterror("*" + errormessage);
+          seterror("* Please fill the complete form correctly! ");
         } else alert("Could not reset Password! Please try again later!");
       });
   };

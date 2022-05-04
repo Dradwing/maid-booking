@@ -79,6 +79,13 @@ exports.logout = (req, res, next) => {
 };
 
 exports.forgotPassword = catchAsync(async (req, res, next) => {
+  if (!req.body.email) {
+    res.status(200).json({
+      status: "failed",
+      message: "Please fill the complete form",
+    });
+    return;
+  }
   const maid = await Maid.findOne({ email: req.body.email });
   if (!maid)
     return next(new AppError("There is no maid with this email. ", 404));

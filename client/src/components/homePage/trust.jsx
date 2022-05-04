@@ -1,5 +1,10 @@
 import React from "react";
 import Fade from "react-reveal/Fade";
+import IdCheck from "./../../Images/Identity-check.png";
+import Training from "./../../Images/Training-session.png";
+import Interview from "./../../Images/In-person-interview.png";
+import DocCheck from "./../../Images/Criminal-record-check.png";
+
 function Trust() {
   return (
     <>
@@ -20,31 +25,19 @@ function Trust() {
           </p>
           <div className="wraper">
             <div className="points">
-              <img
-                src="https://www.bookmybai.com/images/Identity-check.png"
-                alt="Not Available"
-              ></img>
+              <img src={IdCheck} alt="Not Available"></img>
               <p>Identity Check</p>
             </div>
             <div className="points">
-              <img
-                src="https://www.bookmybai.com/images/Criminal-record-check.png"
-                alt="Not Available"
-              ></img>
+              <img src={DocCheck} alt="Not Available"></img>
               <p>Document Verification</p>
             </div>
             <div className="points">
-              <img
-                src="https://www.bookmybai.com/images/In-person-interview.png"
-                alt="Not Available"
-              ></img>
+              <img src={Interview} alt="Not Available"></img>
               <p>In-person Interview</p>
             </div>
             <div className="points">
-              <img
-                src="https://www.bookmybai.com/images/Training-session.png"
-                alt="Not Available"
-              ></img>
+              <img src={Training} alt="Not Available"></img>
               <p>Training Session</p>
             </div>
           </div>
