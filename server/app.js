@@ -27,9 +27,9 @@ const limiter = rateLimit({
 });
 app.use(compression());
 const path = require("path");
-app.use(express.static("../client/build"));
+__dirname = path.resolve();
 
-app.use("api/v1", limiter);
+app.use("/api/v1", limiter);
 app.use(helmet());
 //to get data of requests body and limiting it to maximum 10kb
 app.use(express.json({ limit: "10kb" }));
@@ -70,11 +70,12 @@ app.use("/contactUs", async (req, res) => {
   }
 });
 
-// to handle unhandled routes
-app.all("*", (req, res, next) => {
-  //argument in next automatically says that this is error.
-  next(new AppError(`can't find ${req.originalUrl} url on this server`, 400));
-});
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "/client/build")));
+  app.get("*", (req, res) =>
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"))
+  );
+} else app.use(express.static("../client/build"));
 
 //global errors handler
 app.use(globalErrorHandler);

@@ -1,0 +1,10 @@
+
+client/node_modules
+client/build
+
+
+
+
+server/config.env
+server/dev-data
+node_modules
