@@ -39,14 +39,13 @@ app.use(hpp());
 app.use(cors({ origin: "*" }));
 app.use(
   helmet.contentSecurityPolicy({
-    useDefaults: false,
+    useDefaults: true,
     directives: {
-      defaultSrc: ["'self'"],
       scriptSrc: ["'self'", "https://js.stripe.com"],
     },
   })
 );
-app.use(helmet.crossOriginEmbedderPolicy());
+
 app.use(helmet.crossOriginOpenerPolicy());
 app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 app.use(helmet.hidePoweredBy());
