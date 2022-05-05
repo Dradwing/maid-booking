@@ -32,7 +32,6 @@ __dirname = path.resolve();
 app.use("/api/v1", limiter);
 
 //to get data of requests body and limiting it to maximum 10kb
-app.use(express.json({ limit: "10kb" }));
 app.use(mongoSanitize());
 app.use(xss());
 app.use(hpp());
@@ -51,14 +50,14 @@ app.use(helmet.crossOriginOpenerPolicy());
 app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 app.use(helmet.hidePoweredBy());
 
-app.use(cookieParser());
-app.use(express.urlencoded({ extended: true, limit: "10kb" }));
-
 app.post(
   "/webhook-checkout",
   express.raw({ type: "application/json" }),
   bookingController.webhookCheckout
 );
+app.use(cookieParser());
+app.use(express.urlencoded({ extended: true, limit: "10kb" }));
+app.use(express.json({ limit: "10kb" }));
 
 ////Routes middlewares
 app.use("/api/v1/maids", maidRouter);

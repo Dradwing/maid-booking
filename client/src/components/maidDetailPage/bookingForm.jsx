@@ -32,7 +32,7 @@ function BookingForm(props) {
     "pk_test_51KcucRSDevBPU9EzckceCZBrURlXRK2A0GuoFtlkj8FFIvK8t4KqjfahiCnGo5XoSLAEeKYdcUcJHzciWd9LI4Dx005zmvHH6u"
   );
 
-  const url = `https://maid-booking.herokuapp.com/api/v1/bookings/checkout-session/${props.maid._id}`;
+  const url = `/api/v1/bookings/checkout-session/${props.maid._id}`;
 
   const handleClick = async () => {
     if (startingDate === undefined || servicesNumber === 0) {
