@@ -19,6 +19,7 @@ const xss = require("xss-clean");
 const hpp = require("hpp");
 const cors = require("cors");
 const compression = require("compression");
+const bodyParser = require("body-parser");
 
 const limiter = rateLimit({
   max: 200,
@@ -52,7 +53,7 @@ app.use(helmet.hidePoweredBy());
 
 app.post(
   "/webhook-checkout",
-  express.raw({ type: "application/json" }),
+  bodyParser.raw({ type: "application/json" }),
   bookingController.webhookCheckout
 );
 app.use(cookieParser());
