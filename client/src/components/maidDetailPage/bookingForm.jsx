@@ -85,7 +85,7 @@ function BookingForm(props) {
                         <input
                           type="checkbox"
                           name="services"
-                          value="Cooking"
+                          value={service}
                           onClick={handleClickForInput}
                         />{" "}
                         {service}
