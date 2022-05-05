@@ -14,6 +14,7 @@ const Email = require("./utils/email");
 const rateLimit = require("express-rate-limit");
 const cookieParser = require("cookie-parser");
 const helmet = require("helmet");
+const csp = require("helmet-csp");
 const mongoSanitize = require("express-mongo-sanitize");
 const xss = require("xss-clean");
 const hpp = require("hpp");
@@ -30,19 +31,31 @@ const path = require("path");
 __dirname = path.resolve();
 
 app.use("/api/v1", limiter);
-app.use(
-  helmet({
-    contentSecurityPolicy: false,
-    crossOriginResourcePolicy: { policy: "cross-origin" },
-  })
-);
+
 //to get data of requests body and limiting it to maximum 10kb
 app.use(express.json({ limit: "10kb" }));
 app.use(mongoSanitize());
 app.use(xss());
 app.use(hpp());
 app.use(cors());
+app.use(helmet());
 
+app.use(
+  csp({
+    directives: {
+      defaultSrc: ["'self'"],
+      styleSrc: ["'self' https://js.stripe.com"],
+      scriptSrc: ["'self' 'unsafe-inline' https://js.stripe.com"],
+      connectSrc: ["'self' https://api.stripe.com"],
+    },
+  })
+);
+app.use(function (req, res, next) {
+  res.header("Cross-Origin-Resource-Policy", "cross-origin");
+  res.header("Cross-Origin-Embedder-Policy", "require-corp");
+  res.header("Cross-Origin-Opener-Policy", "same-origin");
+  next();
+});
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true, limit: "10kb" }));
 

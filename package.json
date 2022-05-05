@@ -5,9 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-
     "start": "node server/server.js",
-   
     "client": "npm start --prefix client",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
@@ -22,7 +20,8 @@
     "express": "^4.17.3",
     "express-mongo-sanitize": "^2.2.0",
     "express-rate-limit": "^6.3.0",
-    "helmet": "^5.0.2",
+    "helmet": "^4.5.0",
+    "helmet-csp": "^3.4.0",
     "hpp": "^0.2.3",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.2.6",
