@@ -42,6 +42,7 @@ app.use(
     useDefaults: true,
     directives: {
       scriptSrc: ["'self'", "https://js.stripe.com"],
+      frameSrc: ["self", "https://js.stripe.com", "https://hooks.stripe.com"],
     },
   })
 );
