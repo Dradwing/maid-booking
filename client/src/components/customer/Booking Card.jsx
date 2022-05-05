@@ -12,7 +12,7 @@ const BookingCard = (props) => {
           <span>Booking Date: {props.booking.maid.createdAt}</span>
           <span>
             Work start Date:{" "}
-            {props.booking.startingDate.toISOString().slice(0, 10)}
+            {new Date(props.booking.startingDate).toLocaleDateString()}
           </span>
           <span>
             Services:{" "}
