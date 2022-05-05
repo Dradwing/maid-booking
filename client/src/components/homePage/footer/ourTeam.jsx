@@ -17,7 +17,7 @@ function OurTeam() {
         </p>
         <h4>YSS Siddarth</h4>
         <p>
-          <FaHandPointRight /> Tester
+          <FaHandPointRight /> Frontend Developer
         </p>
         <h4>Surya Singh Dosanjh</h4>
         <p>

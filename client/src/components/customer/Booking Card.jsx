@@ -10,7 +10,10 @@ const BookingCard = (props) => {
         <section className="card-cont">
           <span>{props.booking.maid.name}</span>
           <span>Booking Date: {props.booking.maid.createdAt}</span>
-          <span>Work start Date: {props.booking.startingDate}</span>
+          <span>
+            Work start Date:{" "}
+            {props.booking.startingDate.toISOString().slice(0, 10)}
+          </span>
           <span>
             Services:{" "}
             {props.booking.services.map((service) => service.toString() + " ")}
