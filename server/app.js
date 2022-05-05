@@ -14,7 +14,6 @@ const Email = require("./utils/email");
 const rateLimit = require("express-rate-limit");
 const cookieParser = require("cookie-parser");
 const helmet = require("helmet");
-const csp = require("helmet-csp");
 const mongoSanitize = require("express-mongo-sanitize");
 const xss = require("xss-clean");
 const hpp = require("hpp");
@@ -38,15 +37,20 @@ app.use(mongoSanitize());
 app.use(xss());
 app.use(hpp());
 app.use(cors({ origin: "*" }));
-//app.use(helmet());
+app.use(
+  helmet.contentSecurityPolicy({
+    useDefaults: false,
+    directives: {
+      defaultSrc: ["'self'"],
+      scriptSrc: ["'self'", "https://js.stripe.com"],
+    },
+  })
+);
+app.use(helmet.crossOriginEmbedderPolicy());
+app.use(helmet.crossOriginOpenerPolicy());
+app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
+app.use(helmet.hidePoweredBy());
 
-app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  res.header("Cross-Origin-Resource-Policy", "cross-origin");
-  res.header("Cross-Origin-Embedder-Policy", "require-corp");
-  res.header("Cross-Origin-Opener-Policy", "same-origin");
-  next();
-});
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true, limit: "10kb" }));
 
