@@ -37,20 +37,11 @@ app.use(express.json({ limit: "10kb" }));
 app.use(mongoSanitize());
 app.use(xss());
 app.use(hpp());
-app.use(cors());
-app.use(helmet());
+app.use(cors({ origin: "*" }));
+//app.use(helmet());
 
-app.use(
-  csp({
-    directives: {
-      defaultSrc: ["'self'"],
-      styleSrc: ["'self' https://js.stripe.com"],
-      scriptSrc: ["'self' 'unsafe-inline' https://js.stripe.com"],
-      connectSrc: ["'self' https://api.stripe.com"],
-    },
-  })
-);
 app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
   res.header("Cross-Origin-Resource-Policy", "cross-origin");
   res.header("Cross-Origin-Embedder-Policy", "require-corp");
   res.header("Cross-Origin-Opener-Policy", "same-origin");
