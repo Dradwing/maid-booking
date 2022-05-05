@@ -28,9 +28,10 @@ function BookingForm(props) {
     setservicesNumber(count);
   };
 
-  const stripe = loadStripe(
+  const stripePromise = loadStripe(
     "pk_test_51KcucRSDevBPU9EzckceCZBrURlXRK2A0GuoFtlkj8FFIvK8t4KqjfahiCnGo5XoSLAEeKYdcUcJHzciWd9LI4Dx005zmvHH6u"
   );
+
   const url = `/api/v1/bookings/checkout-session/${props.maid._id}`;
 
   const handleClick = async () => {
@@ -45,7 +46,8 @@ function BookingForm(props) {
         data: { startingDate, services },
       });
       console.log(Session);
-      await stripe.redirectToCheckout({ sessionId: Session.data.session.id });
+      const stripe = await stripePromise;
+      stripe.redirectToCheckout({ sessionId: Session.data.session.id });
     } catch (err) {
       console.log(err);
       alert("Could not complete the payment! Please try again later");
