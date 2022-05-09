@@ -24,9 +24,26 @@ import MaidDetail from "./pages/maidDetail";
 import Checkout from "./pages/checkoutPage";
 import Footer from "./components/homePage/footer";
 
+import axios from "axios";
+
 function App() {
   const [customer, setcustomer] = useState({});
   const [maid, setmaid] = useState({});
+  React.useEffect(() => {
+    axios({
+      method: "GET",
+      url: "/api/v1/customers/me/",
+    }).then((res) => {
+      setcustomer(res.data.Customer);
+    });
+
+    axios({
+      method: "GET",
+      url: "/api/v1/maids/me/",
+    }).then((res) => {
+      setmaid(res.data.Maid);
+    });
+  }, []);
   return (
     <>
       <div className="App">
