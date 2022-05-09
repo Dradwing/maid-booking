@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import React from "react";
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import Navbar from "./components/homePage/header";
@@ -27,8 +27,8 @@ import Footer from "./components/homePage/footer";
 import axios from "axios";
 
 function App() {
-  const [customer, setcustomer] = useState({});
-  const [maid, setmaid] = useState({});
+  const [customer, setcustomer] = React.useState({});
+  const [maid, setmaid] = React.useState({});
   React.useEffect(() => {
     axios({
       method: "GET",
