@@ -35,10 +35,13 @@ exports.resizeCustomerPhoto = (req, res, next) => {
   next();
 };
 
-exports.getMe = (req, res, next) => {
-  req.params.id = req.Customer.id;
-  next();
-};
+exports.getMe = catchAsync((req, res) => {
+  const customer = await Customer.findById(req.Customer._id);
+  res.status(200).json({
+    status: "success",
+    Customer: customer,
+  });
+});
 exports.getCustomer = catchAsync(async (req, res, next) => {
   const customer = await Customer.findById(req.params.id);
   res.status(200).json({
