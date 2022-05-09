@@ -64,7 +64,7 @@ function NNavbar(props) {
               <Nav.Link href="/#footer">Our Team</Nav.Link>
               <Nav.Link href="/#footer">Contact Us</Nav.Link>
             </Nav>
-            {props.maid !== undefined ? (
+            {props.maid !== undefined && props.maid.name !== undefined ? (
               <Nav>
                 <NavDropdown
                   title={props.maid.name}
@@ -94,7 +94,8 @@ function NNavbar(props) {
                   </NavDropdown.Item>
                 </NavDropdown>
               </Nav>
-            ) : props.customer !== undefined ? (
+            ) : props.customer !== undefined &&
+              props.customer.name !== undefined ? (
               <Nav>
                 <NavDropdown
                   title={props.customer.name}
