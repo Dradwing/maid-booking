@@ -80,14 +80,14 @@ exports.getMe = catchAsync(async (req, res, next) => {
 exports.getMyWorks = catchAsync(async (req, res, next) => {
   const currentWorks = await Booking.find({
     maid: req.Maid._id,
-    startingDate: { $gte: Date.now() - 30 * 24 * 60 * 60 * 1000 },
+    startingDate: { $gte: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000) },
   }).populate({
     path: "customer",
     select: "name photo email address mobileNumber",
   });
   const pastWorks = await Booking.find({
     maid: req.Maid._id,
-    startingDate: { $lt: Date.now() - 30 * 24 * 60 * 60 * 1000 },
+    startingDate: { $lt: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000) },
   }).populate({
     path: "customer",
     select: "name photo email address mobileNumber",

@@ -57,11 +57,11 @@ exports.sendImage = (req, res) => {
 exports.getMyBookings = catchAsync(async (req, res, next) => {
   const currentBookings = await Booking.find({
     customer: req.Customer._id,
-    startingDate: { $gte: Date.now() - 30 },
+    startingDate: { $gte: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000) },
   }).populate({ path: "maid", select: "name photo _id" });
   const pastBookings = await Booking.find({
     customer: req.Customer._id,
-    startingDate: { $lt: Date.now() - 30 },
+    startingDate: { $lt: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000) },
   }).populate({ path: "maid", select: "name photo _id" });
 
   res.status(200).json({
