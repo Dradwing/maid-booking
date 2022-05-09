@@ -15,6 +15,30 @@ function NNavbar(props) {
     props.setcustomer({});
     navigate("/");
   };
+
+  React.useEffect(() => {
+    axios({
+      method: "GET",
+      url: "/api/v1/customers/me/",
+    })
+      .then((res) => {
+        props.setcustomer(res.data.Customer);
+      })
+      .catch((err) => {
+        console.log("User is not logged In! ");
+      });
+
+    axios({
+      method: "GET",
+      url: "/api/v1/maids/me/",
+    })
+      .then((res) => {
+        props.setmaid(res.data.Maid);
+      })
+      .catch((err) => {
+        console.log("User is not logged In! ");
+      });
+  }, []); //eslint-disable-line
   return (
     <>
       <Navbar
@@ -40,7 +64,7 @@ function NNavbar(props) {
               <Nav.Link href="/#footer">Our Team</Nav.Link>
               <Nav.Link href="/#footer">Contact Us</Nav.Link>
             </Nav>
-            {props.maid.name !== undefined ? (
+            {props.maid !== undefined ? (
               <Nav>
                 <NavDropdown
                   title={props.maid.name}
@@ -70,7 +94,7 @@ function NNavbar(props) {
                   </NavDropdown.Item>
                 </NavDropdown>
               </Nav>
-            ) : props.customer.name !== undefined ? (
+            ) : props.customer !== undefined ? (
               <Nav>
                 <NavDropdown
                   title={props.customer.name}

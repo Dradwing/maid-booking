@@ -24,34 +24,10 @@ import MaidDetail from "./pages/maidDetail";
 import Checkout from "./pages/checkoutPage";
 import Footer from "./components/homePage/footer";
 
-import axios from "axios";
-
 function App() {
   const [customer, setcustomer] = React.useState({});
   const [maid, setmaid] = React.useState({});
-  React.useEffect(() => {
-    axios({
-      method: "GET",
-      url: "/api/v1/customers/me/",
-    })
-      .then((res) => {
-        setcustomer(res.data.Customer);
-      })
-      .catch((err) => {
-        console.log("User is not logged In! ");
-      });
 
-    axios({
-      method: "GET",
-      url: "/api/v1/maids/me/",
-    })
-      .then((res) => {
-        setmaid(res.data.Maid);
-      })
-      .catch((err) => {
-        console.log("User is not logged In! ");
-      });
-  }, []);
   return (
     <>
       <div className="App">
