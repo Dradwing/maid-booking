@@ -35,7 +35,7 @@ exports.resizeCustomerPhoto = (req, res, next) => {
   next();
 };
 
-exports.getMe = catchAsync((req, res) => {
+exports.getMe = catchAsync(async (req, res) => {
   const customer = await Customer.findById(req.Customer._id);
   res.status(200).json({
     status: "success",
