@@ -33,16 +33,24 @@ function App() {
     axios({
       method: "GET",
       url: "/api/v1/customers/me/",
-    }).then((res) => {
-      setcustomer(res.data.Customer);
-    });
+    })
+      .then((res) => {
+        setcustomer(res.data.Customer);
+      })
+      .catch((err) => {
+        console.log("User is not logged In! ");
+      });
 
     axios({
       method: "GET",
       url: "/api/v1/maids/me/",
-    }).then((res) => {
-      setmaid(res.data.Maid);
-    });
+    })
+      .then((res) => {
+        setmaid(res.data.Maid);
+      })
+      .catch((err) => {
+        console.log("User is not logged In! ");
+      });
   }, []);
   return (
     <>
