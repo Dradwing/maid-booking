@@ -35,7 +35,7 @@ function EditCustomerProfile(props) {
       headers: { "Content-Type": "multipart/form-data" },
     })
       .then((res) => {
-        props.setmaid(res.data.Maid);
+        props.setcustomer(res.data.Customer);
 
         seterror("Image updated successfully! ");
       })
