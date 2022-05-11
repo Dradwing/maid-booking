@@ -26,12 +26,11 @@ exports.uploadCustomerPhoto = upload.single("photo");
 exports.resizeCustomerPhoto = (req, res, next) => {
   if (!req.file) return next();
   req.file.filename = `customer-${req.Customer._id}-${Date.now()}.jpeg`;
-
   sharp(req.file.buffer)
     .resize(500, 500)
     .toFormat("jpeg")
     .jpeg({ quality: 90 })
-    .toFile(`Images/customers/${req.file.filename}`);
+    .toFile(`server/Images/customers/${req.file.filename}`);
   next();
 };
 
@@ -89,12 +88,11 @@ exports.updateMe = catchAsync(async (req, res, next) => {
   if (req.body.password || req.body.passwordConfirm) {
     return next(
       new AppError(
-        "This route is not for password updates. Please use /updateMyPassword.",
+        "This route is not for password updates. Please use /updatePassword.",
         400
       )
     );
   }
-
   // 2) Filtered out unwanted fields names that are not allowed to be updated
   const filteredBody = filterObj(
     req.body,
@@ -107,6 +105,7 @@ exports.updateMe = catchAsync(async (req, res, next) => {
     filteredBody.photo = `${req.protocol}://${req.get(
       "host"
     )}/api/v1/customers/images/${req.file.filename}`;
+
   const updatedCustomer = await Customer.findByIdAndUpdate(
     req.Customer.id,
     filteredBody,
@@ -115,6 +114,7 @@ exports.updateMe = catchAsync(async (req, res, next) => {
       runValidators: true,
     }
   );
+
   res.status(200).json({
     status: "success",
     Customer: updatedCustomer,
