@@ -4,6 +4,7 @@ import axios from "axios";
 
 function Signup(props) {
   const [error, seterror] = React.useState("");
+  const [state, setstate] = React.useState("Creat Account");
 
   const navigate = useNavigate();
   const url = "/api/v1/maids/signup/";
@@ -26,6 +27,7 @@ function Signup(props) {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
+    setstate("Creating...");
     axios({
       method: "POST",
       url: url,
@@ -36,8 +38,8 @@ function Signup(props) {
         navigate("/");
       })
       .catch((err) => {
+        setstate("Create Account");
         if (err.response) {
-          let errormessage = err.response.data.message;
           seterror("* Please fill the complete form correctly!");
         } else alert("Login failed! Please try again later.");
       });
@@ -198,7 +200,7 @@ function Signup(props) {
             name="passwordConfirm"
           />
         </fieldset>
-        <button type="submit">Create Account</button>
+        <button type="submit">{state}</button>
         <p style={{ fontSize: "small" }}>
           By creating an account or logging in, you agree to Maid booking's{" "}
           <a href="#">terms and conditions</a> and{" "}

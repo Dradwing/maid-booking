@@ -9,6 +9,7 @@ function BookingForm(props) {
   const [services, setservices] = React.useState("");
   const [servicesNumber, setservicesNumber] = React.useState(0);
   const [startingDate, setstartingDate] = React.useState();
+  const [state, setstate] = React.useState("Book");
 
   const handleClickForInput = (e) => {
     let newArray = [];
@@ -44,15 +45,17 @@ function BookingForm(props) {
       return;
     }
     try {
+      setstate("Loading...");
       const Session = await axios({
         method: "POST",
         url: url,
         data: { startingDate, services },
       });
-      console.log(Session);
+
       const stripe = await stripePromise;
       stripe.redirectToCheckout({ sessionId: Session.data.session.id });
     } catch (err) {
+      setstate("Book");
       console.log(err);
       alert("Could not complete the payment! Please try again later");
     }
@@ -173,7 +176,7 @@ function BookingForm(props) {
           </div>
         </div>
         <button className="book" onClick={handleClick}>
-          Book
+          {state}
         </button>
       </div>
     </>

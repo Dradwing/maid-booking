@@ -5,6 +5,9 @@ function EditCustomerProfile(props) {
   const [error, seterror] = React.useState("");
   const [passError, setpassError] = React.useState("");
   const [photo, setphoto] = React.useState(undefined);
+  const [state1, setstate1] = React.useState("Save Changes");
+  const [state2, setstate2] = React.useState("Update Password");
+
   const urlToUpdateData = "/api/v1/customers/updateMe/";
   const urlToUpdatePassword = "api/v1/customers/updatePassword";
 
@@ -45,7 +48,7 @@ function EditCustomerProfile(props) {
   };
   const updateData = (e) => {
     e.preventDefault();
-
+    setstate1("Saving...");
     axios({
       method: "PATCH",
       url: urlToUpdateData,
@@ -54,8 +57,10 @@ function EditCustomerProfile(props) {
       .then((res) => {
         props.setcustomer(res.data.Customer);
         seterror("Data updated successfully! ");
+        setstate1("Save Changes");
       })
       .catch((err) => {
+        setstate1("Save Changes");
         if (err.response) {
           let errormessage = err.response.data.message;
           seterror("* Please provide the correct data! ");
@@ -64,6 +69,7 @@ function EditCustomerProfile(props) {
   };
   const updatePassword = (e) => {
     e.preventDefault();
+    setstate2("Updating...");
     axios({
       method: "PATCH",
       url: urlToUpdatePassword,
@@ -71,8 +77,10 @@ function EditCustomerProfile(props) {
     })
       .then((res) => {
         setpassError("Password updated successfully! ");
+        setstate2("Update Password");
       })
       .catch((err) => {
+        setstate2("Update Password");
         if (err.response) {
           let errormessage = err.response.data.message;
           setpassError("* Please fill the form correctly");
@@ -149,7 +157,7 @@ function EditCustomerProfile(props) {
               placeholder={props.customer.address[0].toString()}
             />
           </fieldset>
-          <button type="submit">Save Changes</button>
+          <button type="submit">{state1}</button>
         </form>
         <form onSubmit={updatePassword}>
           <fieldset>
@@ -176,7 +184,7 @@ function EditCustomerProfile(props) {
               name="newPasswordConfirm"
             />
           </fieldset>
-          <button type="submit">Update Password</button>
+          <button type="submit">{state2}</button>
         </form>
       </div>
     </>

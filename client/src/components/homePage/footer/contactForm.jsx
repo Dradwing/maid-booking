@@ -5,6 +5,7 @@ function ContactForm() {
   const [error, seterror] = React.useState("");
   const url = "/contactUs";
   const [data, setdata] = React.useState({});
+  const [state, setstate] = React.useState("Send Message");
 
   const handleChange = (e) => {
     const newData = { ...data };
@@ -13,11 +14,14 @@ function ContactForm() {
   };
   const sendData = (e) => {
     e.preventDefault();
+    setstate("Sending...");
     axios({ method: "POST", url: url, data: data })
       .then((res) => {
         seterror(res.data.message);
+        setstate("Send Message");
       })
       .catch((err) => {
+        setstate("Send Message");
         return seterror("* Message could not be send");
       });
   };
@@ -54,7 +58,7 @@ function ContactForm() {
             />
           </fieldset>
           <p style={{ color: "white", margin: "0" }}>{error}</p>
-          <button type="submit">Send Message</button>
+          <button type="submit">{state}</button>
         </form>
       </div>
     </>

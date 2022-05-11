@@ -5,6 +5,7 @@ import axios from "axios";
 function CustomerForgotPassword() {
   const [error, seterror] = React.useState("");
   const url = "/api/v1/customers/forgotPassword/";
+  const [state, setstate] = React.useState("Send Request");
 
   let dataToSend = {};
 
@@ -13,12 +14,15 @@ function CustomerForgotPassword() {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
+    setstate("Sending...");
     axios({ method: "POST", url: url, data: dataToSend })
       .then((res) => {
         let errormessage = res.data.message;
         seterror(errormessage);
+        setstate("Send Request");
       })
       .catch((err) => {
+        setstate("Send Request");
         if (err.response) {
           let errormessage = err.response.data.message;
           seterror("*" + errormessage);
@@ -45,7 +49,7 @@ function CustomerForgotPassword() {
             We'll email you a link to reset your password
           </p>
         </fieldset>
-        <button type="submit">Send Request</button>
+        <button type="submit">{state}</button>
 
         <hr />
         <p>

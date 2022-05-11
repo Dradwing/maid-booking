@@ -4,6 +4,7 @@ import axios from "axios";
 
 function MaidResetPassword(props) {
   const [error, seterror] = React.useState("");
+  const [state, setstate] = React.useState("Send Request");
   const navigate = useNavigate();
   const url = `/api/v1/maids/resetPassword/${useParams().token}`;
 
@@ -12,14 +13,15 @@ function MaidResetPassword(props) {
   const handleChange = (e) => (dataToSend[e.target.name] = e.target.value);
   const handleSubmit = (e) => {
     e.preventDefault();
+    setstate("Sending...");
     axios({ method: "PATCH", url: url, data: dataToSend })
       .then((res) => {
         props.setmaid(res.data.data.Maid);
         navigate("/");
       })
       .catch((err) => {
+        setstate("Send Request");
         if (err.response) {
-          let errormessage = err.response.data.message;
           seterror("* Please fill the complete form correctly! ");
         } else alert("Could not reset Password! Please try again later!");
       });
@@ -47,7 +49,7 @@ function MaidResetPassword(props) {
             name="passwordConfirm"
           />
         </fieldset>
-        <button type="submit">Send Request</button>
+        <button type="submit">{state}</button>
       </form>
     </div>
   );

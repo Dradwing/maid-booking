@@ -5,6 +5,8 @@ function EditMaidProfile(props) {
   const [error, seterror] = React.useState("");
   const [passError, setpassError] = React.useState("");
   const [photo, setphoto] = React.useState(undefined);
+  const [state1, setstate1] = React.useState("Save Changes");
+  const [state2, setstate2] = React.useState("Update Password");
 
   const urlToUpdateData = "/api/v1/maids/updateMe/";
   const urlToUpdatePassword = "/api/v1/maids/updatePassword";
@@ -50,13 +52,13 @@ function EditMaidProfile(props) {
       })
       .catch((err) => {
         if (err.response) {
-          let errormessage = err.response.data.message;
           seterror("* File is not image or image size is too large! ");
         } else alert("Could not update image! Please try again later.");
       });
   };
   const updateData = (e) => {
     e.preventDefault();
+    setstate1("Saving...");
     axios({
       method: "PATCH",
       url: urlToUpdateData,
@@ -65,16 +67,18 @@ function EditMaidProfile(props) {
       .then((res) => {
         props.setmaid(res.data.Maid);
         seterror("Data updated successfully! ");
+        setstate1("Save Changes");
       })
       .catch((err) => {
+        setstate1("Save Changes");
         if (err.response) {
-          let errormessage = err.response.data.message;
           seterror("* Please provide correct data! ");
         } else alert("Could not update data! Please try again later.");
       });
   };
   const updatePassword = (e) => {
     e.preventDefault();
+    setstate2("Updating...");
     axios({
       method: "PATCH",
       url: urlToUpdatePassword,
@@ -82,8 +86,10 @@ function EditMaidProfile(props) {
     })
       .then((res) => {
         setpassError("Password updated successfully! ");
+        setstate2("Update Password");
       })
       .catch((err) => {
+        setstate2("Update Password");
         if (err.response) {
           let errormessage = err.response.data.message;
           setpassError("* Please fill the form correctly! ");
@@ -241,7 +247,7 @@ function EditMaidProfile(props) {
               placeholder={props.maid.price}
             />
           </fieldset>
-          <button type="submit">Save Changes</button>
+          <button type="submit">{state1}</button>
         </form>
         <form onSubmit={updatePassword}>
           <fieldset>
@@ -268,7 +274,7 @@ function EditMaidProfile(props) {
               name="newPasswordConfirm"
             />
           </fieldset>
-          <button type="submit">Update Password</button>
+          <button type="submit">{state2}</button>
         </form>
       </div>
     </>

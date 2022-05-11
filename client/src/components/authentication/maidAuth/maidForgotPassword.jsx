@@ -4,6 +4,7 @@ import axios from "axios";
 
 function MaidForgotPassword() {
   const [error, seterror] = React.useState("");
+  const [state, setstate] = React.useState("Send Request");
   const url = "/api/v1/maids/forgotPassword/";
 
   let dataToSend = {};
@@ -13,12 +14,15 @@ function MaidForgotPassword() {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
+    setstate("Sending...");
     axios({ method: "POST", url: url, data: dataToSend })
       .then((res) => {
+        setstate("Send Request");
         let errormessage = res.data.message;
         seterror(errormessage);
       })
       .catch((err) => {
+        setstate("Send Request");
         if (err.response) {
           let errormessage = err.response.data.message;
           seterror("*" + errormessage);
@@ -45,7 +49,7 @@ function MaidForgotPassword() {
             We'll email you a link to reset your password
           </p>
         </fieldset>
-        <button type="submit">Send Request</button>
+        <button type="submit">{state}</button>
 
         <hr />
         <p>

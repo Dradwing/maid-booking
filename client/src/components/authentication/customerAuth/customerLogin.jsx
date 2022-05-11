@@ -4,6 +4,7 @@ import axios from "axios";
 
 function Login(props) {
   const [error, seterror] = React.useState("");
+  const [state, setstate] = React.useState("Login");
   const navigate = useNavigate();
   const url = "/api/v1/customers/login/";
 
@@ -14,6 +15,7 @@ function Login(props) {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
+    setstate("Logging In...");
     axios({
       method: "POST",
       url: url,
@@ -24,6 +26,7 @@ function Login(props) {
         navigate("/");
       })
       .catch((err) => {
+        setstate("Login");
         if (err.response) {
           let errormessage = err.response.data.message;
           seterror("*" + errormessage);
@@ -60,7 +63,7 @@ function Login(props) {
           </p>
         </fieldset>
 
-        <button type="submit">Login</button>
+        <button type="submit">{state}</button>
 
         <hr />
         <p>
