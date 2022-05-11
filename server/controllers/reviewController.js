@@ -29,7 +29,11 @@ exports.createReview = catchAsync(async (req, res, next) => {
   req.body.maid = req.params.maidId;
   req.body.customer = req.Customer._id;
 
-  const newReview = await Review.create(req.body);
+  const newReview = await Review.create({
+    ...req.body,
+    maid: req.params.maidId,
+    customer: req.Customer._id,
+  });
 
   res.status(200).json({
     status: "success",

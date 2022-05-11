@@ -7,7 +7,7 @@ import BookingForm from "../components/maidDetailPage/bookingForm";
 import Reviews from "../components/maidDetailPage/reviews";
 import Fade from "react-reveal/Fade";
 
-function MaidDetail() {
+function MaidDetail(props) {
   const override = css`
     position: absolute;
     left: 30%;
@@ -61,7 +61,7 @@ function MaidDetail() {
         >
           {maidDetail.name}
         </h1>
-        <BookingForm maid={maidDetail} />
+        <BookingForm maid={maidDetail} customer={props.customer} />
         <div className="maidBioData">
           <Fade left>
             <img src={maidDetail.photo} alt="Not available" />

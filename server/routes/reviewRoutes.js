@@ -5,7 +5,7 @@ const customerAuthController = require("./../controllers/customerAuthController"
 
 reviewRouter.route("/").get(reviewController.getAllReviews);
 reviewRouter.use(customerAuthController.protect);
-reviewRouter.route("/createReview").post(reviewController.createReview);
+reviewRouter.route("/createReview/:maidId").post(reviewController.createReview);
 reviewRouter
   .route("/:id")
   .get(reviewController.getReview)

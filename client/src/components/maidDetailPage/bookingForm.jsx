@@ -35,6 +35,10 @@ function BookingForm(props) {
   const url = `/api/v1/bookings/checkout-session/${props.maid._id}`;
 
   const handleClick = async () => {
+    if (props.customer === undefined || props.customer.name === undefined) {
+      alert("Login as customer to book a maid. ");
+      return;
+    }
     if (startingDate === undefined || servicesNumber === 0) {
       alert("Please choose starting work date and services needed! ");
       return;

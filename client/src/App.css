@@ -257,7 +257,29 @@
   color: white;
   font-weight: 550;
 }
+/* review window*/
+.hideBackground{
+  top:0; left: 0;
+   width: 100%;
+   height: 100%;
+   position: fixed;
+   background: rgba(50,50,50,0.9);
+   z-index: 1;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+.reviewWindow{
+   position: fixed;
+   background-color: rgb(201, 60, 60);
+   color:white;
+   height:500px;
+   width:500px;
+   display: flex;
+   flex-direction: column;
+    align-items: center;
 
+}
 /*carousel-start*/
 
 .carousel {
@@ -695,7 +717,7 @@ textarea {
 }
 
 
-.contactForm button {
+.contactForm button, .reviewWindow button {
   padding: 5px 39px 5px 39px;
   color: #fff;
   background-color: #4bc970;
