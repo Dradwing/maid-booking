@@ -23,6 +23,7 @@ function Login(props) {
     })
       .then((res) => {
         props.setmaid(res.data.data.Maid);
+        setstate("Login");
         navigate("/");
       })
       .catch((err) => {

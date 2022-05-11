@@ -24,6 +24,7 @@ function Signup(props) {
     })
       .then((res) => {
         props.setcustomer(res.data.data.Customer);
+        setstate("Create Account");
         navigate("/");
       })
       .catch((err) => {

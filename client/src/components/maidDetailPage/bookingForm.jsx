@@ -54,6 +54,7 @@ function BookingForm(props) {
 
       const stripe = await stripePromise;
       stripe.redirectToCheckout({ sessionId: Session.data.session.id });
+      setstate("Book");
     } catch (err) {
       setstate("Book");
       console.log(err);

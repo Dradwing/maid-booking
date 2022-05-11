@@ -17,6 +17,7 @@ function CustomerResetPassword(props) {
     axios({ method: "PATCH", url: url, data: dataToSend })
       .then((res) => {
         props.setcustomer(res.data.data.Customer);
+        setstate("Send Request");
         navigate("/");
       })
       .catch((err) => {

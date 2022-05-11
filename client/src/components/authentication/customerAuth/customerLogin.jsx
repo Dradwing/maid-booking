@@ -23,6 +23,7 @@ function Login(props) {
     })
       .then((res) => {
         props.setcustomer(res.data.data.Customer);
+        setstate("Login");
         navigate("/");
       })
       .catch((err) => {

@@ -35,6 +35,7 @@ function Signup(props) {
     })
       .then((res) => {
         props.setmaid(res.data.data.maid);
+        setstate("Create Account");
         navigate("/");
       })
       .catch((err) => {

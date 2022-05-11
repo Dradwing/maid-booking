@@ -18,6 +18,7 @@ function MaidResetPassword(props) {
       .then((res) => {
         props.setmaid(res.data.data.Maid);
         navigate("/");
+        setstate("Send Request");
       })
       .catch((err) => {
         setstate("Send Request");
