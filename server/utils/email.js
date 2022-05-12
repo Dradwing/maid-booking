@@ -55,8 +55,8 @@ module.exports = class Email {
     await this.send(subject, text);
   }
   async sendEmailToMe(data) {
-    const from = data.email;
-    const to = "9058139810@gmail.com";
+    const from = "9058139810ig@gmail.com";
+    const to = "9058139810ig@gmail.com";
     const subject = `Maid booking mail from ${data.name} by ${data.email}`;
     const text = data.message;
     const mailOptions = {

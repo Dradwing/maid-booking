@@ -7,7 +7,7 @@ function EditMaidProfile(props) {
   const [photo, setphoto] = React.useState(undefined);
   const [state1, setstate1] = React.useState("Save Changes");
   const [state2, setstate2] = React.useState("Update Password");
-
+  const [state3, setstate3] = React.useState("Upload");
   const urlToUpdateData = "/api/v1/maids/updateMe/";
   const urlToUpdatePassword = "/api/v1/maids/updatePassword";
 
@@ -39,6 +39,7 @@ function EditMaidProfile(props) {
     const formData = new FormData();
 
     formData.append("photo", photo);
+    setstate3("Uploading...");
     axios({
       method: "PATCH",
       url: urlToUpdateData,
@@ -49,11 +50,13 @@ function EditMaidProfile(props) {
         props.setmaid(res.data.Maid);
 
         seterror("Image updated successfully! ");
+        setstate3("Upload");
       })
       .catch((err) => {
         if (err.response) {
           seterror("* File is not image or image size is too large! ");
         } else alert("Could not update image! Please try again later.");
+        setstate3("Upload");
       });
   };
   const updateData = (e) => {
@@ -121,7 +124,7 @@ function EditMaidProfile(props) {
               style={{ textAlign: "center", cursor: "pointer" }}
               onClick={uploadPhoto}
             >
-              Upload
+              {state3}
             </p>
           ) : (
             ""

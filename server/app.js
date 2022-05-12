@@ -67,7 +67,7 @@ app.use("/api/v1/bookings", bookingRouter);
 app.use("/contactUs", async (req, res) => {
   try {
     await new Email({ email: "d", name: "d" }, "/dumy-url").sendEmailToMe(
-      req.body
+      req.body.data
     );
 
     res.status(200).json({
@@ -75,6 +75,7 @@ app.use("/contactUs", async (req, res) => {
       message: "Message send successfully !",
     });
   } catch (err) {
+    console.log(err);
     res.status(400).json({
       status: "failed",
       message: `Message could not be send ! ${err}`,
