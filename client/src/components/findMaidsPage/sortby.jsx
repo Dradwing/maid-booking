@@ -10,7 +10,7 @@ function SortBy(props) {
   return (
     <>
       {/*show following sorting methods: rating,experience, age, price;*/}
-      <div className="sortby" style={{ marginTop: "20px" }}>
+      <div className="sortby1" style={{ marginTop: "20px" }}>
         <p
           style={{
             fontSize: "normal",

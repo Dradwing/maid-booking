@@ -1,4 +1,5 @@
 import React from "react";
+import { ImEqualizer } from "react-icons/im";
 
 function Filters(props) {
   const [priceValue, setpriceValue] = React.useState(5000);
@@ -32,6 +33,24 @@ function Filters(props) {
     prevObj[e.target.name] = e.target.value;
     props.setfilters(prevObj);
   };
+  const handleClickForSort = (e, value) => {
+    const elements = Array.from(e.target.parentElement.children);
+
+    elements.map((el) => {
+      if (el === e.target) {
+        el.style.backgroundColor = "dodgerblue";
+        el.style.color = "white";
+      } else {
+        el.style.backgroundColor = "rgb(227, 224, 224)";
+        el.style.color = "black";
+      }
+      return 0;
+    });
+
+    const prevObj = { ...props.filters };
+    prevObj.sortby = value;
+    props.setfilters(prevObj);
+  };
 
   return (
     <>
@@ -39,6 +58,19 @@ function Filters(props) {
         show following filters: Services(Cleaning,Cooking,Laundry,Elederly Care,
         Baby Sitting) Price range(2000 to 5000) RatingaAverage (1, 2,3,4,5)
         Gender(Male, Female, Other)*/}
+
+      <label for="filters-toggle-checkbox" className="filters-toggle-label">
+        {" "}
+        <ImEqualizer />
+        &nbsp; Sort & Filter
+      </label>
+      <input
+        type="checkbox"
+        id="filters-toggle-checkbox"
+        className="filters-toggle-checkbox"
+        style={{ display: "none" }}
+      ></input>
+
       <div className="filters">
         <label> Services </label>
         <br />
@@ -159,6 +191,36 @@ function Filters(props) {
             setrating(e.target.value);
           }}
         />
+        <div className="sortby2">
+          <hr />
+          <label>Sort By</label>
+          <br />
+          <div className="sortby21">
+            <p
+              onClick={(e) => handleClickForSort(e, "-ratingAverage")}
+              style={{ backgroundColor: "dodgerblue", color: "white" }}
+            >
+              Rating: High to Low
+            </p>
+            <p onClick={(e) => handleClickForSort(e, "-experience")}>
+              Experience: High to Low
+            </p>
+            <p onClick={(e) => handleClickForSort(e, "experience")}>
+              Experience: Low to High
+            </p>
+            <p onClick={(e) => handleClickForSort(e, "-dob")}>
+              Age: Low to High
+            </p>
+            <p onClick={(e) => handleClickForSort(e, "price")}>
+              Price: Low to High
+            </p>
+            <p onClick={(e) => handleClickForSort(e, "-price")}>
+              Price: High to Low
+            </p>
+          </div>
+          <br />
+          <br />
+        </div>
       </div>
     </>
   );

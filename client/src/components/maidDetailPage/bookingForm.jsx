@@ -5,7 +5,6 @@ import { loadStripe } from "@stripe/stripe-js";
 import axios from "axios";
 
 function BookingForm(props) {
-  const [display, setdisplay] = React.useState("none");
   const [services, setservices] = React.useState("");
   const [servicesNumber, setservicesNumber] = React.useState(0);
   const [startingDate, setstartingDate] = React.useState();
@@ -77,14 +76,9 @@ function BookingForm(props) {
               .slice(0, 10)}
             onChange={(e) => setstartingDate(e.target.value)}
           />
-          <div
-            className="dropdown"
-            onClick={(e) => {
-              display === "none" ? setdisplay("block") : setdisplay("none");
-            }}
-          >
+          <div className="dropdown">
             Choose Services <RiArrowDropDownFill />
-            <div className="values" style={{ display: display }}>
+            <div className="values">
               {props.maid.services ? (
                 props.maid.services.map((service) => {
                   return (
