@@ -112,10 +112,7 @@ function EditMaidProfile(props) {
           }}
         >
           <img src={props.maid.photo} alt="Not available"></img>
-          <label
-            for="uploadPhoto"
-            style={{ display: "block", textAlign: "center" }}
-          >
+          <label for="photo" className="photoLabel">
             Change Photo
           </label>
           <input type="file" id="photo" name="photo" onChange={changePhoto} />

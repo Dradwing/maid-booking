@@ -10,7 +10,7 @@ function EditCustomerProfile(props) {
   const [state3, setstate3] = React.useState("Upload");
 
   const urlToUpdateData = "/api/v1/customers/updateMe/";
-  const urlToUpdatePassword = "api/v1/customers/updatePassword";
+  const urlToUpdatePassword = "/api/v1/customers/updatePassword";
 
   let dataToSend = {};
   let passwordData = {};
@@ -104,10 +104,7 @@ function EditCustomerProfile(props) {
           }}
         >
           <img src={props.customer.photo} alt="Not available"></img>
-          <label
-            for="uploadPhoto"
-            style={{ display: "block", textAlign: "center" }}
-          >
+          <label for="photo" className="photoLabel">
             Change Photo
           </label>
           <input type="file" id="photo" name="photo" onChange={changePhoto} />

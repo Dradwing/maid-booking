@@ -12,12 +12,18 @@ function Carousel() {
               Book a Maid
             </Zoom>
           </h2>
-          <p style={{ fontFamily: "Poppins, san-serif", fontWeight: "bold" }}>
-            <Zoom right cascade>
+          <Zoom right cascade>
+            <p
+              style={{
+                fontFamily: "Poppins, san-serif",
+                fontWeight: "bold",
+              }}
+              className="forPhone"
+            >
               Here we provide monthly subscription for booking maids at
               reasonable prices.
-            </Zoom>
-          </p>
+            </p>
+          </Zoom>
           <Link
             to={`/findMaids/`}
             style={{ textDecoration: "inherit", color: "inherit" }}
