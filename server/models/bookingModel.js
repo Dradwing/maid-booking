@@ -16,9 +16,9 @@ const bookingSchema = new mongoose.Schema({
   startingDate: {
     type: Date,
     required: [true, "Booking must have a starting date! "],
-    min: [Date.now(), "Invalid starting date! "],
+    min: [Date.now() - 10 * 60 * 1000, "Invalid starting date! "],
     max: [
-      Date.now() + 24 * 60 * 60 * 1000,
+      Date.now() + 5 * 24 * 60 * 60 * 1000,
       "Booking day must start in next 5 days! ",
     ],
   },
