@@ -1,8 +1,0 @@
-build:
-  - cd client
-  - npm install
-  - npm run build
-
-start:
-  - npm install
-  - npm start
