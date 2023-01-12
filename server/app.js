@@ -83,7 +83,7 @@ app.use("/contactUs", async (req, res) => {
   }
 });
 
-if (process.env.NODE_ENV === "production") {
+if (process.env.NODE_ENV === "development") {
   app.use(express.static(path.join(__dirname, "/client/build")));
 
   app.get("*", (req, res) =>
