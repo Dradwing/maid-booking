@@ -7,7 +7,10 @@ const Customer = require("../models/customerModel");
 const Review = require("../models/reviewModel");
 
 //connection to database
-const DB = process.env.DATABASE;
+//connection to database
+const DB =
+  "mongodb+srv://Dradwing:letmepass@cluster0.v5mqu.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+
 const connectionParams = {
   useNewUrlParser: true,
 };
@@ -68,14 +71,14 @@ const updateData = async () => {
       { active: true },
       {
         photo:
-          "https://maid-booking.herokuapp.com/api/v1/maids/images/defaultMaid.jpg",
+          "https://maid-booking.onrender.com/api/v1/maids/images/defaultMaid.jpg",
       }
     );
     await Customer.updateMany(
       { active: true },
       {
         photo:
-          "https://maid-booking.herokuapp.com/api/v1/customers/images/defaultCustomer.jpg",
+          "https://maid-booking.onrender.com/api/v1/customers/images/defaultCustomer.jpg",
       }
     );
     console.log("Data updated successfully");
