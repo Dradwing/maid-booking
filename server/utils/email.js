@@ -44,7 +44,7 @@ module.exports = class Email {
 
   async sendWelcome() {
     const subject = "Welcome to Maid Booking family! ";
-    const text = `Hi ${this.firstName}!\nThis is the confirmation email that you have created an account on https://maid-booking.herokuapp.com.\nFollow this link to see your profile: \n ${this.url}.`;
+    const text = `Hi ${this.firstName}!\nThis is the confirmation email that you have created an account on Maid Booking https://maid-booking.onrender.com.\nFollow this link to see your profile: \n ${this.url}.`;
     await this.send(subject, text);
   }
 
@@ -55,9 +55,9 @@ module.exports = class Email {
     await this.send(subject, text);
   }
   async sendEmailToMe(data) {
-    const from = "9058139810ig@gmail.com";
+    const from = "dradwing50@gmail.com";
     const to = "9058139810ig@gmail.com";
-    const subject = `Maid booking mail from ${data.name} by ${data.email}`;
+    const subject = `Maid Booking mail from ${data.name} by ${data.email}`;
     const text = data.message;
     const mailOptions = {
       from,
