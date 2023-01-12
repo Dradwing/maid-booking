@@ -67,7 +67,7 @@ app.use("/api/v1/bookings", bookingRouter);
 app.use("/contactUs", async (req, res) => {
   try {
     await new Email({ email: "d", name: "d" }, "/dumy-url").sendEmailToMe(
-      req.body.data
+      req.body
     );
 
     res.status(200).json({

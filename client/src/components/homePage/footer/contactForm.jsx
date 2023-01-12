@@ -45,6 +45,7 @@ function ContactForm() {
               value={data.email}
               type="email"
               name="email"
+              id="email"
               placeholder="enter your email id..."
             />
             <label for="confirmNewPassword">Message</label>
