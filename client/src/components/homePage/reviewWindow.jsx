@@ -53,7 +53,7 @@ function ReviewWindow(props) {
               }}
             />
             <img
-              src="https://maid-booking.herokuapp.com/api/v1/maids/images/defaultMaid.jpg"
+              src="https://maid-booking.onrender.com/api/v1/maids/images/defaultMaid.jpg"
               alt="Not Available"
               style={{ width: "35%", borderRadius: "50%" }}
             ></img>

@@ -41,6 +41,30 @@
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03) inset;
   margin-bottom: 20px;
 }
+.login .location
+{
+  color:#3ac162;
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  font-size: 20px;
+  height: auto;
+  margin: 0;
+  outline: 0;
+  padding: 7px 15px;
+  width: 100%;
+  background-color: #e8eeef;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03) inset;
+  margin-bottom: 20px;
+}
+.location .photoLabel{
+   width:fit-content;
+}
+.location:hover .photoLabel::after{
+  width:100%;
+}
 .login button {
   padding: 5px 39px 5px 39px;
   color: #fff;
@@ -55,6 +79,7 @@
   box-shadow: 0 -1px 0 rgba(255, 255, 255, 0.1) inset;
   margin-bottom: 10px;
 }
+
 
 .login fieldset {
   border: none;

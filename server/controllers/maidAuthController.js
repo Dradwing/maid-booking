@@ -45,6 +45,7 @@ exports.signup = catchAsync(async (req, res, next) => {
     price: req.body.price,
     gender: req.body.gender,
     dob: req.body.dob,
+    location: { coordinates: req.body.location },
   });
 
   const url = `${req.protocol}://${req.get("host")}/maids/login`;

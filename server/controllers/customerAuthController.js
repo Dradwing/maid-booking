@@ -39,6 +39,7 @@ exports.signup = catchAsync(async (req, res, next) => {
     passwordConfirm: req.body.passwordConfirm,
     mobileNumber: req.body.mobileNumber,
     address: req.body.address,
+    location: { coordinates: req.body.location },
   });
   const url = `${req.protocol}://${req.get("host")}/customers/login`;
   await new Email(newCustomer, url).sendWelcome();

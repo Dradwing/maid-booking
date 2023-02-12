@@ -1,15 +1,41 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { AiFillCheckCircle } from "react-icons/ai";
 import axios from "axios";
 
 function Signup(props) {
   const [error, seterror] = React.useState("");
   const [state, setstate] = React.useState("Creat Account");
+  const [location, setLocation] = React.useState({
+    latitude: null,
+    longitude: null,
+    error: false,
+  });
 
   const navigate = useNavigate();
   const url = "/api/v1/maids/signup/";
 
   let dataToSend = {};
+
+  const getCurrentLocation = () => {
+    if (!navigator.geolocation) {
+      seterror("* Geolocation is not supported by your browser.");
+      return;
+    }
+    const success = (position) => {
+      setLocation({
+        latitude: position.coords.latitude,
+        longitude: position.coords.longitude,
+        error: true,
+      });
+    };
+
+    const error = (error) => {
+      seterror(error);
+    };
+
+    navigator.geolocation.getCurrentPosition(success, error);
+  };
 
   const handleChange = (e) => {
     dataToSend[e.target.name] = e.target.value;
@@ -28,6 +54,7 @@ function Signup(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
     setstate("Creating...");
+    dataToSend["location"] = [location.latitude, location.longitude];
     axios({
       method: "POST",
       url: url,
@@ -41,7 +68,7 @@ function Signup(props) {
       .catch((err) => {
         setstate("Create Account");
         if (err.response) {
-          seterror("* Please fill the complete form correctly!");
+          seterror(err.response);
         } else alert("Login failed! Please try again later.");
       });
   };
@@ -184,6 +211,26 @@ function Signup(props) {
             onChange={handleChange}
             min={2000}
             max={5000}
+          />
+          <label for="location">Give you current location</label>
+          <div className="location" onClick={getCurrentLocation}>
+            <label for="photo" className="photoLabel">
+              Locate Me
+              <AiFillCheckCircle
+                style={{ display: location.error ? "inline-block" : "none" }}
+              />
+            </label>
+          </div>
+
+          <label for="radius">
+            How far from your addess you are ready to work(in KM)
+          </label>
+          <input
+            type="number"
+            name="radius"
+            onChange={handleChange}
+            min={1}
+            max={30}
           />
 
           <label for="password">Password</label>

@@ -21,7 +21,7 @@ function Trust() {
           </h1>
           <p style={{ margin: 0 }}>
             Maids go through an extensive vetting process before they are listed
-            on maid-booking.herokuapp.com
+            on maid-booking.onrender.com
           </p>
           <div className="wraper">
             <div className="points">

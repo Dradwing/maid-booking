@@ -14,12 +14,15 @@ const customerSchema = new mongoose.Schema({
     required: [true, "Please provide your email"],
     unique: [true, "There is already an account with this email"],
     lowercase: true,
-    validate: [validator.isEmail, "Please provide a valid email"],
+  },
+  location: {
+    type: { type: String, default: "Point" }, // storing location of type point only
+    coordinates: { type: [Number], required: true },
   },
   photo: {
     type: String,
     default:
-      "https://maid-booking.herokuapp.com/api/v1/customers/images/defaultCustomer.jpg",
+      "https://maid-booking.onrender.com/api/v1/customers/images/defaultCustomer.jpg",
   },
   password: {
     type: String,
@@ -61,6 +64,8 @@ const customerSchema = new mongoose.Schema({
     select: false,
   },
 });
+
+customerSchema.index({ location: "2dsphere" });
 
 //middlewares works only when creating and saving
 

@@ -20,7 +20,7 @@ const maidSchema = new mongoose.Schema(
     },
     photo: {
       type: String,
-      default: `https://maid-booking.herokuapp.com/api/v1/maids/images/defaultMaid.jpg`,
+      default: `https://maid-booking.onrender.com/api/v1/maids/images/defaultMaid.jpg`,
     },
     password: {
       type: String,
@@ -56,6 +56,12 @@ const maidSchema = new mongoose.Schema(
       required: [true, "Please provide your address"],
       trim: true,
     },
+    location: {
+      type: { type: String, default: "Point" }, // storing location of type point only
+      coordinates: { type: [Number], required: true },
+    },
+
+    radius: { type: Number, required: true },
 
     dob: {
       type: Date,
@@ -134,6 +140,8 @@ maidSchema.virtual("reviews", {
   foreignField: "maid",
   localField: "_id",
 });
+
+maidSchema.index({ location: "2dsphere" });
 //middlewares works only when creating and saving
 
 //1. record time of password changing
