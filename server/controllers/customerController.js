@@ -1,10 +1,12 @@
 const Customer = require("./../models/customerModel");
 const catchAsync = require("./../utils/catchAsync");
 const AppError = require("./../utils/appError");
+const APIFeatures = require("./../utils/apiFeatures");
 const multer = require("multer");
 const sharp = require("sharp");
 const Booking = require("../models/bookingModel");
 const Review = require("../models/reviewModel");
+const Maid = require("./../models/maidModel");
 const path = require("path");
 
 const multerFilter = (req, file, cb) => {
@@ -53,6 +55,48 @@ exports.sendImage = (req, res) => {
     path.resolve(`${__dirname}/../Images/customers/${req.params.fileName}`)
   );
 };
+
+exports.getMaidsNearMe = catchAsync(async (req, res, next) => {
+  const features = new APIFeatures(
+    Maid.aggregate([
+      {
+        $geoNear: {
+          near: {
+            type: "Point",
+            coordinates: [
+              req.Customer.location.coordinates[0],
+              req.Customer.location.coordinates[1],
+            ],
+          },
+          distanceField: "distance",
+          maxDistance: 50000,
+          spherical: true,
+        },
+      },
+      {
+        $match: {
+          $expr: {
+            $lt: [{ $floor: "$distance" }, "$radius"],
+          },
+        },
+      },
+    ]),
+    req.query,
+    true
+  )
+    .filter()
+    .sorting()
+    .limiting()
+    .paginating(); // paginating is not working
+  const maids = await features.query;
+
+  // console.log(maidsWithinRadius[1].distanceFromCustomer);
+  res.status(200).json({
+    status: "success",
+    results: maids.length,
+    data: { Maids: maids },
+  });
+});
 exports.getMyBookings = catchAsync(async (req, res, next) => {
   const currentBookings = await Booking.find({
     customer: req.Customer._id,

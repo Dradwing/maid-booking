@@ -62,6 +62,7 @@ exports.getAllMaids = catchAsync(async (req, res, next) => {
     data: { Maids: maids },
   });
 });
+
 exports.getMaid = catchAsync(async (req, res, next) => {
   const maid = await Maid.findById(req.params.id).populate("reviews");
   res.status(200).json({

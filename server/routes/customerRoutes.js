@@ -17,6 +17,7 @@ customerRoutes.patch(
 );
 customerRoutes.use(customerAuthController.protect);
 customerRoutes.use("/reviews", reviewRouter);
+customerRoutes.use("/getMaidsNearMe", customerController.getMaidsNearMe);
 customerRoutes.patch("/updatePassword", customerAuthController.updatePassword);
 
 customerRoutes.get("/myBookings", customerController.getMyBookings);
