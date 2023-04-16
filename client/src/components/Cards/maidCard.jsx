@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { AiFillStar } from "react-icons/ai";
 import { FaBirthdayCake } from "react-icons/fa";
 import { BsGenderAmbiguous, BsFillBagCheckFill } from "react-icons/bs";
-import { RiPinDistanceFill } from "react-icons/fi";
+import { RiPinDistanceFill } from "react-icons/ri";
 import Fade from "react-reveal/Fade";
 function MaidCard(props) {
   let dob = props.maid.dob.split("T")[0];
