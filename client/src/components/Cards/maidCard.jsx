@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { AiFillStar } from "react-icons/ai";
 import { FaBirthdayCake } from "react-icons/fa";
 import { BsGenderAmbiguous, BsFillBagCheckFill } from "react-icons/bs";
+import { RiPinDistanceFill } from "react-icons/fi";
 import Fade from "react-reveal/Fade";
 function MaidCard(props) {
   let dob = props.maid.dob.split("T")[0];
@@ -48,6 +49,10 @@ function MaidCard(props) {
               </p>
               <p>
                 <BsFillBagCheckFill /> Experience: {props.maid.experience} years
+              </p>
+              <p>
+                <RiPinDistanceFill /> Distance from You:{" "}
+                {Math.floor(props.maid.distance / 1000)} KM
               </p>
               <div className="services">
                 {props.maid.services.map((service) => {

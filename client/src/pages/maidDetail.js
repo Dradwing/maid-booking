@@ -71,6 +71,10 @@ function MaidDetail(props) {
               <p>Email: {maidDetail.email}</p>
               <p>Mobile Number: {maidDetail.mobileNumber}</p>
               <p>Address: {maidDetail.address.toString()}</p>
+              <p>
+                Distance From you: {Math.floor(maidDetail.distance / 1000)} KM
+              </p>
+
               <p>Age: {age} years</p>
               <p>Gender: {maidDetail.gender}</p>
               <p>Aadhaar Number: {maidDetail.aadhaarNumber}</p>
