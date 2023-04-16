@@ -105,7 +105,12 @@ function App() {
           {
             //Customer Booking routes
           }
-          <Route path="/findMaids" element={<FindMaids />} />
+          <Route
+            path="/findMaids"
+            element={
+              <FindMaids customer={customer} setcustomer={setcustomer} />
+            }
+          />
           <Route
             path="/maidDetails/:maidId"
             element={<MaidDetail customer={customer} />}
