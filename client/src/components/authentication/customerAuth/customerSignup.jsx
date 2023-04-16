@@ -43,7 +43,7 @@ function Signup(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
     setstate("Creating...");
-    dataToSend["location"] = [location.latitude, location.longitude];
+    dataToSend["location"] = [location.longitude, location.latitude];
     axios({
       method: "POST",
       url: url,

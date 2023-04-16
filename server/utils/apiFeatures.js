@@ -23,7 +23,7 @@ class APIFeatures {
       queryStr.gender = { $in: this.queryString.gender.split(",") };
 
     if (this.aggregate) {
-      this.query = this.query.match(queryStr);
+      this.query = this.query.match(queryStr); // same way with sort and project
     } else {
       this.query = this.query.find(queryStr);
     }
@@ -34,11 +34,7 @@ class APIFeatures {
 
     if (this.queryString.sortby) {
       const sortBy = this.queryString.sortby.split(",").join(" ");
-      if (this.aggregate) {
-        this.query.push({ $sort: { [sortBy]: 1 } });
-      } else {
-        this.query = this.query.sort(sortBy);
-      }
+      this.query = this.query.sort(sortBy);
     }
     return this;
   }
@@ -47,7 +43,7 @@ class APIFeatures {
     if (this.queryString.fields) {
       const fields = this.queryString.fields.split(",").join(" ");
       if (this.aggregate) {
-        this.query.push({ $project: fields });
+        this.query.project(fields);
       } else {
         this.query = this.query.select(fields);
       }

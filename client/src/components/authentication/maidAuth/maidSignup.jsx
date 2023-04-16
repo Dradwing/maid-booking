@@ -5,7 +5,7 @@ import axios from "axios";
 
 function Signup(props) {
   const [error, seterror] = React.useState("");
-  const [state, setstate] = React.useState("Creat Account");
+  const [state, setstate] = React.useState("Create Account");
   const [location, setLocation] = React.useState({
     latitude: null,
     longitude: null,
@@ -54,14 +54,14 @@ function Signup(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
     setstate("Creating...");
-    dataToSend["location"] = [location.latitude, location.longitude];
+    dataToSend["location"] = [location.longitude, location.latitude];
     axios({
       method: "POST",
       url: url,
       data: dataToSend,
     })
       .then((res) => {
-        props.setmaid(res.data.data.maid);
+        props.setmaid(res.data.data.Maid);
         setstate("Create Account");
         navigate("/");
       })
