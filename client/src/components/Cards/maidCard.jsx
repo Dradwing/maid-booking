@@ -16,6 +16,7 @@ function MaidCard(props) {
       <Fade bottom>
         <Link
           to={`/maidDetails/${props.maid._id}`}
+          state={{ distance: props.maid.distance }}
           style={{ textDecoration: "inherit", color: "inherit" }}
         >
           <div className="maidCard">
@@ -42,10 +43,8 @@ function MaidCard(props) {
                 <AiFillStar style={{ color: "gold", fontSize: "xx-large" }} />
               </p>
               <p>
-                <FaBirthdayCake /> Age: {age} years
-              </p>
-              <p>
-                <BsGenderAmbiguous /> Gender: {props.maid.gender}
+                <FaBirthdayCake /> Age: {age} years <BsGenderAmbiguous />{" "}
+                Gender: {props.maid.gender}
               </p>
               <p>
                 <BsFillBagCheckFill /> Experience: {props.maid.experience} years

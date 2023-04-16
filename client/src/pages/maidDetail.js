@@ -6,13 +6,14 @@ import { css } from "@emotion/react";
 import BookingForm from "../components/maidDetailPage/bookingForm";
 import Reviews from "../components/maidDetailPage/reviews";
 import Fade from "react-reveal/Fade";
-
+import { useLocation } from "react-router-dom";
 function MaidDetail(props) {
   const override = css`
     position: absolute;
     left: 30%;
     top: 45%;
   `;
+  let stateFromParent = useLocation();
   const [loading, setloading] = React.useState(true);
   const [maidDetail, setmaidDetail] = React.useState({ address: "loading..." });
   const [age, setage] = React.useState(18);
@@ -72,7 +73,8 @@ function MaidDetail(props) {
               <p>Mobile Number: {maidDetail.mobileNumber}</p>
               <p>Address: {maidDetail.address.toString()}</p>
               <p>
-                Distance From you: {Math.floor(maidDetail.distance / 1000)} KM
+                Distance From you:{" "}
+                {Math.floor(stateFromParent.state.distance / 1000)} KM
               </p>
 
               <p>Age: {age} years</p>
