@@ -68,7 +68,7 @@ function Signup(props) {
       .catch((err) => {
         setstate("Create Account");
         if (err.response) {
-          seterror(err.response);
+          seterror("* Please fill the complete form correctly! ");
         } else alert("Login failed! Please try again later.");
       });
   };
