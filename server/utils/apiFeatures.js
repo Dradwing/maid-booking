@@ -4,6 +4,16 @@ class APIFeatures {
     this.queryString = queryString;
     this.aggregate = aggregate;
   }
+
+  convertToNumbers(obj) {
+    for (let key in obj) {
+      if (typeof obj[key] === "object") {
+        this.convertToNumbers(obj[key]); // Recursively convert nested objects
+      } else if (typeof obj[key] === "string" && !isNaN(obj[key])) {
+        obj[key] = parseFloat(obj[key]);
+      }
+    }
+  }
   filter() {
     //1)Simple filtering
     const queryObj = { ...this.queryString };
@@ -23,6 +33,7 @@ class APIFeatures {
       queryStr.gender = { $in: this.queryString.gender.split(",") };
 
     if (this.aggregate) {
+      this.convertToNumbers(queryStr);
       this.query = this.query.match(queryStr); // same way with sort and project
     } else {
       this.query = this.query.find(queryStr);
@@ -60,7 +71,7 @@ class APIFeatures {
     const limit = this.queryString.limit * 1 || 30;
     const skip = (page - 1) * limit;
     if (this.aggregate) {
-      //this.query.pipeline([{ $skip: skip }, { $limit: limit }]);  not working????
+      //this.query = this.query.skip(skip).limit(limit);  ?? not working
     } else {
       this.query = this.query.skip(skip).limit(limit);
     }
