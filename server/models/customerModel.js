@@ -84,7 +84,7 @@ customerSchema.pre("save", async function (next) {
   next();
 });
 
-//3. Not considering deleted maids
+//3. Not considering deleted customers
 customerSchema.pre(/^find/, function (next) {
   //for all queries starting with find
   //as it is a query middleware, this refers to current query

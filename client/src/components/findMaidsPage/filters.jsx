@@ -110,7 +110,7 @@ function Filters(props) {
             <input
               type="checkbox"
               name="services"
-              value="Elederly Care"
+              value="Elderly Care"
               onClick={handleClick}
             />{" "}
             Elderly Care
