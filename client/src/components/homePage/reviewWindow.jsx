@@ -30,7 +30,7 @@ function ReviewWindow(props) {
         props.settoggle(false);
       })
       .catch((err) => {
-        setstate("Could not add review.");
+        setstate("Could not add review. Review already exists");
         console.log("Review error:" + err);
       });
   };
