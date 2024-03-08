@@ -22,7 +22,7 @@ function ReviewWindow(props) {
     setstate("Adding...");
     axios({
       method: "POST",
-      url: `/reviews/createReview/${props.maid._id}`,
+      url: `/api/v1/reviews/createReview/${props.maid._id}`,
       data: { rating, review },
     })
       .then((res) => {
